@@ -1,6 +1,8 @@
 import "./globals.css";
 import { Navigation } from "./Navigation";
 
+//flow check
+
 export const metadata = {
   title: "StackCraft | Cutting-Edge Website Design & Custom Digital Solutions",
   description:
