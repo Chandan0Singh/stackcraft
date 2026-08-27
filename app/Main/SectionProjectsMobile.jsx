@@ -127,10 +127,10 @@ export const SectionProjectsMobile = () => {
           </h1>
         </div>
         <p className="description grey" ref={descriptionRef}>
-  From business websites to scalable web applications,
-  <br className="hide-on-desktop" />
-  we turn ideas into products people love to use.
-</p>
+          From business websites to scalable web applications,
+          <br className="hide-on-desktop" />
+          we turn ideas into products people love to use.
+        </p>
       </div>
       <div
         className="projects-content"
@@ -144,7 +144,7 @@ export const SectionProjectsMobile = () => {
             <div className="projects-carousel-row">
               <div className="projects-carousel-item">
                 <Image
-                  src="/mockups/heave.webp"
+                  src="/mockups/amazdraw.png"
                   width={1920}
                   height={1080}
                   unoptimized
@@ -154,7 +154,7 @@ export const SectionProjectsMobile = () => {
               </div>
               <div className="projects-carousel-item">
                 <Image
-                  src="/mockups/essentia.webp"
+                  src="/mockups/isproperties.png"
                   width={1920}
                   height={1080}
                   unoptimized
@@ -164,7 +164,7 @@ export const SectionProjectsMobile = () => {
               </div>
               <div className="projects-carousel-item">
                 <Image
-                  src="/mockups/kinimatic.webp"
+                  src="/mockups/odhira.png"
                   width={1920}
                   height={1080}
                   unoptimized
@@ -194,7 +194,7 @@ export const SectionProjectsMobile = () => {
               </div>
               <div className="projects-carousel-item">
                 <Image
-                  src="/mockups/rev.webp"
+                  src="/mockups/isproperties.png"
                   width={1920}
                   height={1080}
                   unoptimized
