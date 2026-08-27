@@ -224,7 +224,7 @@ export const AboutPageSection = () => {
               <div className="about-sticky-item-right">
                 <div className="about-sticky-item-right-imagebox">
                   <img
-                    src="/images/mockup4.webp"
+                    src="/images/web-dev.png"
                     className="about-sticky-item-right-image"
                     alt=""
                   />
@@ -247,7 +247,7 @@ export const AboutPageSection = () => {
               <div className="about-sticky-item-right">
                 <div className="about-sticky-item-right-imagebox">
                   <img
-                    src="/images/mockup12.webp"
+                    src="/images/e-com.png"
                     className="about-sticky-item-right-image"
                     alt=""
                   />
@@ -272,7 +272,7 @@ export const AboutPageSection = () => {
               <div className="about-sticky-item-right">
                 <div className="about-sticky-item-right-imagebox">
                   <img
-                    src="/images/mockup7.webp"
+                    src="/images/ai.png"
                     className="about-sticky-item-right-image"
                     alt=""
                   />
@@ -283,20 +283,20 @@ export const AboutPageSection = () => {
               <div className="about-sticky-item-left">
                 <div className="about-sticky-item-left-textbox">
                   <h1 className="headline white">
-  Maintenance <br /> & Support
-</h1>
+                    Maintenance <br /> & Support
+                  </h1>
 
-<p className="description about-sticky-item-left-textbox-description grey">
-  We keep your digital products secure, updated, optimized, and ready
-  to grow with your business.
-</p>
+                  <p className="description about-sticky-item-left-textbox-description grey">
+                    We keep your digital products secure, updated, optimized,
+                    and ready to grow with your business.
+                  </p>
                 </div>
                 <h1 className="headline white">(04)</h1>
               </div>
               <div className="about-sticky-item-right">
                 <div className="about-sticky-item-right-imagebox">
                   <img
-                    src="/images/mockup11.webp"
+                    src="/images/Maintenance.png"
                     className="about-sticky-item-right-image"
                     alt=""
                   />
