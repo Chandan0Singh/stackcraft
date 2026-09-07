@@ -36,7 +36,7 @@ export const metadata = {
       "StackCraft | Cutting-Edge Website Design & Custom Digital Solutions",
     description:
       "Harnessing Cutting-Edge Visualization Technology to Transform Vision into Tailored Digital Reality.",
-    images: ["/images/ordira logo.jpeg"],
+    images: ["/logos/stackcraft.png"],
   },
 };
 

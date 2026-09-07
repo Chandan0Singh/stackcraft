@@ -174,7 +174,7 @@ export const SectionProjectsMobile = () => {
               </div>
               <div className="projects-carousel-item">
                 <Image
-                  src="/mockups/peak.webp"
+                  src="/mockups/tour.webp"
                   width={1920}
                   height={1080}
                   unoptimized

@@ -527,7 +527,7 @@ export const WorksPageSection = () => {
                         </div>
                       </div>
                       <Image
-                        src="/mockups/isproperties.png"
+                        src="/mockups/tour.png"
                         className="works-item-content-image"
                         width={750}
                         height={750}
@@ -704,7 +704,7 @@ export const WorksPageSection = () => {
                     ref={industryImageRef4}
                   >
                     <img
-                      src="/mockups/odhira.png"
+                      src="/mockups/tour.png"
                       className="works-industries-item-right-image"
                       alt=""
                     />

@@ -74,7 +74,7 @@ export const Navigation = () => {
       <div className="navigation-inside" ref={navigationBar}>
         <div className="navigation-inside-left">
           <img
-            src="/images/ordira logo.jpeg"
+            src="/logos/stackcraft.png"
             className="navigation-inside-left-image"
             alt=""
           />

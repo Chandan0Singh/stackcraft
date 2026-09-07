@@ -96,7 +96,7 @@ export const SectionFooter = () => {
     <section className="footer">
       <div className="footer-content">
         <div className="footer-content-left" ref={topRef1}>
-          <img src="/images/ordira logo.jpeg" className="footer-logo" alt="" />
+          <img src="/logos/stackcraft.png" className="footer-logo" alt="" />
           <h1 className="subheadline white">StackCraft Studio</h1>
           <p className="description grey">
             We build modern websites, web applications, and AI-powered digital

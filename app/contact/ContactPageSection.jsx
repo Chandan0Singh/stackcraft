@@ -264,7 +264,7 @@ export const ContactPageSection = () => {
               ref={imageWrapperRef}
             >
               <img
-                src="/images/ordira logo.jpeg"
+                src="/logos/stackcraft.png"
                 className="contact-content-right-image"
                 ref={imageRef}
                 alt=""

@@ -241,7 +241,7 @@ export const SectionProjects = () => {
               </div>
               <div className="projects-carousel-item">
                 <Image
-                  src="/mockups/odhira.png"
+                  src="/mockups/tour.png"
                   width={1920}
                   height={1080}
                   unoptimized
@@ -251,7 +251,7 @@ export const SectionProjects = () => {
               </div>
               <div className="projects-carousel-item">
                 <Image
-                  src="/mockups/odhira.png"
+                  src="/mockups/tour.png"
                   width={1920}
                   height={1080}
                   unoptimized
