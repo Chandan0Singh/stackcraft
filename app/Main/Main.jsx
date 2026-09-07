@@ -30,10 +30,12 @@ const Main = () => {
     <ReactLenis root>
       <div className={`initial-loading-screen ${fadeOut ? "fade-out" : ""}`}>
         <div className="loading-image-box">
-          <img
-            src="/images/loading.gif"
+          <video
+            src="/images/1000155231.mp4"
             className="loading-image"
-            alt="Loading Image"
+            autoPlay
+            muted
+            playsInline
           />
         </div>
       </div>
