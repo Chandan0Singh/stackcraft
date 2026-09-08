@@ -19,12 +19,30 @@ export const AboutPageSection = () => {
   const itemRefs = useRef([]);
 
   const teamMembers = [
-    { name: "Chandan Singh", title: "Co-CEO & Co-Founder" },
-    // { name: "Lorenzo Noya", title: "Co-CEO & Co-Founder" },
-    { name: "Govind Rajavat", title: "COO & Co-Founder" },
-    // { name: "Rainer Ahi", title: "CTO" },
-    // { name: "Romet Kriks", title: "Motion Graphics Designer" },
-    // { name: "Sardor Xujamov", title: "Visualization Expert" },
+    {
+      name: "Chandan Singh",
+      title: "Founder & CEO",
+    },
+    {
+      name: "Varsha Chauhan",
+      title: "Social Media & Outreach",
+    },
+    {
+      name: "Anshu Chaudhary",
+      title: "Content & Social Media Manager",
+    },
+    {
+      name: "Govind Rajawat",
+      title: "COO & Design Lead",
+    },
+    {
+      name: "Jay Negi",
+      title: "Digital Marketing Specialist",
+    },
+    {
+      name: "Bharat Khati",
+      title: "Digital Marketing Specialist",
+    },
   ];
 
   useEffect(() => {

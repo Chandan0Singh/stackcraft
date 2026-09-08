@@ -201,38 +201,59 @@ export const ContactPageSection = () => {
                   </div>
                 </div>
                 <div className="contact-content-column-row">
-                  <div
-                    className="contact-content-small-item opacity-blur"
-                    ref={contactItem2}
+                  <a
+                    href="tel:+918860968260"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                     className="no-underline"
                   >
-                    <img
-                      src="/logos/phone.svg"
-                      className="contact-content-small-item-icon"
-                      alt=""
-                    />
-                    <p className="small-description grey">Call</p>
-                  </div>
-                  <div
-                    className="contact-content-small-item opacity-blur"
-                    ref={contactItem3}
+                    <div
+                      className="contact-content-small-item opacity-blur"
+                      ref={contactItem2}
+                    >
+                      <img
+                        src="/logos/phone.svg"
+                        className="contact-content-small-item-icon"
+                        alt=""
+                      />
+                      <p className="small-description grey">Call</p>
+                    </div>
+                  </a>
+                  <a
+                    href="mailto:code.chandansingh@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                     className="no-underline"
                   >
-                    <Mail
-                      strokeWidth={2.5}
-                      className="contact-content-small-item-icon"
-                    />
-                    <p className="small-description grey">Email</p>
-                  </div>
-                  <div
-                    className="contact-content-small-item opacity-blur"
-                    ref={contactItem4}
+                    <div
+                      className="contact-content-small-item opacity-blur"
+                      ref={contactItem3}
+                    >
+                      <Mail
+                        strokeWidth={2.5}
+                        className="contact-content-small-item-icon"
+                      />
+                      <p className="small-description grey">Email</p>
+                    </div>
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/chandan-singh-0b1b4a1b3/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                     className="no-underline"
                   >
-                    <img
-                      src="/logos/linkedin.svg"
-                      className="contact-content-small-item-icon"
-                      alt=""
-                    />
-                    <p className="small-description grey">LinkedIn</p>
-                  </div>
+                    <div
+                      className="contact-content-small-item opacity-blur"
+                      ref={contactItem4}
+                    >
+                      <img
+                        src="/logos/linkedin.svg"
+                        className="contact-content-small-item-icon"
+                        alt=""
+                      />
+                      <p className="small-description grey">LinkedIn</p>
+                    </div>
+                  </a>
                 </div>
                 <div
                   className="contact-content-item opacity-blur"

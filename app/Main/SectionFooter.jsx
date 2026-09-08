@@ -122,7 +122,7 @@ export const SectionFooter = () => {
               </div>
               <div className="footer-column-contents-item">
                 <Link
-                  href="/projects"
+                  href="/work"
                   className="description grey hover-text-grey"
                 >
                   Projects
