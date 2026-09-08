@@ -1,7 +1,6 @@
 "use client";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { ReactLenis } from "lenis/react";
-import { SectionFooter } from "../Main/SectionFooter";
 import gsap from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 import { SplitText } from "gsap/all";
@@ -324,7 +323,6 @@ export const AboutPageSection = () => {
           </div>
         </div>
       </section>
-      <SectionFooter />
     </ReactLenis>
   );
 };

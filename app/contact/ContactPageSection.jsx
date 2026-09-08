@@ -2,7 +2,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { ReactLenis } from "lenis/react";
 import "./contact.css";
-import { SectionFooter } from "../Main/SectionFooter";
 import gsap from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 import { SplitText } from "gsap/all";
@@ -205,7 +204,7 @@ export const ContactPageSection = () => {
                     href="tel:+918860968260"
                     target="_blank"
                     rel="noopener noreferrer"
-                     className="no-underline"
+                    className="no-underline"
                   >
                     <div
                       className="contact-content-small-item opacity-blur"
@@ -223,7 +222,7 @@ export const ContactPageSection = () => {
                     href="mailto:code.chandansingh@gmail.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                     className="no-underline"
+                    className="no-underline"
                   >
                     <div
                       className="contact-content-small-item opacity-blur"
@@ -240,7 +239,7 @@ export const ContactPageSection = () => {
                     href="https://www.linkedin.com/in/chandan-singh-0b1b4a1b3/"
                     target="_blank"
                     rel="noopener noreferrer"
-                     className="no-underline"
+                    className="no-underline"
                   >
                     <div
                       className="contact-content-small-item opacity-blur"
@@ -294,7 +293,6 @@ export const ContactPageSection = () => {
           </div>
         </div>
       </section>
-      <SectionFooter />
     </ReactLenis>
   );
 };

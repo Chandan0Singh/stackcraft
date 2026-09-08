@@ -1,7 +1,6 @@
 "use client";
 import { ReactLenis, useLenis } from "lenis/react";
 import { SectionHero } from "./SectionHero";
-import { SectionFooter } from "./SectionFooter";
 import { SectionShowreel } from "./SectionShowreel";
 import { SectionTestimonials } from "./SectionTestimonials";
 import { SectionTechstack } from "./SectionTechstack";
@@ -58,7 +57,6 @@ const Main = () => {
       <div className="normal-padding" />
       <SectionFlower />
       <div className="normal-padding" />
-      <SectionFooter />
     </ReactLenis>
   );
 };

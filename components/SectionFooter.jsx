@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import SplitText from "gsap/src/SplitText";
@@ -122,7 +123,7 @@ export const SectionFooter = () => {
               </div>
               <div className="footer-column-contents-item">
                 <Link
-                  href="/work"
+                  href="/works"
                   className="description grey hover-text-grey"
                 >
                   Projects
