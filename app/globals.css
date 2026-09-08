@@ -748,8 +748,8 @@ section {
 }
 
 .loading-image-box {
-  width: 17.5vw;
-  height: 17.5vw;
+  width: auto;
+  height: 100vh;
   overflow: hidden;
   position: relative;
 }

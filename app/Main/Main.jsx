@@ -31,7 +31,7 @@ const Main = () => {
       <div className={`initial-loading-screen ${fadeOut ? "fade-out" : ""}`}>
         <div className="loading-image-box">
           <video
-            src="/images/1000155231.mp4"
+            src="/images/loader.mp4"
             className="loading-image"
             autoPlay
             muted
