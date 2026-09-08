@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Navigation } from "./Navigation";
+import FloatingContact from "../components/floatingicons";
 
 //flow check
 
@@ -69,6 +70,7 @@ export default function RootLayout({ children }) {
         </div>
         <Navigation />
         {children}
+        <FloatingContact />
       </body>
     </html>
   );
