@@ -123,13 +123,13 @@ export const SectionTestimonials = () => {
                   </div>
                   <div className="testimonials-item-center">
                     <p className="big-description white">Sourav Khatana</p>
-                    <p className="description grey">Small Business Owner</p>
+                    <p className="description grey">Owner, IS Properties</p>
                   </div>
                   <p className="description white">
-                    Since integrating this solution into our workflow, we have
-                    experienced a remarkable improvement in both efficiency and
-                    team collaboration, enabling us to complete tasks more
-                    quickly and communicate more.
+                    StackCraft transformed our online presence with a modern,
+                    responsive website that showcases IS Properties and makes
+                    exploring properties for sale, rent, and lease across
+                    Gurugram simple and seamless.
                   </p>
                 </div>
                 <div className="testimonials-item-grid" />
@@ -141,13 +141,13 @@ export const SectionTestimonials = () => {
                   </div>
                   <div className="testimonials-item-center">
                     <p className="big-description white">Jay Negi</p>
-                    <p className="description grey">Project Manager</p>
+                    <p className="description grey">Owner, Tour Site</p>
                   </div>
                   <p className="description white">
-                    Since integrating this solution into our workflow, we have
-                    experienced a remarkable improvement in both efficiency and
-                    team collaboration, enabling us to complete tasks more
-                    quickly and communicate more.
+                    StackCraft brought the Odhira brand online with an elegant,
+                    modern e-commerce website. His expertise, attention to
+                    detail, and professionalism made the entire development
+                    process smooth.
                   </p>
                 </div>
                 <div className="testimonials-item-grid" />
@@ -155,19 +155,22 @@ export const SectionTestimonials = () => {
               <div className="testimonials-item">
                 <div className="testimonials-item-content">
                   <div className="testimonials-item-profile">
-                    <img src="/images/tushar.jpeg" alt="" />
+                    <img src="/images/tushar.jpeg" alt="Tushar Kandiyal" />
                   </div>
+
                   <div className="testimonials-item-center">
                     <p className="big-description white">Tushar Kandiyal</p>
-                    <p className="description grey">Operations Manager</p>
+                    <p className="description grey">Founder, Odhira</p>
                   </div>
+
                   <p className="description white">
-                    Since integrating this solution into our workflow, we have
-                    experienced a remarkable improvement in both efficiency and
-                    team collaboration, enabling us to complete tasks more
-                    quickly and communicate more.
+                    StackCraft brought the Odhira brand online with an elegant,
+                    modern e-commerce website. His expertise, attention to
+                    detail, and professionalism made the entire development
+                    process smooth.
                   </p>
                 </div>
+
                 <div className="testimonials-item-grid" />
               </div>
               {/* <div className="testimonials-item">
