@@ -17,71 +17,74 @@ import { SectionKPI } from "./SectionKPI";
 import "./main.css";
 
 const Main = () => {
-    const { progress } = useProgress();
-    const [fadeOut, setFadeOut] = useState(false);
-    const lenis = useLenis();
+const { progress } = useProgress();
+const [fadeOut, setFadeOut] = useState(false);
+const lenis = useLenis();
 
-    useEffect(() => {
-        if (progress === 100) {
-            setFadeOut(true);
-            lenis?.start();
-        }
-    }, [progress, lenis]);
+useEffect(() => {
+    if (progress !== 100) {
+        return;
+    }
 
-    return (
-        <ReactLenis root>
-            <div
-                className={`initial-loading-screen ${
-                    fadeOut ? "fade-out" : ""
-                }`}
-            >
-                <div className="loading-image-box">
-                    <video
-                        src="/images/loader.mp4"
-                        className="loading-image"
-                        autoPlay
-                        muted
-                        playsInline
-                    />
-                </div>
+    setFadeOut(true);
+    lenis?.start();
+}, [progress, lenis]);
+
+return (
+    <ReactLenis root>
+        <div
+            className={`initial-loading-screen ${
+                fadeOut ? "fade-out" : ""
+            }`}
+        >
+            <div className="loading-image-box">
+                <video
+                    src="/images/loader.mp4"
+                    className="loading-image"
+                    autoPlay
+                    muted
+                    playsInline
+                />
             </div>
+        </div>
 
-            <SectionHero />
+        <SectionHero />
 
-            <div className="normal-padding" />
+        <div className="normal-padding" />
 
-            <SectionShowreel />
+        <SectionShowreel />
 
-            <div className="border-padding">
-                <div className="section-border" />
-            </div>
+        <div className="border-padding">
+            <div className="section-border" />
+        </div>
 
-            <SectionServices />
+        <SectionServices />
 
-            <div className="normal-padding" />
+        <div className="normal-padding" />
 
-            <SectionProjects />
-            <SectionProjectsMobile />
+        <SectionProjects />
+        <SectionProjectsMobile />
 
-            <div className="normal-padding" />
+        <div className="normal-padding" />
 
-            <SectionTechstack />
+        <SectionTechstack />
 
-            <div className="normal-padding" />
+        <div className="normal-padding" />
 
-            <SectionTestimonials />
+        <SectionTestimonials />
 
-            <div className="normal-padding" />
+        <div className="normal-padding" />
 
-            <SectionKPI />
+        <SectionKPI />
 
-            <div className="normal-padding" />
+        <div className="normal-padding" />
 
-            <SectionFlower />
+        <SectionFlower />
 
-            <div className="normal-padding" />
-        </ReactLenis>
-    );
+        <div className="normal-padding" />
+    </ReactLenis>
+);
+
 };
 
 export default Main;
