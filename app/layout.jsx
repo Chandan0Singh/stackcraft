@@ -1,7 +1,7 @@
 import "./globals.css";
 import FloatingContact from "../components/floatingicons";
 import { Navigation } from "../components/Navigation";
-import {SectionFooter} from "../components/SectionFooter";
+import { SectionFooter } from "../components/SectionFooter";
 
 //flow check
 
@@ -46,7 +46,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <div
+        {/* <div
           id="awwwards"
           style={{
             position: "fixed",
@@ -68,7 +68,7 @@ export default function RootLayout({ children }) {
               </g>
             </svg>
           </a>
-        </div>
+        </div> */}
         <Navigation />
         {children}
         <SectionFooter />

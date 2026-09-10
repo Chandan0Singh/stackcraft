@@ -75,7 +75,7 @@ export const SectionShowreel = () => {
         </div>
         <div className="showreel-content-row">
           <div className="showreel-content-row-item opacity-blur" ref={showreelItemRef1} >
-            <img src="/logos/awwwards.svg" className="showreel-content-row-item-image" alt="" />
+            <img src="/logos/stackcraft.png" className="showreel-content-row-item-image" alt="" />
             <div className="showreel-content-row-item-grid" />
           </div>
           <div className="showreel-content-row-item opacity-blur" ref={showreelItemRef2} >

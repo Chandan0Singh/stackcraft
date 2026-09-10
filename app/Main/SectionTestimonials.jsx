@@ -155,10 +155,10 @@ export const SectionTestimonials = () => {
               <div className="testimonials-item">
                 <div className="testimonials-item-content">
                   <div className="testimonials-item-profile">
-                    <img src="/images/sourav.jpeg" alt="" />
+                    <img src="/images/tushar.jpeg" alt="" />
                   </div>
                   <div className="testimonials-item-center">
-                    <p className="big-description white">Tushal Kandiyal</p>
+                    <p className="big-description white">Tushar Kandiyal</p>
                     <p className="description grey">Operations Manager</p>
                   </div>
                   <p className="description white">
@@ -170,7 +170,7 @@ export const SectionTestimonials = () => {
                 </div>
                 <div className="testimonials-item-grid" />
               </div>
-              <div className="testimonials-item">
+              {/* <div className="testimonials-item">
                 <div className="testimonials-item-content">
                   <div className="testimonials-item-profile">
                     <img src="/images/jay.jpeg" alt="" />
@@ -241,7 +241,7 @@ export const SectionTestimonials = () => {
                   </p>
                 </div>
                 <div className="testimonials-item-grid" />
-              </div>
+              </div> */}
               <div className="testimonials-item testimonials-item-last">
                 <div className="testimonials-item-content testimonials-item-content-last">
                   <div className="testimonials-item-last-top">
