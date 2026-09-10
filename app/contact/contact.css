@@ -24,6 +24,7 @@
     width: 100%;
     height: fit-content;
     display: flex;
+    min-width: 0;
 }
 
 .contact-content-left {
@@ -32,12 +33,14 @@
     display: flex;
     flex-direction: column;
     gap: 10vh;
+    min-width: 0;
 }
 
 .contact-divider {
     width: 100%;
     height: 1px;
     background-color: rgba(255, 255, 255, 0.15);
+    flex-shrink: 0;
 }
 
 .contact-content-column {
@@ -46,23 +49,29 @@
     display: flex;
     flex-direction: column;
     gap: 1vw;
+    min-width: 0;
 }
 
 .contact-content-top-item {
     width: 100%;
     height: fit-content;
     border-radius: 10px;
-    box-shadow: inset 0 0 0 calc(1px + 0px) rgba(255, 255, 255, 0.075), inset 0 0 2.5vw rgba(255, 255, 255, 0.05);
+    box-shadow:
+        inset 0 0 0 calc(1px + 0px) rgba(255, 255, 255, 0.075),
+        inset 0 0 2.5vw rgba(255, 255, 255, 0.05);
     background-color: rgba(255, 255, 255, 0.025);
     display: flex;
     align-items: center;
     padding: 1.5vw;
     gap: 1vw;
+    min-width: 0;
 }
 
 .contact-content-top-item-profile {
     width: 4vw;
     height: 4vw;
+    min-width: 4vw;
+    min-height: 4vw;
     border-radius: 100%;
     overflow: hidden;
     flex-shrink: 0;
@@ -77,18 +86,22 @@
 .contact-content-top-item-text {
     width: 100%;
     height: 100%;
+    min-width: 0;
 }
 
 .contact-content-column-row {
     width: 100%;
     display: flex;
     gap: 1vw;
+    min-width: 0;
 }
 
 .contact-content-small-item {
     width: 100%;
     height: fit-content;
-    box-shadow: inset 0 0 0 calc(1px + 0px) rgba(255, 255, 255, 0.075), inset 0 0 2.5vw rgba(255, 255, 255, 0.05);
+    box-shadow:
+        inset 0 0 0 calc(1px + 0px) rgba(255, 255, 255, 0.075),
+        inset 0 0 2.5vw rgba(255, 255, 255, 0.05);
     background-color: rgba(255, 255, 255, 0.025);
     display: flex;
     flex-direction: column;
@@ -97,6 +110,7 @@
     gap: 0.5vh;
     border-radius: 10px;
     padding: 1vw;
+    min-width: 0;
 }
 
 .contact-content-small-item-icon {
@@ -104,12 +118,15 @@
     height: 1.25vw;
     object-fit: contain;
     color: white;
+    flex-shrink: 0;
 }
 
 .contact-content-item {
     width: 100%;
     height: fit-content;
-    box-shadow: inset 0 0 0 calc(1px + 0px) rgba(255, 255, 255, 0.075), inset 0 0 2.5vw rgba(255, 255, 255, 0.05);
+    box-shadow:
+        inset 0 0 0 calc(1px + 0px) rgba(255, 255, 255, 0.075),
+        inset 0 0 2.5vw rgba(255, 255, 255, 0.05);
     background-color: rgba(255, 255, 255, 0.025);
     display: flex;
     flex-direction: column;
@@ -117,6 +134,7 @@
     padding: 1vw;
     gap: 0.5vh;
     border-radius: 10px;
+    min-width: 0;
 }
 
 .contact-content-right {
@@ -126,10 +144,329 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    min-width: 0;
 }
 
 .contact-content-right-image {
     width: 65%;
     height: 65%;
     object-fit: contain;
+}
+
+
+/* =========================================================
+   TABLET / SMALL LAPTOP
+   ========================================================= */
+
+@media (max-width: 1200px) {
+    .contact {
+        padding-top: 17vh;
+        padding-bottom: 8vh;
+    }
+
+    .contact-content {
+        gap: 8vh;
+    }
+
+    .contact-content-top {
+        gap: 7vh;
+    }
+
+    .contact-content-left {
+        width: 40%;
+        gap: 8vh;
+    }
+
+    .contact-content-right {
+        width: 60%;
+        height: 60vh;
+    }
+
+    .contact-content-top-item {
+        padding: 1.75vw;
+    }
+
+    .contact-content-top-item-profile {
+        width: 4.5vw;
+        height: 4.5vw;
+        min-width: 4.5vw;
+        min-height: 4.5vw;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1024px) {
+    .contact {
+        padding-top: 15vh;
+        padding-bottom: 8vh;
+    }
+
+    .contact-content {
+        gap: 7vh;
+    }
+
+    .contact-content-top {
+        gap: 6vh;
+    }
+
+    .contact-content-row {
+        align-items: center;
+    }
+
+    .contact-content-left {
+        width: 45%;
+        gap: 7vh;
+    }
+
+    .contact-content-right {
+        width: 55%;
+        height: 55vh;
+    }
+
+    .contact-content-right-image {
+        width: 72%;
+        height: 72%;
+    }
+
+    .contact-content-top-item {
+        padding: 2vw;
+        gap: 1.5vw;
+    }
+
+    .contact-content-top-item-profile {
+        width: 5vw;
+        height: 5vw;
+        min-width: 5vw;
+        min-height: 5vw;
+    }
+
+    .contact-content-column {
+        gap: 1.5vw;
+    }
+
+    .contact-content-column-row {
+        gap: 1.5vw;
+    }
+
+    .contact-content-small-item,
+    .contact-content-item {
+        padding: 1.5vw;
+    }
+
+    .contact-content-small-item-icon {
+        width: 1.75vw;
+        height: 1.75vw;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+    .contact {
+        width: 100%;
+        padding-top: 25vw;
+        padding-bottom: 15vw;
+    }
+
+    .contact-content {
+        gap: 15vw;
+    }
+
+    .contact-content-top {
+        gap: 12vw;
+    }
+
+    .contact-content-row {
+        flex-direction: column;
+        gap: 12vw;
+        align-items: stretch;
+    }
+
+    .contact-content-left {
+        width: 100%;
+        height: fit-content;
+        gap: 12vw;
+    }
+
+    .contact-divider {
+        width: 100%;
+    }
+
+    .contact-content-column {
+        width: 100%;
+        gap: 3vw;
+    }
+
+    .contact-content-top-item {
+        width: 100%;
+        padding: 5vw;
+        gap: 4vw;
+        border-radius: 10px;
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.075),
+            inset 0 0 8vw rgba(255, 255, 255, 0.05);
+    }
+
+    .contact-content-top-item-profile {
+        width: 14vw;
+        height: 14vw;
+        min-width: 14vw;
+        min-height: 14vw;
+    }
+
+    .contact-content-top-item-text {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .contact-content-column-row {
+        width: 100%;
+        gap: 3vw;
+    }
+
+    .contact-content-small-item {
+        padding: 4vw;
+        gap: 1.5vw;
+        border-radius: 10px;
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.075),
+            inset 0 0 8vw rgba(255, 255, 255, 0.05);
+    }
+
+    .contact-content-small-item-icon {
+        width: 5vw;
+        height: 5vw;
+    }
+
+    .contact-content-item {
+        padding: 4vw;
+        gap: 1.5vw;
+        border-radius: 10px;
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.075),
+            inset 0 0 8vw rgba(255, 255, 255, 0.05);
+    }
+
+    .contact-content-right {
+        width: 100%;
+        height: 85vw;
+        min-height: 280px;
+        max-height: 520px;
+    }
+
+    .contact-content-right-image {
+        width: 75%;
+        height: 75%;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 480px) {
+    .contact {
+        padding-top: 28vw;
+        padding-bottom: 18vw;
+    }
+
+    .contact-content {
+        gap: 16vw;
+    }
+
+    .contact-content-top {
+        gap: 13vw;
+    }
+
+    .contact-content-row {
+        gap: 14vw;
+    }
+
+    .contact-content-left {
+        gap: 14vw;
+    }
+
+    .contact-content-top-item {
+        padding: 5.5vw;
+        gap: 4vw;
+    }
+
+    .contact-content-top-item-profile {
+        width: 15vw;
+        height: 15vw;
+        min-width: 15vw;
+        min-height: 15vw;
+    }
+
+    .contact-content-column {
+        gap: 3.5vw;
+    }
+
+    .contact-content-column-row {
+        gap: 3vw;
+    }
+
+    .contact-content-small-item,
+    .contact-content-item {
+        padding: 4.5vw;
+    }
+
+    .contact-content-small-item-icon {
+        width: 5.5vw;
+        height: 5.5vw;
+    }
+
+    .contact-content-right {
+        height: 90vw;
+        min-height: 260px;
+    }
+
+    .contact-content-right-image {
+        width: 80%;
+        height: 80%;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 360px) {
+    .contact {
+        padding-top: 30vw;
+    }
+
+    .contact-content-top-item {
+        padding: 5vw;
+    }
+
+    .contact-content-top-item-profile {
+        width: 16vw;
+        height: 16vw;
+        min-width: 16vw;
+        min-height: 16vw;
+    }
+
+    .contact-content-column-row {
+        gap: 2.5vw;
+    }
+
+    .contact-content-small-item,
+    .contact-content-item {
+        padding: 4vw;
+    }
+
+    .contact-content-right {
+        height: 95vw;
+        min-height: 240px;
+    }
 }

@@ -138,3 +138,217 @@
     box-shadow: inset 0 0 0 calc(1px + 0px) rgba(255, 255, 255, 0.075), inset 0 0 5vw rgba(255, 255, 255, 0.05);
     background-color: rgba(255, 255, 255, 0.025);
 }
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1200px) {
+
+  .about-content {
+    gap: 8vh;
+  }
+
+  .about-content-top {
+    gap: 7vh;
+  }
+
+  .about-content-imagebox {
+    height: 60vh;
+  }
+
+  .about-sticky-item {
+    width: 100%;
+    gap: 6vw;
+    padding: 4vw;
+  }
+
+  .about-sticky-item-headline {
+    font-size: 8vw;
+  }
+
+  .about-sticky-item-right-imagebox {
+    height: 28vh;
+  }
+
+  .about-team-item {
+    padding: 2.5vw;
+  }
+}
+
+
+/* =========================================
+   TABLET SMALL
+========================================= */
+
+@media (max-width: 1024px) {
+
+  .about-content {
+    gap: 7vh;
+  }
+
+  .about-content-top {
+    gap: 6vh;
+  }
+
+  .about-content-imagebox {
+    height: 50vh;
+  }
+
+  .about-sticky-item {
+    width: 100%;
+    height: auto;
+    min-height: 65vh;
+    gap: 5vw;
+    padding: 5vw;
+  }
+
+  .about-sticky-item-headline {
+    font-size: 9vw;
+  }
+
+  .about-sticky-item-right-imagebox {
+    height: 24vh;
+  }
+
+  .about-team-container {
+    gap: 1.5vw;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .about {
+    padding-top: 25vw;
+    padding-bottom: 15vw;
+  }
+
+  .about-content {
+    gap: 15vw;
+  }
+
+  .about-content-top {
+    gap: 12vw;
+  }
+
+  .about-content-imagebox {
+    height: 60vw;
+    border-radius: 15px;
+  }
+
+  .about-whyus-description {
+    display: block;
+    margin-right: 0;
+    margin-bottom: 4vw;
+  }
+
+  .about-whyus-subheadline {
+    display: block;
+  }
+
+  /* IMPORTANT */
+  /* Sticky sections don't work well on mobile */
+
+  .about-sticky-item {
+    position: relative;
+    top: auto;
+
+    width: 100%;
+    height: auto;
+
+    flex-direction: column;
+
+    gap: 8vw;
+
+    padding: 6vw;
+
+    margin-bottom: 5vw;
+
+    border-radius: 15px;
+  }
+
+  .about-sticky-item-left,
+  .about-sticky-item-right {
+    width: 100%;
+  }
+
+  .about-sticky-item-left {
+    gap: 8vw;
+  }
+
+  .about-sticky-item-left-textbox {
+    gap: 3vw;
+  }
+
+  .about-sticky-item-left-textbox-description {
+    text-indent: 0;
+  }
+
+  .about-sticky-item-headline {
+    font-size: 18vw;
+  }
+
+  .about-sticky-item-right-imagebox {
+    width: 100%;
+    height: 50vw;
+    border-radius: 10px;
+  }
+
+  .about-team {
+    gap: 8vw;
+  }
+
+  .about-team-container {
+    gap: 3vw;
+  }
+
+  .about-team-item {
+    flex-direction: column;
+    gap: 2vw;
+    padding: 5vw;
+    border-radius: 10px;
+  }
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 480px) {
+
+  .about {
+    padding-top: 30vw;
+    padding-bottom: 18vw;
+  }
+
+  .about-content {
+    gap: 18vw;
+  }
+
+  .about-content-imagebox {
+    height: 65vw;
+  }
+
+  .about-sticky-item {
+    padding: 5vw;
+    gap: 10vw;
+  }
+
+  .about-sticky-item-headline {
+    font-size: 20vw;
+  }
+
+  .about-sticky-item-right-imagebox {
+    height: 55vw;
+  }
+
+  .about-team-item {
+    padding: 5vw;
+  }
+}

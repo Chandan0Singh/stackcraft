@@ -1,4 +1,6 @@
-/* WORKS */
+/* =========================================================
+   WORKS
+   ========================================================= */
 
 .works {
     width: 100%;
@@ -38,7 +40,6 @@
     display: flex;
     flex-direction: column;
     gap: 10vh;
-    /* padding: 0 10vw; */
 }
 
 .works-content-top-text {
@@ -84,12 +85,14 @@
     width: 100%;
     display: flex;
     height: fit-content;
+    min-width: 0;
 }
 
 .works-carousel-row {
     display: flex;
     gap: 1vw;
     width: 100%;
+    min-width: 0;
 }
 
 .works-item-padding {
@@ -101,10 +104,7 @@
     flex: 0 0 40vw;
     min-width: 0;
     height: 70vh;
-    /* padding: 2vw; */
     border-radius: 25px;
-    /* box-shadow: inset 0 0 0 calc(1px + 0px) rgba(255, 255, 255, 0.075), inset 0 0 5vw rgba(255, 255, 255, 0.05);
-    background-color: rgba(255, 255, 255, 0.025); */
     position: relative;
     overflow: hidden;
 }
@@ -117,7 +117,9 @@
     height: 100%;
     z-index: 1;
     pointer-events: none;
-    box-shadow: inset 0 0 0 calc(1px + 0px) rgba(255, 255, 255, 0.075), inset 0 0 5vw rgba(255, 255, 255, 0.05);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.075),
+        inset 0 0 5vw rgba(255, 255, 255, 0.05);
     border-radius: 25px;
 }
 
@@ -131,6 +133,7 @@
     padding: 2.5vw;
     display: flex;
     align-items: flex-end;
+    min-width: 0;
 }
 
 .works-item-last-content {
@@ -156,11 +159,13 @@
     position: relative;
     z-index: 1;
     gap: 1.5vh;
+    min-width: 0;
 }
 
 .works-item-content-textbox-row {
     display: flex;
     gap: 1vw;
+    flex-wrap: wrap;
 }
 
 .works-item-content-textbox-button {
@@ -168,7 +173,9 @@
     height: fit-content;
     padding: 1vh 1vw;
     border-radius: 25px;
-    box-shadow: inset 0 0 0 calc(1px + 0px) rgba(255, 255, 255, 0.075), inset 0 0 2.5vw rgba(255, 255, 255, 0.05);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.075),
+        inset 0 0 2.5vw rgba(255, 255, 255, 0.05);
     background-color: rgba(255, 255, 255, 0.025);
     backdrop-filter: blur(8px);
 }
@@ -219,7 +226,9 @@
     height: 100%;
     border-radius: 25px;
     position: absolute;
-    box-shadow: inset 0 0 0 calc(1px + 0px) rgba(255, 255, 255, 0.075), inset 0 0 5vw rgba(255, 255, 255, 0.05);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.075),
+        inset 0 0 5vw rgba(255, 255, 255, 0.05);
     top: 0;
     left: 0;
     z-index: 2;
@@ -234,11 +243,13 @@
     gap: 2.5vh;
     position: relative;
     z-index: 1;
+    min-width: 0;
 }
 
 .works-project-item-content-row {
     display: flex;
     gap: 1vw;
+    flex-wrap: wrap;
 }
 
 .works-project-item-content-row-box {
@@ -246,7 +257,9 @@
     height: fit-content;
     padding: 1vh 1vw;
     border-radius: 25px;
-    box-shadow: inset 0 0 0 calc(1px + 0px) rgba(255, 255, 255, 0.075), inset 0 0 2.5vw rgba(255, 255, 255, 0.05);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.075),
+        inset 0 0 2.5vw rgba(255, 255, 255, 0.05);
     background-color: rgba(255, 255, 255, 0.025);
     backdrop-filter: blur(8px);
 }
@@ -289,6 +302,7 @@
     height: 30vh;
     display: flex;
     justify-content: space-between;
+    min-width: 0;
 }
 
 .works-industries-item-left {
@@ -296,11 +310,13 @@
     height: 100%;
     display: flex;
     align-items: flex-end;
+    min-width: 0;
 }
 
 .works-industries-item-right {
     width: 50%;
     height: 100%;
+    min-width: 0;
 }
 
 .works-industries-item-right-imagebox {
@@ -340,12 +356,14 @@
     width: 100%;
     display: flex;
     height: fit-content;
+    min-width: 0;
 }
 
 .casestudies-carousel-row {
     display: flex;
     gap: 1vw;
     width: 100%;
+    min-width: 0;
 }
 
 .casestudies-item-padding {
@@ -359,7 +377,9 @@
     height: 65vh;
     padding: 2.5vw;
     border-radius: 25px;
-    box-shadow: inset 0 0 0 calc(1px + 0px) rgba(255, 255, 255, 0.075), inset 0 0 5vw rgba(255, 255, 255, 0.05);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.075),
+        inset 0 0 5vw rgba(255, 255, 255, 0.05);
     background-color: rgba(255, 255, 255, 0.025);
 }
 
@@ -369,6 +389,7 @@
     display: flex;
     flex-direction: column;
     gap: 2vw;
+    min-width: 0;
 }
 
 .casestudies-item-content-textbox {
@@ -376,6 +397,7 @@
     flex-direction: column;
     gap: 1.5vh;
     user-select: none;
+    min-width: 0;
 }
 
 .casestudies-item-content-imagebox {
@@ -383,6 +405,7 @@
     height: 100%;
     position: relative;
     padding: 1vw;
+    min-width: 0;
 }
 
 .casestudies-item-content-imagebox-button {
@@ -390,7 +413,9 @@
     width: fit-content;
     height: 4vh;
     background-color: rgba(255, 255, 255, 0.025);
-    box-shadow: inset 0 0 0 calc(1px + 0px) rgba(255, 255, 255, 0.075), inset 0 0 2.5vw rgba(255, 255, 255, 0.05);
+    box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, 0.075),
+        inset 0 0 2.5vw rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(5px);
     z-index: 1;
     display: flex;
@@ -432,7 +457,10 @@
     gap: 0.5vw;
 }
 
-/* CASESTUDY PAGE */
+
+/* =========================================================
+   CASE STUDY PAGE
+   ========================================================= */
 
 .casestudy {
     width: 100%;
@@ -503,9 +531,13 @@
     left: 0;
     width: 100%;
     height: 25vh;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #010101 100%);
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 0%,
+        #010101 100%
+    );
     z-index: 1;
-  }
+}
 
 .casestudy-top-image {
     position: absolute;
@@ -534,6 +566,7 @@
     display: flex;
     flex-direction: column;
     gap: 5vh;
+    min-width: 0;
 }
 
 .casestudy-center-item {
@@ -541,6 +574,7 @@
     display: flex;
     flex-direction: column;
     gap: 2.5vh;
+    min-width: 0;
 }
 
 .casestudy-center-item-column {
@@ -560,6 +594,7 @@
     height: 3vw;
     object-fit: cover;
     border-radius: 999px;
+    flex-shrink: 0;
 }
 
 .casestudy-bottom {
@@ -591,4 +626,756 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+
+/* =========================================================
+   LARGE TABLETS / SMALL LAPTOPS
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+    .works {
+        padding-top: 17vh;
+        padding-bottom: 8vh;
+    }
+
+    .works-content {
+        gap: 12vh;
+    }
+
+    .works-content-top {
+        gap: 8vh;
+    }
+
+    .works-content-top-text {
+        gap: 7vh;
+    }
+
+    .works-content-textbox {
+        padding: 0 7.5vw;
+    }
+
+    .works-item {
+        flex-basis: 45vw;
+        height: 65vh;
+    }
+
+    .works-item-padding {
+        flex-basis: 7.5vw;
+    }
+
+    .works-content-projects {
+        padding: 0 7.5vw;
+    }
+
+    .works-project-item {
+        width: 44vw;
+        height: 55vh;
+    }
+
+    .works-project-big-item {
+        width: 100%;
+        height: 65vh;
+    }
+
+    .works-industries {
+        padding: 0 7.5vw;
+    }
+
+    .works-industries-textbox {
+        padding: 0 7.5vw;
+    }
+
+    .works-industries-item {
+        height: 27vh;
+    }
+
+    .works-industries-item-right-image {
+        width: 100%;
+    }
+
+    .casestudies-item-padding {
+        flex-basis: 7.5vw;
+    }
+
+    .casestudies-item {
+        flex-basis: 32vw;
+        height: 60vh;
+    }
+
+    .casestudies-carousel-bottom {
+        padding: 0 7.5vw;
+    }
+
+    .casestudy-top {
+        height: 180vh;
+    }
+
+    .casestudy-top-section {
+        height: 90vh;
+        padding: 0 7.5vw;
+    }
+
+    .casestudy-navigation {
+        left: 7.5vw;
+    }
+
+    .casestudy-video {
+        width: 50vw;
+    }
+
+    .casestudy-top-image {
+        height: 250vh;
+    }
+
+    .casestudy-center {
+        padding-left: 7.5vw;
+        padding-right: 7.5vw;
+        gap: 15vh;
+    }
+
+    .casestudy-bottom {
+        padding: 0 7.5vw;
+    }
+
+    .casestudy-bottom-half-imagebox {
+        width: calc(50% - 0.5vw);
+        height: 65vh;
+    }
+
+    .casestudy-bottom-full-imagebox {
+        height: 85vh;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1024px) {
+
+    .works-content {
+        gap: 10vh;
+    }
+
+    .works-content-top {
+        gap: 7vh;
+    }
+
+    .works-subtextbox {
+        gap: 2vh;
+    }
+
+    .works-item {
+        flex-basis: 52vw;
+        height: 60vh;
+    }
+
+    .works-item-content {
+        padding: 3vw;
+    }
+
+    .works-content-projects {
+        gap: 2vw;
+    }
+
+    .works-project-item {
+        width: calc(50% - 1vw);
+        height: 50vh;
+        padding: 3vw;
+    }
+
+    .works-project-big-item {
+        width: 100%;
+        height: 60vh;
+        padding: 3vw;
+    }
+
+    .works-industries-item {
+        height: 25vh;
+    }
+
+    .works-industries-item-left,
+    .works-industries-item-right {
+        width: 50%;
+    }
+
+    .casestudies-item {
+        flex-basis: 42vw;
+        height: 55vh;
+        padding: 3vw;
+    }
+
+    .casestudies-item-content {
+        gap: 2.5vw;
+    }
+
+    .casestudies-item-content-imagebox {
+        padding: 1.5vw;
+    }
+
+    .casestudies-item-content-imagebox-button {
+        padding: 0 1.5vw;
+    }
+
+    .casestudies-item-content-imagebox-button-icon {
+        width: 1.5vw;
+        height: 1.5vw;
+    }
+
+    .casestudy-top {
+        height: 160vh;
+    }
+
+    .casestudy-top-section {
+        height: 80vh;
+    }
+
+    .casestudy-navigation {
+        top: 20vh;
+    }
+
+    .casestudy-navigation-button-icon {
+        width: 1.5vw;
+        height: 1.5vw;
+    }
+
+    .casestudy-video {
+        width: 60vw;
+    }
+
+    .casestudy-top-image {
+        height: 225vh;
+    }
+
+    .casestudy-center {
+        gap: 12vh;
+    }
+
+    .casestudy-center-content {
+        width: 65%;
+    }
+
+    .casestudy-center-item {
+        width: 65%;
+    }
+
+    .casestudy-center-item-profile-image {
+        width: 4vw;
+        height: 4vw;
+    }
+
+    .casestudy-bottom {
+        gap: 2vw;
+    }
+
+    .casestudy-bottom-half-imagebox {
+        width: calc(50% - 1vw);
+        height: 55vh;
+    }
+
+    .casestudy-bottom-full-imagebox {
+        height: 70vh;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .works {
+        padding-top: 25vw;
+        padding-bottom: 15vw;
+    }
+
+    .works-content {
+        gap: 15vw;
+    }
+
+    .works-subtextbox {
+        gap: 4vw;
+        padding: 0 5vw;
+    }
+
+    .works-divider,
+    .works-content-top-divider {
+        width: 90vw;
+    }
+
+    .works-content-top {
+        gap: 10vw;
+    }
+
+    .works-content-top-text {
+        gap: 10vw;
+    }
+
+    .works-content-textbox {
+        padding: 0 5vw;
+    }
+
+    /*
+     * Keep the carousel horizontal.
+     * Embla depends on the flex-basis, so don't turn
+     * this into a vertical list.
+     */
+
+    .works-carousel-wrapper {
+        gap: 5vw;
+    }
+
+    .works-carousel-row {
+        gap: 3vw;
+    }
+
+    .works-item-padding {
+        flex-basis: 5vw;
+    }
+
+    .works-item {
+        flex-basis: 78vw;
+        height: 110vw;
+        border-radius: 20px;
+    }
+
+    .works-item-border {
+        border-radius: 20px;
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.075),
+            inset 0 0 8vw rgba(255, 255, 255, 0.05);
+    }
+
+    .works-item-content {
+        padding: 5vw;
+        border-radius: 20px;
+    }
+
+    .works-item-last-content {
+        padding: 7vw;
+        border-radius: 20px;
+    }
+
+    .works-item-content-textbox {
+        gap: 3vw;
+    }
+
+    .works-item-content-textbox-row {
+        gap: 2vw;
+    }
+
+    .works-item-content-textbox-button {
+        padding: 2.5vw 4vw;
+        border-radius: 25px;
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.075),
+            inset 0 0 8vw rgba(255, 255, 255, 0.05);
+    }
+
+    .works-content-projects {
+        padding: 0 5vw;
+        gap: 4vw;
+    }
+
+    .works-project-item,
+    .works-project-big-item {
+        width: 100%;
+        height: 100vw;
+        padding: 5vw;
+        border-radius: 20px;
+    }
+
+    .works-project-big-item {
+        height: 110vw;
+    }
+
+    .works-project-item-border {
+        border-radius: 20px;
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.075),
+            inset 0 0 8vw rgba(255, 255, 255, 0.05);
+    }
+
+    .works-project-item-content {
+        gap: 4vw;
+    }
+
+    .works-project-item-content-row {
+        gap: 2vw;
+    }
+
+    .works-project-item-content-row-box {
+        padding: 2.5vw 4vw;
+        border-radius: 25px;
+        box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.075),
+            inset 0 0 8vw rgba(255, 255, 255, 0.05);
+    }
+
+    /* INDUSTRIES */
+
+    .works-industries {
+        gap: 8vw;
+        padding: 0 5vw;
+    }
+
+    .works-industries-container {
+        gap: 3vw;
+    }
+
+    .works-industries-item {
+        height: auto;
+        min-height: 65vw;
+        flex-direction: column;
+        gap: 5vw;
+    }
+
+    .works-industries-item-left,
+    .works-industries-item-right {
+        width: 100%;
+        height: auto;
+    }
+
+    .works-industries-item-left {
+        min-height: 15vw;
+        align-items: flex-start;
+    }
+
+    .works-industries-item-right {
+        height: 55vw;
+    }
+
+    .works-industries-item-right-imagebox {
+        border-radius: 10px;
+    }
+
+    .works-industries-item-right-image {
+        width: 100%;
+        height: 100%;
+    }
+
+    .works-industries-textbox {
+        gap: 3vw;
+        padding: 0 5vw;
+    }
+
+    /* CASE STUDIES CAROUSEL */
+
+    .works-casestudies {
+        gap: 8vw;
+    }
+
+    .casestudies-carousel-wrapper {
+        gap: 5vw;
+    }
+
+    .casestudies-carousel-row {
+        gap: 3vw;
+    }
+
+    .casestudies-item-padding {
+        flex-basis: 5vw;
+    }
+
+    .casestudies-item {
+        flex-basis: 78vw;
+        height: 110vw;
+        padding: 5vw;
+        border-radius: 20px;
+    }
+
+    .casestudies-item-content {
+        gap: 4vw;
+    }
+
+    .casestudies-item-content-textbox {
+        gap: 3vw;
+    }
+
+    .casestudies-item-content-imagebox {
+        padding: 2vw;
+    }
+
+    .casestudies-item-content-image {
+        border-radius: 20px;
+    }
+
+    .casestudies-item-content-imagebox-button {
+        height: 9vw;
+        padding: 0 4vw;
+        gap: 1vw;
+    }
+
+    .casestudies-item-content-imagebox-button-icon {
+        width: 4vw;
+        height: 4vw;
+    }
+
+    .casestudies-carousel-bottom {
+        padding: 0 5vw;
+        gap: 4vw;
+    }
+
+    .casestudies-carousel-bottom-buttons {
+        gap: 2vw;
+    }
+
+
+    /* =====================================================
+       CASE STUDY PAGE
+       ===================================================== */
+
+    .casestudy-content {
+        padding-bottom: 15vw;
+    }
+
+    .casestudy-top {
+        height: 170vw;
+        min-height: 680px;
+    }
+
+    .casestudy-top-section {
+        height: 85vw;
+        min-height: 340px;
+        padding: 0 5vw;
+    }
+
+    .casestudy-navigation {
+        top: 20vw;
+        left: 5vw;
+    }
+
+    .casestudy-navigation-button {
+        gap: 1vw;
+    }
+
+    .casestudy-navigation-button-icon {
+        width: 4vw;
+        height: 4vw;
+    }
+
+    .casestudy-video {
+        width: 85vw;
+        max-width: 100%;
+    }
+
+    .casestudy-top-gradient {
+        height: 30vw;
+    }
+
+    .casestudy-top-image {
+        top: -10%;
+        height: 235vw;
+    }
+
+    .casestudy-center {
+        padding: 15vw 5vw;
+        gap: 18vw;
+    }
+
+    .casestudy-center-content {
+        width: 100%;
+        align-self: stretch;
+        gap: 8vw;
+    }
+
+    .casestudy-center-item {
+        width: 100%;
+        gap: 5vw;
+    }
+
+    .casestudy-center-item-column {
+        gap: 4vw;
+    }
+
+    .casestudy-center-item-profile {
+        gap: 3vw;
+    }
+
+    .casestudy-center-item-profile-image {
+        width: 10vw;
+        height: 10vw;
+    }
+
+    .casestudy-bottom {
+        padding: 0 5vw;
+        gap: 4vw;
+    }
+
+    .casestudy-bottom-half-imagebox {
+        width: 100%;
+        height: 85vw;
+        border-radius: 20px;
+    }
+
+    .casestudy-bottom-full-imagebox {
+        height: 110vw;
+        border-radius: 20px;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .works {
+        padding-top: 28vw;
+        padding-bottom: 18vw;
+    }
+
+    .works-content {
+        gap: 18vw;
+    }
+
+    .works-subtextbox {
+        padding: 0 5vw;
+        gap: 5vw;
+    }
+
+    .works-content-top {
+        gap: 12vw;
+    }
+
+    .works-content-top-text {
+        gap: 12vw;
+    }
+
+    .works-item {
+        flex-basis: 82vw;
+        height: 115vw;
+    }
+
+    .works-item-content {
+        padding: 6vw;
+    }
+
+    .works-item-last-content {
+        padding: 8vw 6vw;
+    }
+
+    .works-project-item {
+        height: 105vw;
+        padding: 6vw;
+    }
+
+    .works-project-big-item {
+        height: 115vw;
+        padding: 6vw;
+    }
+
+    .works-industries-item {
+        min-height: 70vw;
+    }
+
+    .works-industries-item-right {
+        height: 60vw;
+    }
+
+    .casestudies-item {
+        flex-basis: 82vw;
+        height: 115vw;
+        padding: 6vw;
+    }
+
+    .casestudies-item-content-imagebox {
+        padding: 2.5vw;
+    }
+
+    .casestudies-item-content-imagebox-button {
+        height: 10vw;
+        padding: 0 4.5vw;
+    }
+
+    .casestudies-item-content-imagebox-button-icon {
+        width: 4.5vw;
+        height: 4.5vw;
+    }
+
+    .casestudy-top {
+        height: 180vw;
+    }
+
+    .casestudy-top-section {
+        height: 90vw;
+    }
+
+    .casestudy-navigation {
+        top: 22vw;
+    }
+
+    .casestudy-top-gradient {
+        height: 35vw;
+    }
+
+    .casestudy-top-image {
+        height: 250vw;
+    }
+
+    .casestudy-center {
+        padding-top: 18vw;
+        padding-bottom: 18vw;
+        gap: 20vw;
+    }
+
+    .casestudy-center-item-profile-image {
+        width: 11vw;
+        height: 11vw;
+    }
+
+    .casestudy-bottom-half-imagebox {
+        height: 90vw;
+    }
+
+    .casestudy-bottom-full-imagebox {
+        height: 120vw;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .works-item {
+        flex-basis: 85vw;
+        height: 120vw;
+    }
+
+    .works-project-item {
+        height: 110vw;
+    }
+
+    .works-project-big-item {
+        height: 120vw;
+    }
+
+    .casestudies-item {
+        flex-basis: 85vw;
+        height: 120vw;
+    }
+
+    .casestudy-top {
+        min-height: 620px;
+    }
+
+    .casestudy-video {
+        width: 90vw;
+    }
+
+    .casestudy-bottom-half-imagebox {
+        height: 95vw;
+    }
+
+    .casestudy-bottom-full-imagebox {
+        height: 125vw;
+    }
 }
