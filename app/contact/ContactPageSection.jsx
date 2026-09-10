@@ -1,119 +1,104 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+
+import { useEffect, useRef } from "react";
 import { ReactLenis } from "lenis/react";
 import "./contact.css";
 import gsap from "gsap";
-import { TextPlugin } from "gsap/TextPlugin";
-import { SplitText } from "gsap/all";
-import { ScrollTrigger } from "gsap/all";
-import { usePathname, useRouter } from "next/navigation";
-import { Linkedin, Mail, Phone } from "lucide-react";
+import SplitText from "gsap/src/SplitText";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Mail } from "lucide-react";
 
-gsap.registerPlugin(SplitText, ScrollTrigger, TextPlugin);
+gsap.registerPlugin(SplitText, ScrollTrigger);
 
 export const ContactPageSection = () => {
   // ANIMATIONS
-
-  const titleRef = useRef();
-  const lineRef = useRef();
-  const contactItem1 = useRef();
-  const contactItem2 = useRef();
-  const contactItem3 = useRef();
-  const contactItem4 = useRef();
-  const contactItem5 = useRef();
-  const contactItem6 = useRef();
-  const contactItem7 = useRef();
-  const imageRef = useRef();
-  const imageWrapperRef = useRef();
+  const titleRef = useRef(null);
+  const lineRef = useRef(null);
+  const contactItem1 = useRef(null);
+  const contactItem2 = useRef(null);
+  const contactItem3 = useRef(null);
+  const contactItem4 = useRef(null);
+  const contactItem5 = useRef(null);
+  const contactItem6 = useRef(null);
+  const contactItem7 = useRef(null);
+  const imageRef = useRef(null);
+  const imageWrapperRef = useRef(null);
 
   useEffect(() => {
-    // headline text animation
-    const titleSplit = new SplitText(titleRef.current, { type: "chars" });
-    gsap.fromTo(
-      titleSplit.chars,
-      {
-        "will-change": "opacity, transform",
-        filter: "blur(8px)",
-        opacity: 0,
-        yPercent: 50,
-      },
-      {
-        delay: 0.2,
+    const ctx = gsap.context(() => {
+      // Headline text animation
+      const titleSplit = new SplitText(titleRef.current, {
+        type: "chars",
+      });
+
+      gsap.fromTo(
+        titleSplit.chars,
+        {
+          willChange: "opacity, transform",
+          filter: "blur(8px)",
+          opacity: 0,
+          yPercent: 50,
+        },
+        {
+          delay: 0.2,
+          opacity: 1,
+          filter: "blur(0px)",
+          yPercent: 0,
+          stagger: 0.02,
+          duration: 0.75,
+          ease: "power1",
+        },
+      );
+
+      // Line animation
+      gsap.fromTo(
+        lineRef.current,
+        {
+          opacity: 0,
+          filter: "blur(8px)",
+        },
+        {
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 1,
+          delay: 0.5,
+        },
+      );
+
+      // Contact items
+      const contactItems = [
+        [contactItem1.current, 0.4],
+        [contactItem2.current, 0.5],
+        [contactItem3.current, 0.6],
+        [contactItem4.current, 0.7],
+        [contactItem5.current, 0.8],
+        [contactItem6.current, 0.9],
+        [contactItem7.current, 1],
+      ];
+
+      contactItems.forEach(([element, delay]) => {
+        gsap.to(element, {
+          delay,
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 1,
+          ease: "power1",
+        });
+      });
+
+      // Image wrapper animation
+      gsap.to(imageWrapperRef.current, {
+        delay: 0.5,
         opacity: 1,
         filter: "blur(0px)",
-        yPercent: 0,
-        stagger: 0.02,
-        duration: 0.75,
+        duration: 1,
         ease: "power1",
-      },
-    );
-
-    // line animation
-    gsap.fromTo(
-      lineRef.current,
-      { opacity: 0, filter: "blur(8px)" },
-      { opacity: 1, filter: "blur(0px)", duration: 1, delay: 0.5 },
-    );
-
-    // carousel wrapper animation
-
-    gsap.to(contactItem1.current, {
-      delay: 0.4,
-      opacity: 1,
-      filter: "blur(0px)",
-      duration: 1,
-      ease: "power1",
-    });
-    gsap.to(contactItem2.current, {
-      delay: 0.5,
-      opacity: 1,
-      filter: "blur(0px)",
-      duration: 1,
-      ease: "power1",
-    });
-    gsap.to(contactItem3.current, {
-      delay: 0.6,
-      opacity: 1,
-      filter: "blur(0px)",
-      duration: 1,
-      ease: "power1",
-    });
-    gsap.to(contactItem4.current, {
-      delay: 0.7,
-      opacity: 1,
-      filter: "blur(0px)",
-      duration: 1,
-      ease: "power1",
-    });
-    gsap.to(contactItem5.current, {
-      delay: 0.8,
-      opacity: 1,
-      filter: "blur(0px)",
-      duration: 1,
-      ease: "power1",
-    });
-    gsap.to(contactItem6.current, {
-      delay: 0.9,
-      opacity: 1,
-      filter: "blur(0px)",
-      duration: 1,
-      ease: "power1",
-    });
-    gsap.to(contactItem7.current, {
-      delay: 1,
-      opacity: 1,
-      filter: "blur(0px)",
-      duration: 1,
-      ease: "power1",
+      });
     });
 
-    gsap.to(imageWrapperRef.current, {
-      delay: 0.5,
-      opacity: 1,
-      filter: "blur(0px)",
-      duration: 1,
-      ease: "power1",
-    });
+    return () => {
+      ctx.revert();
+    };
   }, []);
 
   // CARDS MOUSE ANIMATION
@@ -124,45 +109,38 @@ export const ContactPageSection = () => {
     let box1X = 0;
     let box1Y = 0;
 
-    const speed = 0.025; // Decrease this value for slower, more noticeable easing
+    const speed = 0.025;
 
     const handleMouseMove = (event) => {
       mouseX = (event.clientX / window.innerWidth) * 100 - 50;
       mouseY = (event.clientY / window.innerHeight) * 100 - 50;
     };
 
+    let frameId;
+
     const animate = () => {
-      // Box 1 movement
       const distX1 = mouseX * -1 - box1X;
       const distY1 = mouseY * -1 - box1Y;
+
       box1X += distX1 * speed;
       box1Y += distY1 * speed;
 
-      // Apply the calculated transforms
       if (imageRef.current) {
         imageRef.current.style.transform = `translate(${box1X}px, ${box1Y}px)`;
       }
 
-      requestAnimationFrame(animate); // Continue the animation loop
+      frameId = requestAnimationFrame(animate);
     };
 
-    animate();
+    frameId = requestAnimationFrame(animate);
 
     window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(frameId);
     };
   }, []);
-
-  // NAVIGATION
-
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const handleNavigate = (path) => {
-    router.push(path);
-  };
 
   return (
     <ReactLenis root>
@@ -171,12 +149,15 @@ export const ContactPageSection = () => {
           <div className="contact-content-top">
             <div className="titlebox">
               <div className="titlebox-gradient" />
+
               <h1 className="headline white" ref={titleRef}>
                 Get in Touch
               </h1>
             </div>
+
             <div className="contact-divider" ref={lineRef} />
           </div>
+
           <div className="contact-content-row">
             <div className="contact-content-left">
               <div className="contact-content-column">
@@ -191,14 +172,17 @@ export const ContactPageSection = () => {
                       alt=""
                     />
                   </div>
+
                   <div className="contact-content-top-item-text">
                     <p className="description white">
                       Let&apos;s build something great together. Whether you
-                      need a website, web application, mobile app, or AI-powered
-                      solution, we&apos;d love to hear about your project.
+                      need a website, web application, mobile app, or
+                      AI-powered solution, we&apos;d love to hear about your
+                      project.
                     </p>
                   </div>
                 </div>
+
                 <div className="contact-content-column-row">
                   <a
                     href="tel:+918860968260"
@@ -218,6 +202,7 @@ export const ContactPageSection = () => {
                       <p className="small-description grey">Call</p>
                     </div>
                   </a>
+
                   <a
                     href="mailto:code.chandansingh@gmail.com"
                     target="_blank"
@@ -235,6 +220,7 @@ export const ContactPageSection = () => {
                       <p className="small-description grey">Email</p>
                     </div>
                   </a>
+
                   <a
                     href="https://www.linkedin.com/in/chandan-singh-0b1b4a1b3/"
                     target="_blank"
@@ -254,6 +240,7 @@ export const ContactPageSection = () => {
                     </div>
                   </a>
                 </div>
+
                 <div
                   className="contact-content-item opacity-blur"
                   ref={contactItem5}
@@ -261,6 +248,7 @@ export const ContactPageSection = () => {
                   <p className="small-description grey">Videocall</p>
                   <p className="description white">Book a videocall</p>
                 </div>
+
                 <div
                   className="contact-content-item opacity-blur"
                   ref={contactItem6}
@@ -268,6 +256,7 @@ export const ContactPageSection = () => {
                   <p className="small-description grey">Email</p>
                   <p className="description white">YOur gmail</p>
                 </div>
+
                 <div
                   className="contact-content-item opacity-blur"
                   ref={contactItem7}
@@ -279,6 +268,7 @@ export const ContactPageSection = () => {
                 </div>
               </div>
             </div>
+
             <div
               className="contact-content-right opacity-blur"
               ref={imageWrapperRef}
