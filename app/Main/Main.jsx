@@ -1,5 +1,9 @@
 "use client";
+
+import { useEffect, useState } from "react";
 import { ReactLenis, useLenis } from "lenis/react";
+import { useProgress } from "@react-three/drei";
+
 import { SectionHero } from "./SectionHero";
 import { SectionShowreel } from "./SectionShowreel";
 import { SectionTestimonials } from "./SectionTestimonials";
@@ -9,56 +13,75 @@ import { SectionServices } from "./SectionServices";
 import { SectionProjects } from "./SectionProjects";
 import { SectionProjectsMobile } from "./SectionProjectsMobile";
 import { SectionKPI } from "./SectionKPI";
+
 import "./main.css";
-import { useEffect, useLayoutEffect, useState } from "react";
-import { useProgress } from "@react-three/drei";
 
 const Main = () => {
-  const { progress } = useProgress();
-  const [fadeOut, setFadeOut] = useState(false);
-  const lenis = useLenis();
+    const { progress } = useProgress();
+    const [fadeOut, setFadeOut] = useState(false);
+    const lenis = useLenis();
 
-  useLayoutEffect(() => {
-    if (progress === 100) {
-      setFadeOut(true);
-      lenis?.start();
-    }
-  }, [progress, lenis]);
+    useEffect(() => {
+        if (progress === 100) {
+            setFadeOut(true);
+            lenis?.start();
+        }
+    }, [progress, lenis]);
 
-  return (
-    <ReactLenis root>
-      <div className={`initial-loading-screen ${fadeOut ? "fade-out" : ""}`}>
-        <div className="loading-image-box">
-          <video
-            src="/images/loader.mp4"
-            className="loading-image"
-            autoPlay
-            muted
-            playsInline
-          />
-        </div>
-      </div>
-      <SectionHero />
-      <div className="normal-padding" />
-      <SectionShowreel />
-      <div className="border-padding">
-        <div className="section-border"></div>
-      </div>
-      <SectionServices />
-      <div className="normal-padding" />
-      <SectionProjects />
-      <SectionProjectsMobile />
-      <div className="normal-padding" />
-      <SectionTechstack />
-      <div className="normal-padding" />
-      <SectionTestimonials />
-      <div className="normal-padding" />
-      <SectionKPI />
-      <div className="normal-padding" />
-      <SectionFlower />
-      <div className="normal-padding" />
-    </ReactLenis>
-  );
+    return (
+        <ReactLenis root>
+            <div
+                className={`initial-loading-screen ${
+                    fadeOut ? "fade-out" : ""
+                }`}
+            >
+                <div className="loading-image-box">
+                    <video
+                        src="/images/loader.mp4"
+                        className="loading-image"
+                        autoPlay
+                        muted
+                        playsInline
+                    />
+                </div>
+            </div>
+
+            <SectionHero />
+
+            <div className="normal-padding" />
+
+            <SectionShowreel />
+
+            <div className="border-padding">
+                <div className="section-border" />
+            </div>
+
+            <SectionServices />
+
+            <div className="normal-padding" />
+
+            <SectionProjects />
+            <SectionProjectsMobile />
+
+            <div className="normal-padding" />
+
+            <SectionTechstack />
+
+            <div className="normal-padding" />
+
+            <SectionTestimonials />
+
+            <div className="normal-padding" />
+
+            <SectionKPI />
+
+            <div className="normal-padding" />
+
+            <SectionFlower />
+
+            <div className="normal-padding" />
+        </ReactLenis>
+    );
 };
 
 export default Main;

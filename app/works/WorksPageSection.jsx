@@ -404,7 +404,7 @@ export const WorksPageSection = () => {
                   <div className="works-item">
                     <div className="works-item-content">
                       <div className="works-item-content-textbox">
-                        <h2 className="subheadline white">Kinimatic</h2>
+                        <h2 className="subheadline white">StackCraft</h2>
                         <div className="works-item-content-textbox-row">
                           <div className="works-item-content-textbox-button">
                             <p className="small-description white">

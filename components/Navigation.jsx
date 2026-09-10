@@ -1,73 +1,73 @@
 "use client";
+
 import { ArrowUpRight } from "lucide-react";
-import Image from "next/image";
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import gsap from "gsap";
 import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
+import { useLayoutEffect, useRef } from "react";
+import gsap from "gsap";
 
 export const Navigation = () => {
-  // ANIMATIONS
-
-  const navigationBar = useRef();
-  const navigationBarCenter = useRef();
-  const navigationBarCenterRef1 = useRef();
-  const navigationBarCenterRef2 = useRef();
-  const navigationBarCenterRef3 = useRef();
-  const navigationBarCenterRef4 = useRef();
+   const navigationBar = useRef(null);
+  const navigationBarCenter = useRef(null);
+  const navigationBarCenterRef1 = useRef(null);
+  const navigationBarCenterRef2 = useRef(null);
+  const navigationBarCenterRef3 = useRef(null);
 
   useLayoutEffect(() => {
-    gsap.to(navigationBar.current, {
-      opacity: 1,
-      rotateY: "0deg",
-      scale: "1",
-      rotateX: "0deg",
-      translateY: "0vh",
-      duration: 0.75,
-      ease: "power1",
-      delay: 0.75,
-    });
-    gsap.fromTo(
-      navigationBar.current,
-      { width: "25%" },
-      { width: "100%", duration: 0.75, ease: "power1", delay: 1.75 },
-    );
-    gsap.fromTo(
-      navigationBarCenter.current,
-      { display: "none" },
-      { display: "flex", duration: 0.01, delay: 1.75 },
-    );
-    gsap.to(navigationBarCenterRef1.current, {
-      opacity: 1,
-      duration: 1,
-      delay: 1.75,
-    });
-    gsap.to(navigationBarCenterRef2.current, {
-      opacity: 1,
-      duration: 1,
-      delay: 1.85,
-    });
-    gsap.to(navigationBarCenterRef3.current, {
-      opacity: 1,
-      duration: 1,
-      delay: 1.95,
-    });
-    gsap.to(navigationBarCenterRef4.current, {
-      opacity: 1,
-      duration: 1,
-      delay: 2.05,
-    });
+    const navigation = navigationBar.current;
+    const navigationCenter = navigationBarCenter.current;
+
+    if (!navigation || !navigationCenter) return;
+
+    const ctx = gsap.context(() => {
+      gsap.to(navigation, {
+        opacity: 1,
+        rotateY: 0,
+        scale: 1,
+        rotateX: 0,
+        y: "0vh",
+        duration: 0.75,
+        ease: "power1",
+        delay: 0.75,
+      });
+
+      gsap.fromTo(
+        navigation,
+        { width: "25%" },
+        {
+          width: "100%",
+          duration: 0.75,
+          ease: "power1",
+          delay: 1.75,
+        },
+      );
+
+      gsap.set(navigationCenter, {
+        display: "none",
+      });
+
+      gsap.delayedCall(1.75, () => {
+        navigationCenter.style.display = "flex";
+      });
+
+      const navItems = [
+        navigationBarCenterRef1.current,
+        navigationBarCenterRef2.current,
+        navigationBarCenterRef3.current,
+      ];
+
+      navItems.forEach((item, index) => {
+        if (!item) return;
+
+        gsap.to(item, {
+          opacity: 1,
+          duration: 1,
+          delay: 1.75 + index * 0.1,
+        });
+      });
+    }, navigation);
+
+    return () => ctx.revert();
   }, []);
-
-  // NAVIGATION
-
-  const router = useRouter();
-  const pathname = usePathname();
-  let isAnimating = false;
-
-  const handleNavigate = (path) => {
-    router.push(path);
-  };
 
   return (
     <div className="navigation-wrapper">
@@ -79,44 +79,61 @@ export const Navigation = () => {
             alt=""
           />
         </div>
-        <div className="navigation-inside-big" ref={navigationBarCenter}>
-          <p
+
+        <div
+          className="navigation-inside-big"
+          ref={navigationBarCenter}
+        >
+          <Link
+            href="/"
             className="small-description white hover-text-white opacity"
             ref={navigationBarCenterRef1}
-            onClick={() => handleNavigate("/")}
           >
             Home
-          </p>
-          <p
+          </Link>
+
+          <Link
+            href="/about"
             className="small-description white hover-text-white opacity"
             ref={navigationBarCenterRef2}
-            onClick={() => handleNavigate("/about")}
           >
             About
-          </p>
-          <p
+          </Link>
+
+          <Link
+            href="/works"
             className="small-description white hover-text-white opacity"
             ref={navigationBarCenterRef3}
-            onClick={() => handleNavigate("/works")}
           >
             Works
-          </p>
-          {/* <p className="small-description white hover-text-white opacity" ref={navigationBarCenterRef4} onClick={() => handleNavigate('/casestudies')} >Case Studies</p> */}
+          </Link>
+
+          {/* 
+          <Link
+            href="/casestudies"
+            className="small-description white hover-text-white opacity"
+          >
+            Case Studies
+          </Link>
+          */}
         </div>
+
         <div className="navigation-inside-right">
-          <button
+          <Link
+            href="/contact"
             className="button button-navigation button-transparent-border"
-            onClick={() => handleNavigate("/contact")}
           >
             <div className="button-content">
               <span className="small-description">Get In Touch</span>
               <span className="small-description">Get In Touch</span>
             </div>
+
             <div className="button-circle button-circle-white">
               <ArrowUpRight className="button-icon" />
             </div>
-          </button>
+          </Link>
         </div>
+
         <div className="navigation-inside-right-mobile">
           <div className="navigation-inside-right-mobile-line" />
           <div className="navigation-inside-right-mobile-line" />
