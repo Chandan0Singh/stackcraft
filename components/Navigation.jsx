@@ -1,145 +1,239 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, X } from "lucide-react";
 import Link from "next/link";
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 export const Navigation = () => {
-   const navigationBar = useRef(null);
-  const navigationBarCenter = useRef(null);
-  const navigationBarCenterRef1 = useRef(null);
-  const navigationBarCenterRef2 = useRef(null);
-  const navigationBarCenterRef3 = useRef(null);
+    const [menuOpen, setMenuOpen] = useState(false);
 
-  useLayoutEffect(() => {
-    const navigation = navigationBar.current;
-    const navigationCenter = navigationBarCenter.current;
+    const navigationBar = useRef(null);
+    const navigationBarCenter = useRef(null);
 
-    if (!navigation || !navigationCenter) return;
+    const navigationBarCenterRef1 = useRef(null);
+    const navigationBarCenterRef2 = useRef(null);
+    const navigationBarCenterRef3 = useRef(null);
 
-    const ctx = gsap.context(() => {
-      gsap.to(navigation, {
-        opacity: 1,
-        rotateY: 0,
-        scale: 1,
-        rotateX: 0,
-        y: "0vh",
-        duration: 0.75,
-        ease: "power1",
-        delay: 0.75,
-      });
+    useLayoutEffect(() => {
+        const navigation = navigationBar.current;
+        const navigationCenter = navigationBarCenter.current;
 
-      gsap.fromTo(
-        navigation,
-        { width: "25%" },
-        {
-          width: "100%",
-          duration: 0.75,
-          ease: "power1",
-          delay: 1.75,
-        },
-      );
+        if (!navigation || !navigationCenter) return;
 
-      gsap.set(navigationCenter, {
-        display: "none",
-      });
+        const ctx = gsap.context(() => {
+            const mm = gsap.matchMedia();
 
-      gsap.delayedCall(1.75, () => {
-        navigationCenter.style.display = "flex";
-      });
+            /*
+             * DESKTOP
+             */
+            mm.add("(min-width: 769px)", () => {
+                gsap.to(navigation, {
+                    opacity: 1,
+                    rotateY: 0,
+                    scale: 1,
+                    rotateX: 0,
+                    y: "0vh",
+                    duration: 0.75,
+                    ease: "power1",
+                    delay: 0.75,
+                });
 
-      const navItems = [
-        navigationBarCenterRef1.current,
-        navigationBarCenterRef2.current,
-        navigationBarCenterRef3.current,
-      ];
+                gsap.fromTo(
+                    navigation,
+                    {
+                        width: "25%",
+                    },
+                    {
+                        width: "100%",
+                        duration: 0.75,
+                        ease: "power1",
+                        delay: 1.75,
+                    }
+                );
 
-      navItems.forEach((item, index) => {
-        if (!item) return;
+                gsap.set(navigationCenter, {
+                    display: "none",
+                });
 
-        gsap.to(item, {
-          opacity: 1,
-          duration: 1,
-          delay: 1.75 + index * 0.1,
-        });
-      });
-    }, navigation);
+                gsap.delayedCall(1.75, () => {
+                    if (navigationCenter) {
+                        navigationCenter.style.display = "flex";
+                    }
+                });
 
-    return () => ctx.revert();
-  }, []);
+                const navItems = [
+                    navigationBarCenterRef1.current,
+                    navigationBarCenterRef2.current,
+                    navigationBarCenterRef3.current,
+                ];
 
-  return (
-    <div className="navigation-wrapper">
-      <div className="navigation-inside" ref={navigationBar}>
-        <div className="navigation-inside-left">
-          <img
-            src="/logos/stackcraft.png"
-            className="navigation-inside-left-image"
-            alt=""
-          />
-        </div>
+                navItems.forEach((item, index) => {
+                    if (!item) return;
 
-        <div
-          className="navigation-inside-big"
-          ref={navigationBarCenter}
-        >
-          <Link
-            href="/"
-            className="small-description white hover-text-white opacity"
-            ref={navigationBarCenterRef1}
-          >
-            Home
-          </Link>
+                    gsap.to(item, {
+                        opacity: 1,
+                        duration: 1,
+                        delay: 1.75 + index * 0.1,
+                    });
+                });
+            });
 
-          <Link
-            href="/about"
-            className="small-description white hover-text-white opacity"
-            ref={navigationBarCenterRef2}
-          >
-            About
-          </Link>
+            /*
+             * MOBILE
+             */
+            mm.add("(max-width: 768px)", () => {
+                gsap.set(navigation, {
+                    width: "100%",
+                    opacity: 1,
+                    rotateY: 0,
+                    rotateX: 0,
+                    scale: 1,
+                    y: 0,
+                });
 
-          <Link
-            href="/works"
-            className="small-description white hover-text-white opacity"
-            ref={navigationBarCenterRef3}
-          >
-            Works
-          </Link>
+                gsap.set(navigationCenter, {
+                    display: "none",
+                });
 
-          {/* 
-          <Link
-            href="/casestudies"
-            className="small-description white hover-text-white opacity"
-          >
-            Case Studies
-          </Link>
-          */}
-        </div>
+                gsap.set(
+                    [
+                        navigationBarCenterRef1.current,
+                        navigationBarCenterRef2.current,
+                        navigationBarCenterRef3.current,
+                    ],
+                    {
+                        opacity: 0,
+                    }
+                );
+            });
+        }, navigation);
 
-        <div className="navigation-inside-right">
-          <Link
-            href="/contact"
-            className="button button-navigation button-transparent-border"
-          >
-            <div className="button-content">
-              <span className="small-description">Get In Touch</span>
-              <span className="small-description">Get In Touch</span>
+        return () => {
+            ctx.revert();
+        };
+    }, []);
+
+    return (
+        <>
+            <div className="navigation-wrapper">
+                <div
+                    className="navigation-inside"
+                    ref={navigationBar}
+                >
+                    <div className="navigation-inside-left">
+                        <img
+                            src="/logos/stackcraft.png"
+                            className="navigation-inside-left-image"
+                            alt=""
+                        />
+                    </div>
+
+                    <div
+                        className="navigation-inside-big"
+                        ref={navigationBarCenter}
+                    >
+                        <Link
+                            href="/"
+                            className="small-description white hover-text-white opacity"
+                            ref={navigationBarCenterRef1}
+                        >
+                            Home
+                        </Link>
+
+                        <Link
+                            href="/about"
+                            className="small-description white hover-text-white opacity"
+                            ref={navigationBarCenterRef2}
+                        >
+                            About
+                        </Link>
+
+                        <Link
+                            href="/works"
+                            className="small-description white hover-text-white opacity"
+                            ref={navigationBarCenterRef3}
+                        >
+                            Works
+                        </Link>
+                    </div>
+
+                    <div className="navigation-inside-right">
+                        <Link
+                            href="/contact"
+                            className="button button-navigation button-transparent-border"
+                        >
+                            <div className="button-content">
+                                <span className="small-description">
+                                    Get In Touch
+                                </span>
+
+                                <span className="small-description">
+                                    Get In Touch
+                                </span>
+                            </div>
+
+                            <div className="button-circle button-circle-white">
+                                <ArrowUpRight className="button-icon" />
+                            </div>
+                        </Link>
+                    </div>
+
+                    <button
+                        type="button"
+                        className="navigation-inside-right-mobile"
+                        onClick={() => setMenuOpen((prev) => !prev)}
+                        aria-label={menuOpen ? "Close menu" : "Open menu"}
+                        aria-expanded={menuOpen}
+                    >
+                        {menuOpen ? (
+                            <X className="navigation-mobile-close-icon" />
+                        ) : (
+                            <>
+                                <div className="navigation-inside-right-mobile-line" />
+                                <div className="navigation-inside-right-mobile-line" />
+                                <div className="navigation-inside-right-mobile-line" />
+                            </>
+                        )}
+                    </button>
+                </div>
             </div>
 
-            <div className="button-circle button-circle-white">
-              <ArrowUpRight className="button-icon" />
-            </div>
-          </Link>
-        </div>
+            {menuOpen && (
+                <div className="navigation-mobile-menu">
+                    <Link
+                        href="/"
+                        className="small-description white"
+                        onClick={() => setMenuOpen(false)}
+                    >
+                        Home
+                    </Link>
 
-        <div className="navigation-inside-right-mobile">
-          <div className="navigation-inside-right-mobile-line" />
-          <div className="navigation-inside-right-mobile-line" />
-          <div className="navigation-inside-right-mobile-line" />
-        </div>
-      </div>
-    </div>
-  );
+                    <Link
+                        href="/about"
+                        className="small-description white"
+                        onClick={() => setMenuOpen(false)}
+                    >
+                        About
+                    </Link>
+
+                    <Link
+                        href="/works"
+                        className="small-description white"
+                        onClick={() => setMenuOpen(false)}
+                    >
+                        Works
+                    </Link>
+
+                    <Link
+                        href="/contact"
+                        className="small-description white"
+                        onClick={() => setMenuOpen(false)}
+                    >
+                        Get In Touch
+                    </Link>
+                </div>
+            )}
+        </>
+    );
 };

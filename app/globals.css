@@ -55,7 +55,7 @@ body,
 
 html {
   overflow-x: hidden;
-  background-color: #07070A;
+  background-color: #07070a;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
@@ -66,16 +66,16 @@ body {
   overflow-x: hidden;
 
   font-family: "SF PRO TEXT 400", sans-serif;
-  background-color: #07070A;
+  background-color: #07070a;
 
   --border-radius: 25px;
 
-  --bg-primary: #07070A;
-  --text-primary: #FFFFFF;
+  --bg-primary: #07070a;
+  --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.55);
 
-  --accent: #7C3AED;
-  --accent-light: #A78BFA;
+  --accent: #7c3aed;
+  --accent-light: #a78bfa;
 
   --border: rgba(255, 255, 255, 0.08);
   --glass: rgba(255, 255, 255, 0.04);
@@ -123,7 +123,7 @@ section {
   position: relative;
   overflow: hidden;
 
-  background-color: #07070A;
+  background-color: #07070a;
 
   min-width: 0;
 }
@@ -167,7 +167,7 @@ section {
   background-position: center;
   background-repeat: no-repeat;
 
-  background-color: #07070A;
+  background-color: #07070a;
 
   opacity: 1;
 
@@ -319,8 +319,7 @@ section {
   transition: 0.5s ease;
 }
 
-.calendly-overlay-widget-button:hover
-  .calendly-overlay-widget-button-icon {
+.calendly-overlay-widget-button:hover .calendly-overlay-widget-button-icon {
   transform: rotate(90deg);
 }
 
@@ -425,9 +424,7 @@ section {
 
   pointer-events: none;
 
-  transform:
-    translate(-50%, -50%)
-    scale(0);
+  transform: translate(-50%, -50%) scale(0);
 
   opacity: 0;
 
@@ -491,7 +488,7 @@ section {
 
   border-radius: 100%;
 
-  background-color: #7C3AED;
+  background-color: #7c3aed;
 
   color: white;
 
@@ -547,8 +544,7 @@ section {
 .button span {
   display: block;
 
-  transition:
-    0.75s transform cubic-bezier(0.19, 1, 0.22, 1);
+  transition: 0.75s transform cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .button span:nth-child(2) {
@@ -593,7 +589,7 @@ section {
 .subpage-titlebox-gradient {
   border-radius: 50%;
 
-  background-color: #07070A;
+  background-color: #07070a;
 
   filter: blur(50px);
 
@@ -752,11 +748,7 @@ section {
 
   z-index: 2;
 
-  mask:
-    var(--mask-image)
-    50% 50% /
-    var(--size) var(--size)
-    no-repeat;
+  mask: var(--mask-image) 50% 50% / var(--size) var(--size) no-repeat;
 
   container-type: inline-size;
 }
@@ -780,15 +772,9 @@ section {
 
   translate: -50% -50%;
 
-  background:
-    radial-gradient(
-      hsl(0 100% 100%),
-      transparent
-    );
+  background: radial-gradient(hsl(0 100% 100%), transparent);
 
-  animation:
-    fly-by calc((2 - var(--active, 0)) * 2s)
-    infinite linear;
+  animation: fly-by calc((2 - var(--active, 0)) * 2s) infinite linear;
 }
 
 @keyframes fly-by {
@@ -814,29 +800,18 @@ section {
   background: hsl(0 100% 100% / 0.25);
 
   mask:
-    var(--mask-image)
-      calc(50% - (var(--spread) * 1))
-      50% / var(--size) var(--size) no-repeat,
-
-    var(--mask-image)
-      calc(50% - (var(--spread) * 2))
-      50% / var(--size) var(--size) no-repeat,
-
-    var(--mask-image)
-      calc(50% - (var(--spread) * 3))
-      50% / var(--size) var(--size) no-repeat,
-
-    var(--mask-image)
-      calc(50% + (var(--spread) * 1))
-      50% / var(--size) var(--size) no-repeat,
-
-    var(--mask-image)
-      calc(50% + (var(--spread) * 2))
-      50% / var(--size) var(--size) no-repeat,
-
-    var(--mask-image)
-      calc(50% + (var(--spread) * 3))
-      50% / var(--size) var(--size) no-repeat;
+    var(--mask-image) calc(50% - (var(--spread) * 1)) 50% / var(--size)
+      var(--size) no-repeat,
+    var(--mask-image) calc(50% - (var(--spread) * 2)) 50% / var(--size)
+      var(--size) no-repeat,
+    var(--mask-image) calc(50% - (var(--spread) * 3)) 50% / var(--size)
+      var(--size) no-repeat,
+    var(--mask-image) calc(50% + (var(--spread) * 1)) 50% / var(--size)
+      var(--size) no-repeat,
+    var(--mask-image) calc(50% + (var(--spread) * 2)) 50% / var(--size)
+      var(--size) no-repeat,
+    var(--mask-image) calc(50% + (var(--spread) * 3)) 50% / var(--size)
+      var(--size) no-repeat;
 }
 
 .contact-buttonv-button-white > span:nth-of-type(2) {
@@ -857,7 +832,7 @@ section {
 }
 
 .black {
-  color: #07070A;
+  color: #07070a;
 }
 
 .grey {
@@ -869,32 +844,29 @@ section {
    ========================================================= */
 
 .background-gradient-down {
-  background-image:
-    radial-gradient(
-      125% 107.13% at 50% 20%,
-      transparent 40%,
-      rgba(255, 255, 255, 0.1) 75%,
-      rgba(255, 255, 255, 0.25) 100%
-    );
+  background-image: radial-gradient(
+    125% 107.13% at 50% 20%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.1) 75%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
 }
 
 .background-gradient-up {
-  background-image:
-    radial-gradient(
-      131.66% 109.77% at 50% 97.75%,
-      transparent 37.41%,
-      rgba(255, 255, 255, 0.1) 69.27%,
-      rgba(255, 255, 255, 0.25) 100%
-    );
+  background-image: radial-gradient(
+    131.66% 109.77% at 50% 97.75%,
+    transparent 37.41%,
+    rgba(255, 255, 255, 0.1) 69.27%,
+    rgba(255, 255, 255, 0.25) 100%
+  );
 }
 
 .background-gradient-side {
-  background-image:
-    radial-gradient(
-      100% 120% at 85% 125%,
-      rgba(255, 255, 255, 0.25),
-      transparent 70%
-    );
+  background-image: radial-gradient(
+    100% 120% at 85% 125%,
+    rgba(255, 255, 255, 0.25),
+    transparent 70%
+  );
 }
 
 .background-gradient-circle,
@@ -1081,7 +1053,7 @@ section {
   align-items: center;
   justify-content: center;
 
-  background-color: #07070A;
+  background-color: #07070a;
 }
 
 .loading-image-box {
@@ -1156,11 +1128,7 @@ section {
 
   border-radius: 999px;
 
-  transform:
-    rotateY(30deg)
-    scale(0.6)
-    rotateX(7.5deg)
-    translateY(-12.5vh);
+  transform: rotateY(30deg) scale(0.6) rotateX(7.5deg) translateY(-12.5vh);
 
   opacity: 0;
 
@@ -1390,7 +1358,6 @@ section {
    ========================================================= */
 
 @media (max-width: 768px) {
-
   /* -------------------------------------------------------
      GLOBAL
      ------------------------------------------------------- */
@@ -1560,7 +1527,7 @@ section {
     height: 5vw;
 
     background-color: white;
-    color: #07070A;
+    color: #07070a;
   }
 
   .button-icon {
@@ -1762,10 +1729,7 @@ section {
      ------------------------------------------------------- */
 
   .footer {
-    padding:
-      0
-      5vw
-      8vw;
+    padding: 0 5vw 8vw;
 
     gap: 7.5vw;
   }
@@ -1816,6 +1780,62 @@ section {
     width: 5vw;
     height: 5vw;
   }
+
+  .navigation-inside-right-mobile {
+    position: absolute;
+    top: 0;
+    right: 2.5vw;
+    width: 6.5vw;
+    height: 100%;
+    padding: 3.5vw 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999;
+    border: 0;
+    margin: 0;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+  }
+
+  .navigation-inside-right-mobile-line {
+    display: block;
+    width: 100%;
+    height: 1px;
+    flex-shrink: 0;
+    background-color: white;
+  }
+
+  .navigation-mobile-close-icon {
+    width: 5vw;
+    height: 5vw;
+  }
+
+  .navigation-mobile-menu {
+    position: fixed;
+    top: 20vw;
+    left: 5vw;
+    right: 5vw;
+    z-index: 998;
+
+    display: flex;
+    flex-direction: column;
+    gap: 6vw;
+
+    padding: 8vw 6vw;
+
+    background: #07070a;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+  }
+
+  .navigation-mobile-menu a {
+    display: block;
+    color: white;
+    text-decoration: none;
+  }
 }
 
 /* =========================================================
@@ -1823,7 +1843,6 @@ section {
    ========================================================= */
 
 @media (max-width: 480px) {
-
   .calendly-overlay {
     padding-left: 4vw;
     padding-right: 4vw;
@@ -1883,7 +1902,6 @@ section {
    ========================================================= */
 
 @media (max-width: 375px) {
-
   .calendly-overlay-widget {
     width: 94vw;
   }
@@ -1912,7 +1930,6 @@ section {
    ========================================================= */
 
 @media (max-width: 360px) {
-
   section {
     padding-left: 4vw;
     padding-right: 4vw;
@@ -2076,7 +2093,6 @@ section {
 }
 
 @media (max-width: 768px) {
-
   .floating-contact {
     right: 4vw;
     bottom: 4vw;
@@ -2128,12 +2144,9 @@ section {
 
   overflow: hidden;
 
-  background-color: #07070A;
+  background-color: #07070a;
 
-  padding:
-    18vh
-    10vw
-    10vh;
+  padding: 18vh 10vw 10vh;
 }
 
 .legal-background-gradient {
@@ -2252,10 +2265,7 @@ section {
 
   color: white;
 
-  margin:
-    0
-    0
-    1.5vh;
+  margin: 0 0 1.5vh;
 }
 
 .legal-section h3 {
@@ -2265,10 +2275,7 @@ section {
 
   color: white;
 
-  margin:
-    2vh
-    0
-    1vh;
+  margin: 2vh 0 1vh;
 }
 
 .legal-section p {
@@ -2280,10 +2287,7 @@ section {
 
   color: var(--text-secondary);
 
-  margin:
-    0
-    0
-    1vh;
+  margin: 0 0 1vh;
 }
 
 /* =========================================================
@@ -2291,12 +2295,8 @@ section {
    ========================================================= */
 
 @media (max-width: 768px) {
-
   .legal-page {
-    padding:
-      24vw
-      5vw
-      15vw;
+    padding: 24vw 5vw 15vw;
   }
 
   .legal-gradient-one {
