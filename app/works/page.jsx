@@ -2,10 +2,18 @@ import "./works.css";
 import { WorksPageSection } from "./WorksPageSection";
 
 export const metadata = {
-  title: 'StackCraft Studio | Works',
-  description: "Harnessing Cutting-Edge Visualization Technology to Transform Vision into Tailored Digital Reality.",
+  title: 'Web Design & Development Portfolio | StackCraft Studio',
+  description:
+    'Explore StackCraft Studio’s portfolio of websites, web applications, e-commerce platforms, and digital products built for modern businesses.',
+  alternates: {
+    canonical: '/works',
+  },
   openGraph: {
-    title: 'Works',
+    title: 'Web Design & Development Portfolio | StackCraft Studio',
+    description:
+      'Explore StackCraft Studio’s portfolio of websites, web applications, e-commerce platforms, and digital products.',
+    url: '/works',
+    type: 'website',
   },
 }
 

@@ -1,6 +1,7 @@
 "use client";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { ReactLenis } from "lenis/react";
+import NextImage from "next/image";
 import "../works.css";
 import { SectionFooter } from "../../../components/SectionFooter";
 import gsap from "gsap";
@@ -331,22 +332,24 @@ const CaseStudies = () => {
               />
             </div>
             <div className="casestudy-top-gradient" />
-            <img
-              src="/casestudy/casestudyphoto.webp"
+            <NextImage
+              src="/casestudy/v.webp"
               ref={imageRef}
               className="casestudy-top-image"
-              alt=""
+              alt="Case study image"
+              width={400}
+              height={300}
             />
           </div>
           <div className="casestudy-center">
-            <h2 className="small-subheadline white" ref={descriptionRef}>
+            <p className="small-subheadline white" ref={descriptionRef}>
               We created a seamless experience for Lumara’s eco-home containers,
               creating unique brand. By challenging the user experience, we
               enabled people to easily customize their containers from their
               computer, bringing Lumara’s vision to life with intuitive and
               personalized design and development solutions, unique creativity,
               without overlooking essential SEO and speed metrics.
-            </h2>
+            </p>
             <div className="casestudy-center-content">
               <div className="casestudy-center-item">
                 <p
@@ -373,10 +376,12 @@ const CaseStudies = () => {
                     className="casestudy-center-item-profile"
                     ref={casestudyCenterRef4}
                   >
-                    <img
+                    <NextImage
                       src="/images/mockup3.webp"
                       className="casestudy-center-item-profile-image"
-                      alt=""
+                      alt="Idan Zeidman"
+                      width={100}
+                      height={100}
                     />
                     <p className="small-description grey">Idan Zeidman</p>
                   </div>
@@ -384,10 +389,12 @@ const CaseStudies = () => {
                     className="casestudy-center-item-profile"
                     ref={casestudyCenterRef5}
                   >
-                    <img
+                    <NextImage
                       src="/images/mockup3.webp"
                       className="casestudy-center-item-profile-image"
-                      alt=""
+                      alt="Lorenzo Noya"
+                      width={100}
+                      height={100}
                     />
                     <p className="small-description grey">Lorenzo Noya</p>
                   </div>
@@ -395,10 +402,12 @@ const CaseStudies = () => {
                     className="casestudy-center-item-profile"
                     ref={casestudyCenterRef6}
                   >
-                    <img
+                    <NextImage
                       src="/images/mockup3.webp"
                       className="casestudy-center-item-profile-image"
-                      alt=""
+                      alt="Matvey Vasilyev"
+                      width={100}
+                      height={100}
                     />
                     <p className="small-description grey">Matvey Vasilyev</p>
                   </div>
@@ -411,60 +420,72 @@ const CaseStudies = () => {
               className="casestudy-bottom-half-imagebox"
               ref={casestudyImageRef1}
             >
-              <img
+              <NextImage
                 src="/casestudy/casestudyphoto1.avif"
                 className="casestudy-bottom-image"
-                alt=""
+                alt="Case study image"
+                width={400}
+                height={300}
               />
             </div>
             <div
               className="casestudy-bottom-half-imagebox"
               ref={casestudyImageRef2}
             >
-              <img
+              <NextImage
                 src="/casestudy/casestudyphoto2.avif"
                 className="casestudy-bottom-image"
-                alt=""
+                alt="Case study image"
+                width={400}
+                height={300}
               />
             </div>
             <div
               className="casestudy-bottom-full-imagebox"
               ref={casestudyImageRef3}
             >
-              <img
+              <NextImage
                 src="/casestudy/casestudyphoto3.avif"
                 className="casestudy-bottom-image"
-                alt=""
+                alt="Case study image"
+                width={400}
+                height={300}
               />
             </div>
             <div
               className="casestudy-bottom-half-imagebox"
               ref={casestudyImageRef4}
             >
-              <img
+              <NextImage
                 src="/casestudy/casestudyphoto4.avif"
                 className="casestudy-bottom-image"
-                alt=""
+                alt="Case study image"
+                width={400}
+                height={300}
               />
             </div>
             <div
               className="casestudy-bottom-half-imagebox"
               ref={casestudyImageRef5}
             >
-              <img
+              <NextImage
                 src="/casestudy/casestudyphoto5.avif"
                 className="casestudy-bottom-image"
-                alt=""
+                alt="Case study image"
+                width={400}
+                height={300}
               />
             </div>
             <div
               className="casestudy-bottom-full-imagebox"
               ref={casestudyImageRef6}
             >
-              <img
+              <NextImage
                 src="/casestudy/casestudyphoto6.avif"
                 className="casestudy-bottom-image"
-                alt=""
+                alt="Case study image"
+                width={400}
+                height={300}
               />
             </div>
           </div>

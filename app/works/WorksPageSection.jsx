@@ -1,7 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import NextImage from "next/image";
 import { ReactLenis } from "lenis/react";
+import Link from "next/link";
 import "./works.css";
 
 import {
@@ -16,7 +18,6 @@ import { ArrowUpRight, Zap } from "lucide-react";
 import gsap from "gsap";
 import SplitText from "gsap/src/SplitText";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import Image from "next/image";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -66,7 +67,7 @@ export const WorksPageSection = () => {
           stagger: 0.02,
           duration: 0.75,
           ease: "power1",
-        }
+        },
       );
 
       // Description text animation
@@ -89,7 +90,7 @@ export const WorksPageSection = () => {
           filter: "blur(0px)",
           duration: 0.5,
           delay: 0.5,
-        }
+        },
       );
 
       // Work carousel overlay animation
@@ -122,7 +123,7 @@ export const WorksPageSection = () => {
               end: "center center",
               scrub: true,
             },
-          }
+          },
         );
       });
 
@@ -197,7 +198,7 @@ export const WorksPageSection = () => {
               trigger: element,
               start: "top 95%",
             },
-          }
+          },
         );
       });
 
@@ -229,7 +230,7 @@ export const WorksPageSection = () => {
               trigger: element,
               start: "top 95%",
             },
-          }
+          },
         );
       });
     });
@@ -325,10 +326,7 @@ export const WorksPageSection = () => {
   } = usePrevNextButtons(emblaApi2);
 
   const onScroll = useCallback((emblaApi, setProgress) => {
-    const progress = Math.max(
-      0,
-      Math.min(1, emblaApi.scrollProgress())
-    );
+    const progress = Math.max(0, Math.min(1, emblaApi.scrollProgress()));
 
     setProgress(progress * 100);
   }, []);
@@ -396,15 +394,12 @@ export const WorksPageSection = () => {
                   className="description grey opacity-blur"
                   ref={descriptionRef}
                 >
-                  Case studies offer a unique opportunity to explore
-                  real-world examples of challenges, solutions, and results.
+                  Case studies offer a unique opportunity to explore real-world
+                  examples of challenges, solutions, and results.
                 </p>
               </div>
 
-              <div
-                className="works-content-top-divider"
-                ref={lineRef}
-              />
+              <div className="works-content-top-divider" ref={lineRef} />
             </div>
 
             <div
@@ -424,9 +419,7 @@ export const WorksPageSection = () => {
                   <div className="works-item">
                     <div className="works-item-content">
                       <div className="works-item-content-textbox">
-                        <h2 className="subheadline white">
-                          StackCraft
-                        </h2>
+                        <h2 className="subheadline white">StackCraft</h2>
 
                         <div className="works-item-content-textbox-row">
                           <div className="works-item-content-textbox-button">
@@ -436,21 +429,19 @@ export const WorksPageSection = () => {
                           </div>
 
                           <div className="works-item-content-textbox-button">
-                            <p className="small-description white">
-                              Branding
-                            </p>
+                            <p className="small-description white">Branding</p>
                           </div>
                         </div>
                       </div>
 
-                      <Image
+                      <NextImage
                         src="/mockups/amazdraw.png"
                         className="works-item-content-image"
                         width={750}
                         height={750}
                         unoptimized
                         loading="lazy"
-                        alt="Heavecorp project"
+                        alt="amazdraw project"
                       />
                     </div>
 
@@ -460,9 +451,7 @@ export const WorksPageSection = () => {
                   <div className="works-item">
                     <div className="works-item-content">
                       <div className="works-item-content-textbox">
-                        <h2 className="subheadline white">
-                          Vita Lenta
-                        </h2>
+                        <h2 className="subheadline white">Vita Lenta</h2>
 
                         <div className="works-item-content-textbox-row">
                           <div className="works-item-content-textbox-button">
@@ -472,14 +461,12 @@ export const WorksPageSection = () => {
                           </div>
 
                           <div className="works-item-content-textbox-button">
-                            <p className="small-description white">
-                              Branding
-                            </p>
+                            <p className="small-description white">Branding</p>
                           </div>
                         </div>
                       </div>
 
-                      <Image
+                      <NextImage
                         src="/mockups/isproperties.png"
                         className="works-item-content-image"
                         width={750}
@@ -496,9 +483,7 @@ export const WorksPageSection = () => {
                   <div className="works-item">
                     <div className="works-item-content">
                       <div className="works-item-content-textbox">
-                        <h2 className="subheadline white">
-                          Peak Creations
-                        </h2>
+                        <h2 className="subheadline white">Peak Creations</h2>
 
                         <div className="works-item-content-textbox-row">
                           <div className="works-item-content-textbox-button">
@@ -508,14 +493,12 @@ export const WorksPageSection = () => {
                           </div>
 
                           <div className="works-item-content-textbox-button">
-                            <p className="small-description white">
-                              Branding
-                            </p>
+                            <p className="small-description white">Branding</p>
                           </div>
                         </div>
                       </div>
 
-                      <Image
+                      <NextImage
                         src="/mockups/odhira.png"
                         className="works-item-content-image"
                         width={750}
@@ -532,9 +515,7 @@ export const WorksPageSection = () => {
                   <div className="works-item">
                     <div className="works-item-content">
                       <div className="works-item-content-textbox">
-                        <h2 className="subheadline white">
-                          Vita Lenta
-                        </h2>
+                        <h2 className="subheadline white">Vita Lenta</h2>
 
                         <div className="works-item-content-textbox-row">
                           <div className="works-item-content-textbox-button">
@@ -544,87 +525,13 @@ export const WorksPageSection = () => {
                           </div>
 
                           <div className="works-item-content-textbox-button">
-                            <p className="small-description white">
-                              Branding
-                            </p>
+                            <p className="small-description white">Branding</p>
                           </div>
                         </div>
                       </div>
 
-                      <Image
-                        src="/mockups/isproperties.png"
-                        className="works-item-content-image"
-                        width={750}
-                        height={750}
-                        unoptimized
-                        loading="lazy"
-                        alt=""
-                      />
-                    </div>
-
-                    <div className="works-item-border" />
-                  </div>
-
-                  <div className="works-item">
-                    <div className="works-item-content">
-                      <div className="works-item-content-textbox">
-                        <h2 className="subheadline white">
-                          Vita Lenta
-                        </h2>
-
-                        <div className="works-item-content-textbox-row">
-                          <div className="works-item-content-textbox-button">
-                            <p className="small-description white">
-                              Web Design & Development
-                            </p>
-                          </div>
-
-                          <div className="works-item-content-textbox-button">
-                            <p className="small-description white">
-                              Branding
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <Image
+                      <NextImage
                         src="/mockups/tour.png"
-                        className="works-item-content-image"
-                        width={750}
-                        height={750}
-                        unoptimized
-                        loading="lazy"
-                        alt=""
-                      />
-                    </div>
-
-                    <div className="works-item-border" />
-                  </div>
-
-                  <div className="works-item">
-                    <div className="works-item-content">
-                      <div className="works-item-content-textbox">
-                        <h2 className="subheadline white">
-                          Rev Productions
-                        </h2>
-
-                        <div className="works-item-content-textbox-row">
-                          <div className="works-item-content-textbox-button">
-                            <p className="small-description white">
-                              Web Design & Development
-                            </p>
-                          </div>
-
-                          <div className="works-item-content-textbox-button">
-                            <p className="small-description white">
-                              Branding
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <Image
-                        src="/mockups/isproperties.png"
                         className="works-item-content-image"
                         width={750}
                         height={750}
@@ -656,9 +563,7 @@ export const WorksPageSection = () => {
                             </span>
                           </span>
 
-                          <span className="description black">
-                            Book a call
-                          </span>
+                          <span className="description black">Book a call</span>
                         </button>
                       </div>
                     </div>
@@ -703,27 +608,18 @@ export const WorksPageSection = () => {
               >
                 <Zap className="subheadline-box-icon" />
 
-                <h2 className="small-description grey">
-                  Industries we serve
-                </h2>
+                <h2 className="small-description grey">Industries we serve</h2>
               </div>
 
               <div className="titlebox">
                 <div className="titlebox-medium-gradient" />
 
-                <h1
-                  className="subheadline white"
-                  ref={subtitleRef1}
-                >
-                  We have extensive experience <br /> across multiple
-                  industries
-                </h1>
+                <h2 className="subheadline white" ref={subtitleRef1}>
+                  We have extensive experience <br /> across multiple industries
+                </h2>
               </div>
 
-              <p
-                className="description grey"
-                ref={subdescriptionRef1}
-              >
+              <p className="description grey" ref={subdescriptionRef1}>
                 Our product designers have completed projects in different
                 niches. They know how to add business value and provide.
               </p>
@@ -827,257 +723,269 @@ export const WorksPageSection = () => {
           </div>
 
           <div className="works-casestudies">
-            <div className="works-subtextbox">
-              <div
-                className="subheadline-box opacity-blur"
-                ref={subheadlineBoxRef2}
-              >
-                <Zap className="subheadline-box-icon" />
+          <div className="works-subtextbox">
+            <div
+              className="subheadline-box opacity-blur"
+              ref={subheadlineBoxRef2}
+            >
+              <Zap className="subheadline-box-icon" />
 
-                <h2 className="small-description grey">
-                  Case Studies
-                </h2>
-              </div>
-
-              <div className="titlebox">
-                <div className="titlebox-medium-gradient" />
-
-                <h1
-                  className="subheadline white"
-                  ref={subtitleRef2}
-                >
-                  We have a diverse portfolio of <br /> successful case
-                  studies
-                </h1>
-              </div>
-
-              <p
-                className="description grey"
-                ref={subdescriptionRef2}
-              >
-                Case studies offer a unique opportunity to explore real-world
-                examples of challenges, solutions, and results.
-              </p>
+              <h2 className="small-description grey">Case Studies</h2>
             </div>
 
-            <div
-              className="casestudies-carousel-wrapper opacity-blur"
-              ref={carouselWrapperRef}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div className="casestudies-carousel" ref={emblaRef}>
-                <div className="casestudies-carousel-row">
-                  <div className="casestudies-item-padding" />
+            <div className="titlebox">
+              <div className="titlebox-medium-gradient" />
 
-                  <div className="casestudies-item">
-                    <div className="casestudies-item-content">
-                      <div className="casestudies-item-content-textbox">
-                        <div className="subheadline-box">
-                          <Zap className="subheadline-box-icon" />
+              <h2 className="subheadline white" ref={subtitleRef2}>
+                We have a diverse portfolio of <br /> successful case studies
+              </h2>
+            </div>
 
-                          <h2 className="small-description grey">
-                            Marketing
-                          </h2>
-                        </div>
+            <p className="description grey" ref={subdescriptionRef2}>
+              Case studies offer a unique opportunity to explore real-world
+              examples of challenges, solutions, and results.
+            </p>
+          </div>
 
-                        <h3 className="small-subheadline white">
-                          Digital Market Future
-                        </h3>
+          <div
+            className="casestudies-carousel-wrapper opacity-blur"
+            ref={carouselWrapperRef}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <div className="casestudies-carousel" ref={emblaRef}>
+              <div className="casestudies-carousel-row">
+                <div className="casestudies-item-padding" />
 
-                        <p className="description grey">
-                          The New Era of the Digital Landscape: Where Do We
-                          Think the Market Is Going?
-                        </p>
+                <div className="casestudies-item">
+                  <div className="casestudies-item-content">
+                    <div className="casestudies-item-content-textbox">
+                      <div className="subheadline-box">
+                        <Zap className="subheadline-box-icon" />
+
+                        <h2 className="small-description grey">Marketing</h2>
                       </div>
 
-                      <div className="casestudies-item-content-imagebox">
-                        <div className="button casestudies-item-content-imagebox-button">
-                          <div className="button-content">
-                            <span className="small-description white">
-                              Read More
-                            </span>
+                      <h3 className="small-subheadline white">
+                        Digital Market Future
+                      </h3>
 
-                            <span className="small-description white">
-                              Read More
-                            </span>
-                          </div>
+                      <p className="description grey">
+                        The New Era of the Digital Landscape: Where Do We Think
+                        the Market Is Going?
+                      </p>
+                    </div>
 
-                          <ArrowUpRight className="casestudies-item-content-imagebox-button-icon" />
+                    <div className="casestudies-item-content-imagebox">
+                      <div className="button casestudies-item-content-imagebox-button">
+                        <div className="button-content">
+                          <span className="small-description white">
+                            Read More
+                          </span>
+
+                          <span className="small-description white">
+                            <Link
+                              className="button-link no-underline"
+                              href="/case-studies/digital-market-future"
+                            >
+                              Read More
+                            </Link>
+                          </span>
                         </div>
 
-                        <img
-                          src="/casestudy/cs1.webp"
-                          className="casestudies-item-content-image"
-                          alt=""
-                        />
+                        <ArrowUpRight className="casestudies-item-content-imagebox-button-icon" />
                       </div>
+
+                      <NextImage
+                        src="/casestudy/cs1.webp"
+                        className="casestudies-item-content-image"
+                        alt="Digital Market Future case study"
+                        width={400}
+                        height={300}
+                      />
                     </div>
                   </div>
-
-                  <div className="casestudies-item">
-                    <div className="casestudies-item-content">
-                      <div className="casestudies-item-content-textbox">
-                        <div className="subheadline-box">
-                          <Zap className="subheadline-box-icon" />
-
-                          <h2 className="small-description grey">
-                            Marketing
-                          </h2>
-                        </div>
-
-                        <h3 className="small-subheadline white">
-                          Tech Evolution Ahead
-                        </h3>
-
-                        <p className="description grey">
-                          The New Era of the Digital Landscape: Where Do We
-                          Think the Market Is Going?
-                        </p>
-                      </div>
-
-                      <div className="casestudies-item-content-imagebox">
-                        <div className="button casestudies-item-content-imagebox-button">
-                          <div className="button-content">
-                            <span className="small-description white">
-                              Read More
-                            </span>
-
-                            <span className="small-description white">
-                              Read More
-                            </span>
-                          </div>
-
-                          <ArrowUpRight className="casestudies-item-content-imagebox-button-icon" />
-                        </div>
-
-                        <img
-                          src="/casestudy/cs4.webp"
-                          className="casestudies-item-content-image"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="casestudies-item">
-                    <div className="casestudies-item-content">
-                      <div className="casestudies-item-content-textbox">
-                        <div className="subheadline-box">
-                          <Zap className="subheadline-box-icon" />
-
-                          <h2 className="small-description grey">
-                            Marketing
-                          </h2>
-                        </div>
-
-                        <h3 className="small-subheadline white">
-                          Navigating Trends
-                        </h3>
-
-                        <p className="description grey">
-                          The New Era of the Digital Landscape: Where Do We
-                          Think the Market Is Going?
-                        </p>
-                      </div>
-
-                      <div className="casestudies-item-content-imagebox">
-                        <div className="button casestudies-item-content-imagebox-button">
-                          <div className="button-content">
-                            <span className="small-description white">
-                              Read More
-                            </span>
-
-                            <span className="small-description white">
-                              Read More
-                            </span>
-                          </div>
-
-                          <ArrowUpRight className="casestudies-item-content-imagebox-button-icon" />
-                        </div>
-
-                        <img
-                          src="/casestudy/cs3.webp"
-                          className="casestudies-item-content-image"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="casestudies-item">
-                    <div className="casestudies-item-content">
-                      <div className="casestudies-item-content-textbox">
-                        <div className="subheadline-box">
-                          <Zap className="subheadline-box-icon" />
-
-                          <h2 className="small-description grey">
-                            Marketing
-                          </h2>
-                        </div>
-
-                        <h3 className="small-subheadline white">
-                          Innovation in Motion
-                        </h3>
-
-                        <p className="description grey">
-                          The New Era of the Digital Landscape: Where Do We
-                          Think the Market Is Going?
-                        </p>
-                      </div>
-
-                      <div className="casestudies-item-content-imagebox">
-                        <div className="button casestudies-item-content-imagebox-button">
-                          <div className="button-content">
-                            <span className="small-description white">
-                              Read More
-                            </span>
-
-                            <span className="small-description white">
-                              Read More
-                            </span>
-                          </div>
-
-                          <ArrowUpRight className="casestudies-item-content-imagebox-button-icon" />
-                        </div>
-
-                        <img
-                          src="/casestudy/cs2.webp"
-                          className="casestudies-item-content-image"
-                          alt=""
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="casestudies-item-padding" />
                 </div>
+
+                <div className="casestudies-item">
+                  <div className="casestudies-item-content">
+                    <div className="casestudies-item-content-textbox">
+                      <div className="subheadline-box">
+                        <Zap className="subheadline-box-icon" />
+
+                        <h2 className="small-description grey">Marketing</h2>
+                      </div>
+
+                      <h3 className="small-subheadline white">
+                        Tech Evolution Ahead
+                      </h3>
+
+                      <p className="description grey">
+                        The New Era of the Digital Landscape: Where Do We Think
+                        the Market Is Going?
+                      </p>
+                    </div>
+
+                    <div className="casestudies-item-content-imagebox">
+                      <div className="button casestudies-item-content-imagebox-button">
+                        <div className="button-content">
+                          <span className="small-description white">
+                            Read More
+                          </span>
+
+                          <span className="small-description white">
+                            <Link
+                              className="button-link no-underline"
+                              href="/case-studies/digital-market-future"
+                            >
+                              Read More
+                            </Link>
+                          </span>
+                        </div>
+
+                        <ArrowUpRight className="casestudies-item-content-imagebox-button-icon" />
+                      </div>
+
+                      <NextImage
+                        src="/casestudy/cs4.webp"
+                        className="casestudies-item-content-image"
+                        alt="Digital Market Future case study image"
+                        width={400}
+                        height={300}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="casestudies-item">
+                  <div className="casestudies-item-content">
+                    <div className="casestudies-item-content-textbox">
+                      <div className="subheadline-box">
+                        <Zap className="subheadline-box-icon" />
+
+                        <h2 className="small-description grey">Marketing</h2>
+                      </div>
+
+                      <h3 className="small-subheadline white">
+                        Navigating Trends
+                      </h3>
+
+                      <p className="description grey">
+                        The New Era of the Digital Landscape: Where Do We Think
+                        the Market Is Going?
+                      </p>
+                    </div>
+
+                    <div className="casestudies-item-content-imagebox">
+                      <div className="button casestudies-item-content-imagebox-button">
+                        <div className="button-content">
+                          <span className="small-description white">
+                            Read More
+                          </span>
+
+                          <span className="small-description white">
+                            <Link
+                              className="button-link no-underline"
+                              href="/case-studies/digital-market-future"
+                            >
+                              Read More
+                            </Link>
+                          </span>
+                        </div>
+
+                        <ArrowUpRight className="casestudies-item-content-imagebox-button-icon" />
+                      </div>
+
+                      <NextImage
+                        src="/casestudy/cs3.webp"
+                        className="casestudies-item-content-image"
+                        alt="Innovation in Motion case study image"
+                        width={400}
+                        height={300}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="casestudies-item">
+                  <div className="casestudies-item-content">
+                    <div className="casestudies-item-content-textbox">
+                      <div className="subheadline-box">
+                        <Zap className="subheadline-box-icon" />
+
+                        <h2 className="small-description grey">Marketing</h2>
+                      </div>
+
+                      <h3 className="small-subheadline white">
+                        Innovation in Motion
+                      </h3>
+
+                      <p className="description grey">
+                        The New Era of the Digital Landscape: Where Do We Think
+                        the Market Is Going?
+                      </p>
+                    </div>
+
+                    <div className="casestudies-item-content-imagebox">
+                      <div className="button casestudies-item-content-imagebox-button">
+                        <div className="button-content">
+                          <span className="small-description white">
+                            Read More
+                          </span>
+
+                          <span className="small-description white">
+                            <Link
+                              className="button-link no-underline"
+                              href="/case-studies/digital-market-future"
+                            >
+                              Read More
+                            </Link>
+                          </span>
+                        </div>
+
+                        <ArrowUpRight className="casestudies-item-content-imagebox-button-icon" />
+                      </div>
+
+                      <NextImage
+                        src="/casestudy/cs2.webp"
+                        className="casestudies-item-content-image"
+                        alt="Digital Market Future case study image"
+                        width={400}
+                        height={300}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="casestudies-item-padding" />
+              </div>
+            </div>
+
+            <div className="casestudies-carousel-bottom">
+              <div className="casestudies-carousel-bottom-buttons">
+                <PrevButton
+                  onClick={onPrevButtonClick1}
+                  disabled={prevBtnDisabled1}
+                />
+
+                <NextButton
+                  onClick={onNextButtonClick1}
+                  disabled={nextBtnDisabled1}
+                />
               </div>
 
-              <div className="casestudies-carousel-bottom">
-                <div className="casestudies-carousel-bottom-buttons">
-                  <PrevButton
-                    onClick={onPrevButtonClick1}
-                    disabled={prevBtnDisabled1}
-                  />
-
-                  <NextButton
-                    onClick={onNextButtonClick1}
-                    disabled={nextBtnDisabled1}
-                  />
-                </div>
-
-                <div className="embla__progress">
-                  <div
-                    className="embla__progress__bar"
-                    style={{
-                      transform: `translate3d(${scrollProgress}%,0px,0px)`,
-                    }}
-                  />
-                </div>
+              <div className="embla__progress">
+                <div
+                  className="embla__progress__bar"
+                  style={{
+                    transform: `translate3d(${scrollProgress}%,0px,0px)`,
+                  }}
+                />
               </div>
             </div>
           </div>
+        </div>
+
         </div>
 
         <div className="hover-cursor" ref={cursor}>
