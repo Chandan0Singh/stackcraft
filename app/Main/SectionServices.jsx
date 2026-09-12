@@ -234,20 +234,20 @@ export const SectionServices = () => {
             ref={subheadlineBoxRef}
           >
             <Zap className="subheadline-box-icon" />
-            <h2 className="small-description grey">
+            <p className="small-description grey">
               Our Services
-            </h2>
+            </p>
           </div>
 
           <div className="titlebox">
             <div className="titlebox-gradient" />
 
-            <h1
+            <p
               className="subheadline white"
               ref={titleRef}
             >
               Digital Solutions That Move Businesses Forward
-            </h1>
+            </p>
           </div>
 
           <p
@@ -264,7 +264,7 @@ export const SectionServices = () => {
             ref={buttonRef}
             onClick={toggleOverlay}
           >
-            <button className="contact-button-white">
+            <button type="button" className="contact-button-white">
               <span>
                 <span className="contact-button-container-white">
                   <span className="contact-button-primary-white" />

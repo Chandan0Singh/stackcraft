@@ -7,8 +7,9 @@ import Marquee from "react-fast-marquee";
 import { ArrowUpRight } from "lucide-react";
 import { Canvas } from "@react-three/fiber";
 import { Environment, Float, OrbitControls } from "@react-three/drei";
-import Image from "next/image";
+import NextImage from "next/image";
 import { Item3 } from "./HeroModel/Coins";
+import Link from "next/link";
 
 gsap.registerPlugin(SplitText);
 
@@ -158,11 +159,8 @@ export const SectionHero = () => {
               <div className="hero-titlebox">
                 <div className="hero-titlebox-gradient" />
 
-                <h1
-                  className="headline hero-headline white"
-                  ref={titleRef}
-                >
-                  We Build <br /> Digital Experiences
+                <h1 className="headline hero-headline white" ref={titleRef}>
+                  We Build <br /> Digital Experiences That Grow Businesses
                 </h1>
               </div>
 
@@ -181,12 +179,12 @@ export const SectionHero = () => {
                 ref={buttonRef1}
               >
                 <div className="button-content">
-                  <span className="small-description">
-                    View Work
-                  </span>
+                  <span className="small-description">View Work</span>
 
                   <span className="small-description">
-                    View Work
+                    <Link className="button-link no-underline" href="/works">
+                      View Work
+                    </Link>
                   </span>
                 </div>
 
@@ -200,12 +198,12 @@ export const SectionHero = () => {
                 ref={buttonRef2}
               >
                 <div className="button-content">
-                  <span className="small-description">
-                    Get In Touch
-                  </span>
+                  <span className="small-description">Get In Touch</span>
 
                   <span className="small-description">
-                    Get In Touch
+                    <Link className="button-link no-underline" href="/contact">
+                      Get In Touch
+                    </Link>
                   </span>
                 </div>
 
@@ -237,11 +235,7 @@ export const SectionHero = () => {
               }}
             >
               <Suspense fallback={null}>
-                <Float
-                  rotationIntensity={0.5}
-                  floatIntensity={2}
-                  speed={2}
-                >
+                <Float rotationIntensity={0.5} floatIntensity={2} speed={2}>
                   <Item3 />
                 </Float>
 
@@ -258,10 +252,7 @@ export const SectionHero = () => {
           </div>
         </div>
 
-        <div
-          className="hero-content-bottom opacity-blur"
-          ref={logosWrapperRef}
-        >
+        <div className="hero-content-bottom opacity-blur" ref={logosWrapperRef}>
           <Marquee
             className="hero-content-bottom-row"
             gradient
@@ -288,11 +279,8 @@ export const SectionHero = () => {
               "/logos/webflow.svg",
               "/logos/stripe.svg",
             ].map((src, i) => (
-              <div
-                className="hero-content-bottom-item"
-                key={i}
-              >
-                <Image
+              <div className="hero-content-bottom-item" key={i}>
+                <NextImage
                   width={100}
                   height={100}
                   src={src}
@@ -305,13 +293,8 @@ export const SectionHero = () => {
         </div>
       </div>
 
-      <div
-        className="hover-cursor"
-        ref={cursor}
-      >
-        <p className="small-description white">
-          Drag
-        </p>
+      <div className="hover-cursor" ref={cursor}>
+        <p className="small-description white">Drag</p>
       </div>
     </section>
   );

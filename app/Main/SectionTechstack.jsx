@@ -2,18 +2,14 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
+import NextImage from "next/image";
 import gsap from "gsap";
 import SplitText from "gsap/src/SplitText";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { ArrowUpRight, Layers } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
-import {
-  usePrevNextButtons,
-} from "./Carousel/EmblaCarouselArrowButtons";
-import {
-  DotButton,
-  useDotButton,
-} from "./Carousel/EmblaCarouselDotButton";
+import { usePrevNextButtons } from "./Carousel/EmblaCarouselArrowButtons";
+import { DotButton, useDotButton } from "./Carousel/EmblaCarouselDotButton";
 import { motion } from "framer-motion";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
@@ -71,7 +67,7 @@ export const SectionTechstack = () => {
             trigger: titleRef.current,
             start: "top 95%",
           },
-        }
+        },
       );
 
       // Description text animation
@@ -94,7 +90,7 @@ export const SectionTechstack = () => {
             trigger: descriptionRef.current,
             start: "top 95%",
           },
-        }
+        },
       );
 
       // Bento grid box animations
@@ -115,7 +111,7 @@ export const SectionTechstack = () => {
             trigger: bentoBoxRef1.current,
             start: "top bottom",
           },
-        }
+        },
       );
 
       gsap.fromTo(
@@ -135,23 +131,20 @@ export const SectionTechstack = () => {
             trigger: bentoBoxRef2.current,
             start: "top bottom",
           },
-        }
+        },
       );
 
       let hoverClassTimeout;
 
       const addClassnames = () => {
-        const cards =
-          bentoBoxRef3.current?.querySelectorAll(
-            ".techstack-item-card"
-          );
+        const cards = bentoBoxRef3.current?.querySelectorAll(
+          ".techstack-item-card",
+        );
 
         if (!cards?.length) return;
 
         cards.forEach((card, index) => {
-          card.classList.add(
-            `techstack-item-card-animated-${index + 1}`
-          );
+          card.classList.add(`techstack-item-card-animated-${index + 1}`);
         });
 
         hoverClassTimeout = window.setTimeout(() => {
@@ -180,7 +173,7 @@ export const SectionTechstack = () => {
             start: "top bottom",
           },
           onComplete: addClassnames,
-        }
+        },
       );
 
       return () => {
@@ -210,12 +203,10 @@ export const SectionTechstack = () => {
 
   // EMBLA CAROUSEL
 
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    {
-      loop: true,
-      watchDrag: false,
-    }
-  );
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    watchDrag: false,
+  });
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
     useDotButton(emblaApi);
@@ -223,24 +214,20 @@ export const SectionTechstack = () => {
   const tweenFactor = useRef(0);
   const tweenNodes = useRef([]);
 
-  const {
-    onPrevButtonClick,
-    onNextButtonClick,
-  } = usePrevNextButtons(emblaApi);
+  const { onPrevButtonClick, onNextButtonClick } = usePrevNextButtons(emblaApi);
 
   const setTweenNodes = useCallback((api) => {
     tweenNodes.current = api
       .slideNodes()
       .map((slideNode) =>
         slideNode.querySelector(
-          ".techstack-item-content-column-slider-item-child"
-        )
+          ".techstack-item-content-column-slider-item-child",
+        ),
       );
   }, []);
 
   const setTweenFactor = useCallback((api) => {
-    tweenFactor.current =
-      TWEEN_FACTOR_BASE * api.scrollSnapList().length;
+    tweenFactor.current = TWEEN_FACTOR_BASE * api.scrollSnapList().length;
   }, []);
 
   const tweenEffects = useCallback((api, eventName) => {
@@ -264,40 +251,25 @@ export const SectionTechstack = () => {
           engine.slideLooper.loopPoints.forEach((loopItem) => {
             const target = loopItem.target();
 
-            if (
-              slideIndex === loopItem.index &&
-              target !== 0
-            ) {
+            if (slideIndex === loopItem.index && target !== 0) {
               const sign = Math.sign(target);
 
               if (sign === -1) {
-                diffToTarget =
-                  scrollSnap - (1 + scrollProgress);
+                diffToTarget = scrollSnap - (1 + scrollProgress);
               }
 
               if (sign === 1) {
-                diffToTarget =
-                  scrollSnap + (1 - scrollProgress);
+                diffToTarget = scrollSnap + (1 - scrollProgress);
               }
             }
           });
         }
 
-        const tweenValue =
-          1 -
-          Math.abs(diffToTarget * tweenFactor.current);
+        const tweenValue = 1 - Math.abs(diffToTarget * tweenFactor.current);
 
-        const scale = numberWithinRange(
-          tweenValue,
-          0,
-          1
-        ).toString();
+        const scale = numberWithinRange(tweenValue, 0, 1).toString();
 
-        const opacity = numberWithinRange(
-          tweenValue,
-          0,
-          1
-        ).toString();
+        const opacity = numberWithinRange(tweenValue, 0, 1).toString();
 
         // Apply scale effect
         const tweenNode = tweenNodes.current[slideIndex];
@@ -338,12 +310,7 @@ export const SectionTechstack = () => {
         .off("scroll", tweenEffects)
         .off("slideFocus", tweenEffects);
     };
-  }, [
-    emblaApi,
-    setTweenNodes,
-    setTweenFactor,
-    tweenEffects,
-  ]);
+  }, [emblaApi, setTweenNodes, setTweenFactor, tweenEffects]);
 
   const slideDescriptions = [
     "Modern frontend experiences built with React for fast, interactive, and scalable interfaces.",
@@ -357,35 +324,23 @@ export const SectionTechstack = () => {
     <section className="techstack">
       <div className="techstack-content">
         <div className="textbox">
-          <div
-            className="subheadline-box opacity-blur"
-            ref={subheadlineBoxRef}
-          >
+          <div className="subheadline-box opacity-blur" ref={subheadlineBoxRef}>
             <Layers className="subheadline-box-icon" />
-            <h2 className="small-description grey">
-              Our Technology
-            </h2>
+            <p className="small-description grey">Our Technology</p>
           </div>
 
           <div className="titlebox">
             <div className="titlebox-big-gradient" />
-            <h1
-              className="subheadline white"
-              ref={titleRef}
-            >
+            <h2 className="subheadline white" ref={titleRef}>
               Modern Technology For
               <br className="hide-on-mobile" />
               Powerful Digital Products.
-            </h1>
+            </h2>
           </div>
 
-          <p
-            className="description grey"
-            ref={descriptionRef}
-          >
-            We use modern tools and proven technologies to build
-            fast, scalable, secure, and reliable digital
-            experiences.
+          <p className="description grey" ref={descriptionRef}>
+            We use modern tools and proven technologies to build fast, scalable,
+            secure, and reliable digital experiences.
           </p>
         </div>
 
@@ -397,10 +352,10 @@ export const SectionTechstack = () => {
             <div className="techstack-item-content">
               <div className="techstack-item-content-center">
                 <div className="textbox">
-                  <h2 className="small-subheadline white hide-on-mobile">
+                  <p className="small-subheadline white hide-on-mobile">
                     Technology That <br />
                     Works For Your Business
-                  </h2>
+                  </p>
 
                   <button
                     className="button hero-button button-transparent-border"
@@ -426,7 +381,6 @@ export const SectionTechstack = () => {
                 className="techstack-item-content-video"
                 ref={videoRef}
                 src="/videos/logos.mp4"
-                alt="Duotone"
                 muted
                 playsInline
                 data-wf-ignore="true"
@@ -445,10 +399,12 @@ export const SectionTechstack = () => {
             <div className="techstack-item-content">
               <div className="techstack-item-content-column">
                 <div className="techstack-item-content-column-slider">
-                  <img
+                  <NextImage
                     src="/images/abs.webp"
                     className="techstack-item-content-column-slider-image"
-                    alt=""
+                    alt="3D technology visualization"
+                    width={800}
+                    height={800}
                   />
 
                   <div
@@ -458,50 +414,60 @@ export const SectionTechstack = () => {
                     <div className="techstack-item-content-column-slider-carousel-row">
                       <div className="techstack-item-content-column-slider-item">
                         <div className="techstack-item-content-column-slider-item-child">
-                          <img
+                          <NextImage
                             src="/logos/blenderwhite.svg"
                             className="techstack-item-content-column-slider-item-image"
-                            alt=""
+                            alt="Blender"
+                            width={100}
+                            height={100}
                           />
                         </div>
                       </div>
 
                       <div className="techstack-item-content-column-slider-item">
                         <div className="techstack-item-content-column-slider-item-child">
-                          <img
+                          <NextImage
                             src="/logos/ae.svg"
                             className="techstack-item-content-column-slider-item-image"
-                            alt=""
+                            alt="Blender"
+                            width={100}
+                            height={100}
                           />
                         </div>
                       </div>
 
                       <div className="techstack-item-content-column-slider-item">
                         <div className="techstack-item-content-column-slider-item-child">
-                          <img
+                          <NextImage
                             src="/logos/photoshop.svg"
                             className="techstack-item-content-column-slider-item-image"
-                            alt=""
+                            alt="Blender"
+                            width={100}
+                            height={100}
                           />
                         </div>
                       </div>
 
                       <div className="techstack-item-content-column-slider-item">
                         <div className="techstack-item-content-column-slider-item-child">
-                          <img
+                          <NextImage
                             src="/logos/davinciresolvewhite.svg"
                             className="techstack-item-content-column-slider-item-image"
-                            alt=""
+                            alt="Blender"
+                            width={100}
+                            height={100}
                           />
                         </div>
                       </div>
 
                       <div className="techstack-item-content-column-slider-item">
                         <div className="techstack-item-content-column-slider-item-child">
-                          <img
+                          <NextImage
                             src="/logos/houdiniwhite.svg"
                             className="techstack-item-content-column-slider-item-image"
-                            alt=""
+                            alt="Blender"
+                            width={100}
+                            height={100}
                           />
                         </div>
                       </div>
@@ -510,9 +476,9 @@ export const SectionTechstack = () => {
                 </div>
 
                 <div className="techstack-item-content-column-textbox">
-                  <h2 className="small-subheadline white">
+                  <p className="small-subheadline white">
                     The Right Technology Stack
-                  </h2>
+                  </p>
 
                   <motion.p
                     key={selectedIndex}
@@ -544,12 +510,8 @@ export const SectionTechstack = () => {
                       onClick={onPrevButtonClick}
                     >
                       <div className="button-content">
-                        <span className="small-description">
-                          Previous
-                        </span>
-                        <span className="small-description">
-                          Previous
-                        </span>
+                        <span className="small-description">Previous</span>
+                        <span className="small-description">Previous</span>
                       </div>
                     </button>
                   </div>
@@ -559,13 +521,11 @@ export const SectionTechstack = () => {
                       {scrollSnaps.map((_, index) => (
                         <DotButton
                           key={index}
-                          onClick={() =>
-                            onDotButtonClick(index)
-                          }
+                          onClick={() => onDotButtonClick(index)}
                           className={"embla__dot-small".concat(
                             index === selectedIndex
                               ? " embla__dot--selected-small"
-                              : ""
+                              : "",
                           )}
                         />
                       ))}
@@ -578,12 +538,8 @@ export const SectionTechstack = () => {
                       onClick={onNextButtonClick}
                     >
                       <div className="button-content">
-                        <span className="small-description">
-                          Continue
-                        </span>
-                        <span className="small-description">
-                          Continue
-                        </span>
+                        <span className="small-description">Continue</span>
+                        <span className="small-description">Continue</span>
                       </div>
                     </button>
                   </div>
@@ -594,19 +550,16 @@ export const SectionTechstack = () => {
             <div className="background-gradient-circle" />
           </div>
 
-          <div
-            className="techstack-item-small bentoBoxRef3"
-            ref={bentoBoxRef3}
-          >
+          <div className="techstack-item-small bentoBoxRef3" ref={bentoBoxRef3}>
             <div className="techstack-item-content-cards">
               <div className="techstack-item-content-textbox">
-                <h2 className="small-subheadline white">
+                <p className="small-subheadline white">
                   Transparent Project Updates
-                </h2>
+                </p>
 
                 <p className="description grey">
-                  Stay informed with clear communication, regular
-                  updates, and a transparent development process.
+                  Stay informed with clear communication, regular updates, and a
+                  transparent development process.
                 </p>
               </div>
 
@@ -614,85 +567,79 @@ export const SectionTechstack = () => {
                 <div className="techstack-item-card techstack-item-card-1">
                   <div className="techstack-item-card-content techstack-item-card-content-1">
                     <div className="techstack-item-card-content-top">
-                      <p className="description white">
-                        Slack
-                      </p>
-                      <img
+                      <p className="description white">Slack</p>
+                      <NextImage
                         src="/logos/slack.png"
                         className="techstack-item-card-content-top-image"
-                        alt=""
+                        alt="a Slack logo"
+                        width={100}
+                        height={100}
                       />
                     </div>
 
                     <div className="techstack-item-card-content-bottom">
                       <p className="description grey">
-                        Clear communication, regular updates, and a
-                        transparent development process.
+                        Clear communication, regular updates, and a transparent
+                        development process.
                       </p>
                     </div>
 
-                    <p className="small-description grey">
-                      Nov 5
-                    </p>
+                    <p className="small-description grey">Nov 5</p>
                   </div>
                 </div>
 
                 <div className="techstack-item-card techstack-item-card-2">
                   <div className="techstack-item-card-content techstack-item-card-content-2">
                     <div className="techstack-item-card-content-top">
-                      <p className="description white">
-                        Gmail
-                      </p>
-                      <img
+                      <p className="description white">Gmail</p>
+                      <NextImage
                         src="/logos/gmail.png"
                         className="techstack-item-card-content-top-image"
-                        alt=""
+                        alt="Gmail logo"
+                        height={100}
+                        width={100}
                       />
                     </div>
+                  </div>
 
-                    <div className="techstack-item-card-content-bottom">
-                      <p className="small-description grey">
-                        Development update sent. Testing and final
-                        review are now scheduled.
-                      </p>
-                    </div>
-
+                  <div className="techstack-item-card-content-bottom">
                     <p className="small-description grey">
-                      Nov 6
+                      Development update sent. Testing and final review are now
+                      scheduled.
                     </p>
                   </div>
+
+                  <p className="small-description grey">Nov 6</p>
                 </div>
+              </div>
 
-                <div className="techstack-item-card techstack-item-card-3">
-                  <div className="techstack-item-card-content">
-                    <div className="techstack-item-card-content-top">
-                      <p className="description white">
-                        Notion
-                      </p>
-                      <img
-                        src="/logos/notion.png"
-                        className="techstack-item-card-content-top-image"
-                        alt=""
-                      />
-                    </div>
+              <div className="techstack-item-card techstack-item-card-3">
+                <div className="techstack-item-card-content">
+                  <div className="techstack-item-card-content-top">
+                    <p className="description white">Notion</p>
+                    <NextImage
+                      src="/logos/notion.png"
+                      className="techstack-item-card-content-top-image"
+                      alt="Notion logo"
+                      width={100}
+                      height={100}
+                    />
+                  </div>
 
-                    <div className="techstack-item-card-content-bottom">
-                      <p className="small-description grey">
-                        Project tasks updated and organized for the
-                        next development phase.
-                      </p>
-                    </div>
-
+                  <div className="techstack-item-card-content-bottom">
                     <p className="small-description grey">
-                      Nov 7
+                      Project tasks updated and organized for the next
+                      development phase.
                     </p>
                   </div>
+
+                  <p className="small-description grey">Nov 7</p>
                 </div>
               </div>
             </div>
-
-            <div className="background-gradient-circle-2" />
           </div>
+
+          <div className="background-gradient-circle-2" />
         </div>
       </div>
     </section>

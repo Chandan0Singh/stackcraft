@@ -97,16 +97,16 @@ export const SectionKPI = () => {
                         ref={subheadlineBoxRef}
                     >
                         <Zap className="subheadline-box-icon" />
-                        <h2 className="small-description grey">
+                        <p className="small-description grey">
                             Key Performance Indicators
-                        </h2>
+                        </p>
                     </div>
 
                     <div className="titlebox">
                         <div className="titlebox-gradient" />
-                        <h1 className="subheadline white" ref={titleRef}>
+                        <h2 className="subheadline white" ref={titleRef}>
                             Building Digital <br /> Products That Matter
-                        </h1>
+                        </h2>
                     </div>
                 </div>
 
@@ -115,9 +115,9 @@ export const SectionKPI = () => {
                         <div className="kpi-item-textbox">
                             <div className="kpi-item-textbox-top">
                                 <div className="kpi-item-textbox-number">
-                                    <h2 className="headline kpi-item-textbox-number-text white">
+                                    <p className="headline kpi-item-textbox-number-text white">
                                         250
-                                    </h2>
+                                    </p>
                                     <div className="kpi-item-textbox-number-gradient" />
                                 </div>
 
@@ -143,9 +143,9 @@ export const SectionKPI = () => {
                         <div className="kpi-item-textbox">
                             <div className="kpi-item-textbox-top">
                                 <div className="kpi-item-textbox-number">
-                                    <h2 className="headline kpi-item-textbox-number-text white">
+                                    <p className="headline kpi-item-textbox-number-text white">
                                         $100
-                                    </h2>
+                                    </p>
                                     <div className="kpi-item-textbox-number-gradient" />
                                 </div>
 
@@ -171,9 +171,9 @@ export const SectionKPI = () => {
                         <div className="kpi-item-textbox">
                             <div className="kpi-item-textbox-top">
                                 <div className="kpi-item-textbox-number">
-                                    <h2 className="headline kpi-item-textbox-number-text white">
+                                    <p className="headline kpi-item-textbox-number-text white">
                                         500
-                                    </h2>
+                                    </p>
                                     <div className="kpi-item-textbox-number-gradient" />
                                 </div>
 
@@ -183,8 +183,8 @@ export const SectionKPI = () => {
                             </div>
 
                             <p className="description grey">
-                                users continuosly running our <br /> photo
-                                enhancment software plugin.
+                                users continuously running our <br /> photo
+                                enhancement software plugin.
                             </p>
                         </div>
 

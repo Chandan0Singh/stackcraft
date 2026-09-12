@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import NextImage from "next/image";
 import gsap from "gsap";
 import SplitText from "gsap/src/SplitText";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -59,15 +60,15 @@ export const SectionFooter = () => {
     <section className="footer">
       <div className="footer-content">
         <div className="footer-content-left" ref={topRef1}>
-          <img
+          <NextImage
             src="/logos/stackcraft.png"
             className="footer-logo"
-            alt=""
+            alt="StackCraft Logo"
+            width={200}
+            height={200}
           />
 
-          <h1 className="subheadline white">
-            StackCraft Studio
-          </h1>
+          <h2 className="subheadline white">StackCraft Studio</h2>
 
           <p className="description grey">
             We build modern websites, web applications, and AI-powered digital
@@ -77,16 +78,11 @@ export const SectionFooter = () => {
 
         <div className="footer-content-right" ref={topRef2}>
           <div className="footer-content-right-column">
-            <h2 className="description white">
-              Company
-            </h2>
+            <h2 className="description white">Company</h2>
 
             <div className="footer-column-contents">
               <div className="footer-column-contents-item">
-                <Link
-                  href="/"
-                  className="description grey hover-text-grey"
-                >
+                <Link href="/" className="description grey hover-text-grey">
                   Home
                 </Link>
               </div>
@@ -120,13 +116,8 @@ export const SectionFooter = () => {
             </div>
           </div>
 
-          <div
-            className="footer-content-right-column"
-            ref={topRef3}
-          >
-            <h2 className="description white">
-              Legal
-            </h2>
+          <div className="footer-content-right-column" ref={topRef3}>
+            <h2 className="description white">Legal</h2>
 
             <div className="footer-column-contents">
               <div className="footer-column-contents-item">
@@ -160,32 +151,20 @@ export const SectionFooter = () => {
         </div>
       </div>
 
-      <div
-        className="footer-divider"
-        ref={centerRef1}
-      />
+      <div className="footer-divider" ref={centerRef1} />
 
       <div className="footer-content-bottom">
-        <p
-          className="small-description grey"
-          ref={bottomRef1}
-        >
+        <p className="small-description grey" ref={bottomRef1}>
           © 2026 StackCraft Studio. All Rights Reserved.
         </p>
 
-        <div
-          className="footer-socials"
-          ref={bottomRef2}
-        >
+        <div className="footer-socials" ref={bottomRef2}>
           <a
             href="https://www.instagram.com/YOUR_USERNAME"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Instagram
-              strokeWidth={1.25}
-              className="footer-socials-icon"
-            />
+            <Instagram strokeWidth={1.25} className="footer-socials-icon" />
           </a>
 
           <a
@@ -193,10 +172,7 @@ export const SectionFooter = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Twitter
-              strokeWidth={1.25}
-              className="footer-socials-icon"
-            />
+            <Twitter strokeWidth={1.25} className="footer-socials-icon" />
           </a>
 
           <a
@@ -204,10 +180,7 @@ export const SectionFooter = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Linkedin
-              strokeWidth={1.25}
-              className="footer-socials-icon"
-            />
+            <Linkedin strokeWidth={1.25} className="footer-socials-icon" />
           </a>
         </div>
       </div>

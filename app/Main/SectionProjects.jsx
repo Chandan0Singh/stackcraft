@@ -9,7 +9,7 @@ import { Star } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import { DotButton, useDotButton } from "./Carousel/EmblaCarouselDotButton";
 import Fade from "embla-carousel-fade";
-import Image from "next/image";
+import NextImage from "next/image";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -112,20 +112,12 @@ export const SectionProjects = () => {
   }, []);
 
   // EMBLA CAROUSEL
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true },
-    [Fade()],
-  );
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Fade()]);
 
-  const {
-    selectedIndex,
-    scrollSnaps,
-    onDotButtonClick,
-  } = useDotButton(emblaApi);
+  const { selectedIndex, scrollSnaps, onDotButtonClick } =
+    useDotButton(emblaApi);
 
-  const {
-    onNextButtonClick,
-  } = usePrevNextButtonsSafe(emblaApi);
+  const { onNextButtonClick } = usePrevNextButtonsSafe(emblaApi);
 
   // FOLLOWING CURSOR
   useEffect(() => {
@@ -192,34 +184,23 @@ export const SectionProjects = () => {
   return (
     <section className="projects projects-desktop">
       <div className="textbox">
-        <div
-          className="subheadline-box opacity-blur"
-          ref={subheadlineBoxRef}
-        >
+        <div className="subheadline-box opacity-blur" ref={subheadlineBoxRef}>
           <Star className="subheadline-box-icon" />
 
-          <h2 className="small-description grey">
-            Featured Works
-          </h2>
+          <p className="small-description grey">Featured Works</p>
         </div>
 
         <div className="titlebox">
           <div className="titlebox-big-gradient" />
 
-          <h1
-            className="subheadline white"
-            ref={titleRef}
-          >
+          <h2 className="subheadline white" ref={titleRef}>
             Digital Products Built
             <br className="hide-on-mobile" />
             To Make An Impact
-          </h1>
+          </h2>
         </div>
 
-        <p
-          className="description grey"
-          ref={descriptionRef}
-        >
+        <p className="description grey" ref={descriptionRef}>
           From business websites to scalable web applications,
           <br className="hide-on-desktop" />
           we turn ideas into products people love to use.
@@ -236,76 +217,64 @@ export const SectionProjects = () => {
         <div className="projects-gradient-top" />
         <div className="projects-gradient-bottom" />
 
-        <div
-          className="project-content-wrapper"
-          ref={imageContainerRef}
-        >
-          <div
-            className="projects-carousel"
-            ref={emblaRef}
-          >
+        <div className="project-content-wrapper" ref={imageContainerRef}>
+          <div className="projects-carousel" ref={emblaRef}>
             <div className="projects-carousel-row">
               <div className="projects-carousel-item">
-                <Image
+                <NextImage
                   src="/mockups/amazdraw.png"
                   width={1920}
                   height={1080}
-                  unoptimized
                   className="projects-carousel-item-image"
-                  alt="amazdraw"
+                  alt="Amazdraw website design project"
                 />
               </div>
 
               <div className="projects-carousel-item">
-                <Image
+                <NextImage
                   src="/mockups/isproperties.png"
                   width={1920}
                   height={1080}
-                  unoptimized
                   className="projects-carousel-item-image"
-                  alt=""
+                  alt="IS Properties website design project"
                 />
               </div>
 
               <div className="projects-carousel-item">
-                <Image
+                <NextImage
                   src="/mockups/odhira.png"
                   width={1920}
                   height={1080}
-                  unoptimized
                   className="projects-carousel-item-image"
-                  alt=""
+                  alt="Odhira website design project"
                 />
               </div>
 
               <div className="projects-carousel-item">
-                <Image
+                <NextImage
                   src="/mockups/tour.png"
                   width={1920}
                   height={1080}
-                  unoptimized
                   className="projects-carousel-item-image"
-                  alt=""
+                  alt="Tour website design project"
                 />
               </div>
 
               <div className="projects-carousel-item">
-                <Image
+                <NextImage
                   src="/mockups/tour.png"
                   width={1920}
                   height={1080}
-                  unoptimized
                   className="projects-carousel-item-image"
                   alt=""
                 />
               </div>
 
               <div className="projects-carousel-item">
-                <Image
+                <NextImage
                   src="/mockups/odhira.png"
                   width={1920}
                   height={1080}
-                  unoptimized
                   className="projects-carousel-item-image"
                   alt=""
                 />
@@ -320,22 +289,15 @@ export const SectionProjects = () => {
               key={index}
               onClick={() => onDotButtonClick(index)}
               className={"embla__dot".concat(
-                index === selectedIndex
-                  ? " embla__dot--selected"
-                  : "",
+                index === selectedIndex ? " embla__dot--selected" : "",
               )}
             />
           ))}
         </div>
       </div>
 
-      <div
-        className="hover-cursor"
-        ref={cursor}
-      >
-        <p className="small-description white">
-          See More
-        </p>
+      <div className="hover-cursor" ref={cursor}>
+        <p className="small-description white">See More</p>
       </div>
     </section>
   );

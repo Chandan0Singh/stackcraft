@@ -10,7 +10,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { usePrevNextButtons } from "./Carousel/EmblaCarouselArrowButtons";
 import { DotButton, useDotButton } from "./Carousel/EmblaCarouselDotButton";
 import Fade from "embla-carousel-fade";
-import Image from "next/image";
+import NextImage from "next/image";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -110,52 +110,33 @@ export const SectionProjectsMobile = () => {
   }, []);
 
   // EMBLA CAROUSEL
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true },
-    [Fade()],
-  );
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Fade()]);
 
-  const {
-    selectedIndex,
-    scrollSnaps,
-    onDotButtonClick,
-  } = useDotButton(emblaApi);
+  const { selectedIndex, scrollSnaps, onDotButtonClick } =
+    useDotButton(emblaApi);
 
-  const {
-    onNextButtonClick,
-  } = usePrevNextButtons(emblaApi);
+  const { onNextButtonClick } = usePrevNextButtons(emblaApi);
 
   return (
     <section className="projects projects-mobile">
       <div className="textbox">
-        <div
-          className="subheadline-box opacity-blur"
-          ref={subheadlineBoxRef}
-        >
+        <div className="subheadline-box opacity-blur" ref={subheadlineBoxRef}>
           <Star className="subheadline-box-icon" />
 
-          <h2 className="small-description grey">
-            Featured Works
-          </h2>
+          <p className="small-description grey">Featured Works</p>
         </div>
 
         <div className="titlebox">
           <div className="titlebox-big-gradient" />
 
-          <h1
-            className="subheadline white"
-            ref={titleRef}
-          >
+          <h2 className="subheadline white" ref={titleRef}>
             Digital Products Built
             <br className="hide-on-mobile" />
             To Make An Impact
-          </h1>
+          </h2>
         </div>
 
-        <p
-          className="description grey"
-          ref={descriptionRef}
-        >
+        <p className="description grey" ref={descriptionRef}>
           From business websites to scalable web applications,
           <br className="hide-on-desktop" />
           we turn ideas into products people love to use.
@@ -170,80 +151,69 @@ export const SectionProjectsMobile = () => {
         <div className="projects-gradient-top" />
         <div className="projects-gradient-bottom" />
 
-        <div
-          className="project-content-wrapper"
-          ref={imageContainerRef}
-        >
-          <div
-            className="projects-carousel"
-            ref={emblaRef}
-          >
+        <div className="project-content-wrapper" ref={imageContainerRef}>
+          <div className="projects-carousel" ref={emblaRef}>
             <div className="projects-carousel-row">
               <div className="projects-carousel-item">
-                <Image
+                <NextImage
                   src="/mockups/amazdraw.png"
                   width={1920}
                   height={1080}
-                  unoptimized
                   className="projects-carousel-item-image"
-                  alt="Heavecorp project"
+                  alt="Amazdraw website project"
                 />
               </div>
 
               <div className="projects-carousel-item">
-                <Image
+                <NextImage
                   src="/mockups/isproperties.png"
                   width={1920}
                   height={1080}
-                  unoptimized
                   className="projects-carousel-item-image"
-                  alt=""
+                  alt="IS Properties website project"
                 />
               </div>
 
               <div className="projects-carousel-item">
-                <Image
+                <NextImage
                   src="/mockups/odhira.png"
                   width={1920}
                   height={1080}
-                  unoptimized
                   className="projects-carousel-item-image"
-                  alt=""
+                  alt="Odhira website project"
                 />
               </div>
 
               <div className="projects-carousel-item">
-                <Image
+                <NextImage
                   src="/mockups/tour.webp"
                   width={1920}
                   height={1080}
-                  unoptimized
                   className="projects-carousel-item-image"
-                  alt=""
+                  alt="Tour website project"
                 />
               </div>
 
               <div className="projects-carousel-item">
-                <Image
+                <NextImage
                   src="/mockups/vitalenta.webp"
                   width={1920}
                   height={1080}
-                  unoptimized
                   className="projects-carousel-item-image"
-                  alt=""
+                  alt="Vitalenta website project"
                 />
               </div>
 
-              <div className="projects-carousel-item">
-                <Image
+              {/* <div className="projects-carousel-item">
+                <NextImage
                   src="/mockups/isproperties.png"
                   width={1920}
                   height={1080}
-                  unoptimized
+                  
                   className="projects-carousel-item-image"
                   alt=""
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -254,9 +224,7 @@ export const SectionProjectsMobile = () => {
               key={index}
               onClick={() => onDotButtonClick(index)}
               className={"embla__dot".concat(
-                index === selectedIndex
-                  ? " embla__dot--selected"
-                  : "",
+                index === selectedIndex ? " embla__dot--selected" : "",
               )}
             />
           ))}

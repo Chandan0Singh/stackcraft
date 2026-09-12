@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import NextImage from "next/image";
 import { ReactLenis } from "lenis/react";
 import "./contact.css";
 import gsap from "gsap";
@@ -151,7 +152,7 @@ export const ContactPageSection = () => {
               <div className="titlebox-gradient" />
 
               <h1 className="headline white" ref={titleRef}>
-                Get in Touch
+                Contact StackCraft Studio
               </h1>
             </div>
 
@@ -166,19 +167,21 @@ export const ContactPageSection = () => {
                   ref={contactItem1}
                 >
                   <div className="contact-content-top-item-profile">
-                    <img
+                    <NextImage
                       src="/images/mockup4.webp"
                       className="contact-content-top-item-image"
                       alt=""
+                      width={800}
+                      height={800}
                     />
                   </div>
 
                   <div className="contact-content-top-item-text">
                     <p className="description white">
                       Let&apos;s build something great together. Whether you
-                      need a website, web application, mobile app, or
-                      AI-powered solution, we&apos;d love to hear about your
-                      project.
+                      need a website, web application, e-commerce platform,
+                      mobile app, or AI-powered digital product, we&apos;d love
+                      to hear about your project.
                     </p>
                   </div>
                 </div>
@@ -186,7 +189,6 @@ export const ContactPageSection = () => {
                 <div className="contact-content-column-row">
                   <a
                     href="tel:+918860968260"
-                    target="_blank"
                     rel="noopener noreferrer"
                     className="no-underline"
                   >
@@ -194,10 +196,12 @@ export const ContactPageSection = () => {
                       className="contact-content-small-item opacity-blur"
                       ref={contactItem2}
                     >
-                      <img
+                      <NextImage
                         src="/logos/phone.svg"
                         className="contact-content-small-item-icon"
                         alt=""
+                        width={24}
+                        height={24}
                       />
                       <p className="small-description grey">Call</p>
                     </div>
@@ -205,7 +209,6 @@ export const ContactPageSection = () => {
 
                   <a
                     href="mailto:code.chandansingh@gmail.com"
-                    target="_blank"
                     rel="noopener noreferrer"
                     className="no-underline"
                   >
@@ -231,10 +234,12 @@ export const ContactPageSection = () => {
                       className="contact-content-small-item opacity-blur"
                       ref={contactItem4}
                     >
-                      <img
+                      <NextImage
                         src="/logos/linkedin.svg"
                         className="contact-content-small-item-icon"
                         alt=""
+                        width={24}
+                        height={24}
                       />
                       <p className="small-description grey">LinkedIn</p>
                     </div>
@@ -246,7 +251,9 @@ export const ContactPageSection = () => {
                   ref={contactItem5}
                 >
                   <p className="small-description grey">Videocall</p>
-                  <p className="description white">Book a videocall</p>
+                  <a href="/contact/book-a-call" className="description white">
+                    Book a videocall
+                  </a>
                 </div>
 
                 <div
@@ -254,7 +261,12 @@ export const ContactPageSection = () => {
                   ref={contactItem6}
                 >
                   <p className="small-description grey">Email</p>
-                  <p className="description white">YOur gmail</p>
+                  <a
+                    href="mailto:code.chandansingh@gmail.com"
+                    className="description white"
+                  >
+                    code.chandansingh@gmail.com
+                  </a>
                 </div>
 
                 <div
@@ -264,7 +276,7 @@ export const ContactPageSection = () => {
                   <p className="small-description grey">Address</p>
                   <p className="description white">City</p>
                   <p className="description white">State</p>
-                  <p className="description white">Counry</p>
+                  <p className="description white">Country</p>
                 </div>
               </div>
             </div>
@@ -273,11 +285,13 @@ export const ContactPageSection = () => {
               className="contact-content-right opacity-blur"
               ref={imageWrapperRef}
             >
-              <img
+              <NextImage
                 src="/logos/stackcraft.png"
                 className="contact-content-right-image"
                 ref={imageRef}
-                alt=""
+                alt="StackCraft Studio"
+                width={800}
+                height={800}
               />
             </div>
           </div>

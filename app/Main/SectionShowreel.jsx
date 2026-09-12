@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-key */
 import { useEffect, useRef } from "react";
+import NextImage from "next/image";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { Play } from "lucide-react";
@@ -90,7 +91,7 @@ export const SectionShowreel = () => {
     <section className="showreel">
       <div className="showreel-content">
         <div className="showreel-content-container">
-          <div
+          {/* <div
             className="showreel-video-playbutton"
             ref={playButtonRef}
           >
@@ -98,12 +99,9 @@ export const SectionShowreel = () => {
               fill="#010101"
               className="showreel-video-playbutton-icon"
             />
-          </div>
+          </div> */}
 
-          <div
-            ref={videoRef}
-            className="showreel-content-videobox"
-          >
+          <div ref={videoRef} className="showreel-content-videobox">
             <div className="background">
               <div className="trail"></div>
             </div>
@@ -114,7 +112,7 @@ export const SectionShowreel = () => {
               autoPlay="autoplay"
               muted
               playsInline
-              data-wf-ignore="true"
+              aria-label="StackCraft Studio digital design and development showreel"
               preload="auto"
               loop
             />
@@ -126,10 +124,12 @@ export const SectionShowreel = () => {
             className="showreel-content-row-item opacity-blur"
             ref={showreelItemRef1}
           >
-            <img
+            <NextImage
               src="/logos/stackcraft.png"
               className="showreel-content-row-item-image"
-              alt=""
+              alt="StackCraft Studio logo"
+              width={200}
+              height={200}
             />
             <div className="showreel-content-row-item-grid" />
           </div>
@@ -138,10 +138,12 @@ export const SectionShowreel = () => {
             className="showreel-content-row-item opacity-blur"
             ref={showreelItemRef2}
           >
-            <img
+            <NextImage
               src="/logos/cssbestui.svg"
               className="showreel-content-row-item-image"
-              alt=""
+              alt="cssbestui"
+              width={200}
+              height={200}
             />
             <div className="showreel-content-row-item-grid" />
           </div>
@@ -150,10 +152,12 @@ export const SectionShowreel = () => {
             className="showreel-content-row-item opacity-blur"
             ref={showreelItemRef3}
           >
-            <img
+            <NextImage
               src="/logos/cssbestinnovation.svg"
               className="showreel-content-row-item-image"
-              alt=""
+              alt="cssbestinnovation"
+              width={200}
+              height={200}
             />
             <div className="showreel-content-row-item-grid" />
           </div>
@@ -162,10 +166,12 @@ export const SectionShowreel = () => {
             className="showreel-content-row-item opacity-blur"
             ref={showreelItemRef4}
           >
-            <img
+            <NextImage
               src="/logos/cssbestux.svg"
               className="showreel-content-row-item-image"
-              alt=""
+              alt="cssbestux"
+              width={200}
+              height={200}
             />
             <div className="showreel-content-row-item-grid" />
           </div>
