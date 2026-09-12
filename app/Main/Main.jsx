@@ -1,9 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { ReactLenis, useLenis } from "lenis/react";
-import { useProgress } from "@react-three/drei";
-
+import { ReactLenis} from "lenis/react";
 import { SectionHero } from "./SectionHero";
 import { SectionShowreel } from "./SectionShowreel";
 import { SectionTestimonials } from "./SectionTestimonials";
@@ -17,37 +14,9 @@ import { SectionKPI } from "./SectionKPI";
 import "./main.css";
 
 const Main = () => {
-const { progress } = useProgress();
-const [fadeOut, setFadeOut] = useState(false);
-const lenis = useLenis();
-
-useEffect(() => {
-    if (progress !== 100) {
-        return;
-    }
-
-    setFadeOut(true);
-    lenis?.start();
-}, [progress, lenis]);
 
 return (
     <ReactLenis root>
-        <div
-            className={`initial-loading-screen ${
-                fadeOut ? "fade-out" : ""
-            }`}
-        >
-            <div className="loading-image-box">
-                <video
-                    src="/images/loader.mp4"
-                    className="loading-image"
-                    autoPlay
-                    muted
-                    playsInline
-                />
-            </div>
-        </div>
-
         <SectionHero />
 
         <div className="normal-padding" />
