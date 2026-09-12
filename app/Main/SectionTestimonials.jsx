@@ -155,7 +155,7 @@ export const SectionTestimonials = () => {
                 <div className="testimonials-item-content">
                   <div className="testimonials-item-profile">
                     <NextImage
-                      src="/images/sourav.jpeg"
+                      src="/images/sourav.webp"
                       alt="Sourav Khatana"
                       width={200}
                       height={200}
@@ -183,7 +183,7 @@ export const SectionTestimonials = () => {
                 <div className="testimonials-item-content">
                   <div className="testimonials-item-profile">
                     <NextImage
-                      src="/images/jay.jpeg"
+                      src="/images/jay.webp"
                       alt="Jay Negi"
                       width={200}
                       height={200}
@@ -211,7 +211,7 @@ export const SectionTestimonials = () => {
                 <div className="testimonials-item-content">
                   <div className="testimonials-item-profile">
                     <NextImage
-                      src="/images/tushar.jpeg"
+                      src="/images/tushar.webp"
                       alt="Tushar Kandiyal"
                       width={200}
                       height={200}

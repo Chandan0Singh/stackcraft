@@ -156,7 +156,7 @@ export const SectionProjectsMobile = () => {
             <div className="projects-carousel-row">
               <div className="projects-carousel-item">
                 <NextImage
-                  src="/mockups/amazdraw.png"
+                  src="/mockups/amazdraw.webp"
                   width={1920}
                   height={1080}
                   className="projects-carousel-item-image"
@@ -166,7 +166,7 @@ export const SectionProjectsMobile = () => {
 
               <div className="projects-carousel-item">
                 <NextImage
-                  src="/mockups/isproperties.png"
+                  src="/mockups/isproperties.webp"
                   width={1920}
                   height={1080}
                   className="projects-carousel-item-image"
@@ -176,7 +176,7 @@ export const SectionProjectsMobile = () => {
 
               <div className="projects-carousel-item">
                 <NextImage
-                  src="/mockups/odhira.png"
+                  src="/mockups/odhira.webp"
                   width={1920}
                   height={1080}
                   className="projects-carousel-item-image"
@@ -206,7 +206,7 @@ export const SectionProjectsMobile = () => {
 
               {/* <div className="projects-carousel-item">
                 <NextImage
-                  src="/mockups/isproperties.png"
+                  src="/mockups/isproperties.webp"
                   width={1920}
                   height={1080}
                   

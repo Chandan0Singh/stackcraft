@@ -2,27 +2,456 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import NextImage from "next/image";
-import { ReactLenis } from "lenis/react";
 import Link from "next/link";
-import "./works.css";
+import { ReactLenis } from "lenis/react";
+import useEmblaCarousel from "embla-carousel-react";
+import { ArrowUpRight, Zap } from "lucide-react";
+import gsap from "gsap";
+import SplitText from "gsap/src/SplitText";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 import {
   PrevButton,
   NextButton,
   usePrevNextButtons,
 } from "../Main/Carousel/EmblaCarouselArrowButtons";
-import useEmblaCarousel from "embla-carousel-react";
-
-import { ArrowUpRight, Zap } from "lucide-react";
-
-import gsap from "gsap";
-import SplitText from "gsap/src/SplitText";
-import ScrollTrigger from "gsap/ScrollTrigger";
+import "./works.css";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
+const works = [
+  {
+    name: "Amazdraw",
+    categories: ["Web Design & Development", "Branding"],
+    image: "/mockups/amazdraw.webp",
+    alt: "StackCraft project mockup",
+  },
+  {
+    name: "Isproperties",
+    categories: ["Web Design & Development", "Branding"],
+    image: "/mockups/isproperties.webp",
+    alt: "Isproperties project mockup",
+  },
+  {
+    name: "Odhira",
+    categories: ["Web Design & Development", "Branding"],
+    image: "/mockups/odhira.webp",
+    alt: "Peak Creations project mockup",
+  },
+  {
+    name: "Tour",
+    categories: ["Web Design & Development", "Branding"],
+    image: "/mockups/tour.webp",
+    alt: "Tour project mockup",
+  },
+];
+
+const industries = [
+  {
+    title: "Supply Chain & Logistics",
+    image: "/mockups/amazdraw.webp",
+    alt: "Supply chain and logistics website interface",
+  },
+  {
+    title: "Luxury Travel & Hospitality",
+    image: "/mockups/isproperties.webp",
+    alt: "Luxury travel and hospitality website interface",
+  },
+  {
+    title: "Real Estate & Development",
+    image: "/mockups/odhira.webp",
+    alt: "Real estate and development website interface",
+  },
+  {
+    title: "Technology & AI",
+    image: "/mockups/tour.webp",
+    alt: "Technology and AI website interface",
+  },
+];
+
+const caseStudies = [
+  {
+    category: "Marketing",
+    title: "Digital Market Future",
+    description:
+      "The new era of the digital landscape: where do we think the market is going?",
+    image: "/casestudy/cs1.webp",
+    alt: "Digital Market Future case study",
+    href: "/case-studies/digital-market-future",
+  },
+  {
+    category: "Marketing",
+    title: "Tech Evolution Ahead",
+    description:
+      "The new era of the digital landscape: where do we think the market is going?",
+    image: "/casestudy/cs4.webp",
+    alt: "Tech Evolution Ahead case study",
+    href: "/case-studies/tech-evolution-ahead",
+  },
+  {
+    category: "Marketing",
+    title: "Navigating Trends",
+    description:
+      "The new era of the digital landscape: where do we think the market is going?",
+    image: "/casestudy/cs3.webp",
+    alt: "Navigating Trends case study",
+    href: "/case-studies/navigating-trends",
+  },
+  {
+    category: "Marketing",
+    title: "Innovation in Motion",
+    description:
+      "The new era of the digital landscape: where do we think the market is going?",
+    image: "/casestudy/cs2.webp",
+    alt: "Innovation in Motion case study",
+    href: "/case-studies/innovation-in-motion",
+  },
+];
+
+function useDragCursor() {
+  const cursorRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (!window.matchMedia("(pointer: fine)").matches) return undefined;
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
+    let animationFrameId;
+    const speed = 0.05;
+
+    const handleMouseMove = (event) => {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+    };
+
+    const animate = () => {
+      cursorX += (mouseX - cursorX) * speed;
+      cursorY += (mouseY - cursorY) * speed;
+
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+      }
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    animationFrameId = requestAnimationFrame(animate);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!cursorRef.current) return;
+
+    gsap.to(cursorRef.current, {
+      autoAlpha: visible ? 1 : 0,
+      scale: visible ? 1 : 0,
+      duration: 0.3,
+      ease: visible ? "power3.out" : "power3.in",
+    });
+  }, [visible]);
+
+  return {
+    cursorRef,
+    handleMouseEnter: () => setVisible(true),
+    handleMouseLeave: () => setVisible(false),
+  };
+}
+
+function WorksCarousel({ onMouseEnter, onMouseLeave }) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ dragFree: true });
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const {
+    prevBtnDisabled,
+    nextBtnDisabled,
+    onPrevButtonClick,
+    onNextButtonClick,
+  } = usePrevNextButtons(emblaApi);
+
+  const updateProgress = useCallback((api) => {
+    setScrollProgress(
+      api ? Math.max(0, Math.min(1, api.scrollProgress())) * 100 : 0,
+    );
+  }, []);
+
+  useEffect(() => {
+    if (!emblaApi) return undefined;
+
+    updateProgress(emblaApi);
+
+    emblaApi.on("reInit", updateProgress);
+    emblaApi.on("scroll", updateProgress);
+    emblaApi.on("slideFocus", updateProgress);
+
+    return () => {
+      emblaApi.off("reInit", updateProgress);
+      emblaApi.off("scroll", updateProgress);
+      emblaApi.off("slideFocus", updateProgress);
+    };
+  }, [emblaApi, updateProgress]);
+
+  return (
+    <div
+      className="works-carousel-wrapper"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <div className="works-carousel-wrapper-overlay" />
+
+      <div className="works-carousel" ref={emblaRef}>
+        <div className="works-carousel-row">
+          <div className="works-item-padding" />
+
+          {works.map((work) => (
+            <div className="works-item" key={`${work.name}-${work.image}`}>
+              <div className="works-item-content">
+                <div className="works-item-content-textbox">
+                  <h2 className="subheadline white">{work.name}</h2>
+                  <div className="works-item-content-textbox-row">
+                    {work.categories.map((category) => (
+                      <div
+                        className="works-item-content-textbox-button"
+                        key={category}
+                      >
+                        <p className="small-description white">{category}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <NextImage
+                  src={work.image}
+                  className="works-item-content-image"
+                  width={750}
+                  height={750}
+                  loading="lazy"
+                  alt={work.alt}
+                />
+              </div>
+              <div className="works-item-border" />
+            </div>
+          ))}
+
+          <div className="works-item">
+            <div className="works-item-last-content">
+              <p className="description white">
+                Be our next client in this section!
+              </p>
+              <h2 className="subheadline white">Let us get you a coffee.</h2>
+              <div className="contact-button-wrapper">
+                <button type="button" className="contact-button-white">
+                  <span>
+                    <span className="contact-button-container-white">
+                      <span className="contact-button-primary-white" />
+                      <span className="contact-button-complimentary-white" />
+                    </span>
+                  </span>
+                  <span className="description black">Book a call</span>
+                </button>
+              </div>
+            </div>
+            <div className="works-item-border" />
+          </div>
+
+          <div className="works-item-padding" />
+        </div>
+      </div>
+
+      <CarouselControls
+        progress={scrollProgress}
+        prevDisabled={prevBtnDisabled}
+        nextDisabled={nextBtnDisabled}
+        onPrev={onPrevButtonClick}
+        onNext={onNextButtonClick}
+      />
+    </div>
+  );
+}
+
+function CaseStudiesCarousel({ wrapperRef, onMouseEnter, onMouseLeave }) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ dragFree: true });
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const {
+    prevBtnDisabled,
+    nextBtnDisabled,
+    onPrevButtonClick,
+    onNextButtonClick,
+  } = usePrevNextButtons(emblaApi);
+
+  const updateProgress = useCallback((api) => {
+    setScrollProgress(
+      api ? Math.max(0, Math.min(1, api.scrollProgress())) * 100 : 0,
+    );
+  }, []);
+
+  useEffect(() => {
+    if (!emblaApi) return undefined;
+
+    updateProgress(emblaApi);
+    emblaApi.on("reInit", updateProgress);
+    emblaApi.on("scroll", updateProgress);
+    emblaApi.on("slideFocus", updateProgress);
+
+    return () => {
+      emblaApi.off("reInit", updateProgress);
+      emblaApi.off("scroll", updateProgress);
+      emblaApi.off("slideFocus", updateProgress);
+    };
+  }, [emblaApi, updateProgress]);
+
+  return (
+    <div
+      ref={wrapperRef}
+      className="casestudies-carousel-wrapper opacity-blur"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <div className="casestudies-carousel" ref={emblaRef}>
+        <div className="casestudies-carousel-row">
+          <div className="casestudies-item-padding" />
+
+          {caseStudies.map((study) => (
+            <article className="casestudies-item" key={study.title}>
+              <div className="casestudies-item-content">
+                <div className="casestudies-item-content-textbox">
+                  <div className="subheadline-box">
+                    <Zap className="subheadline-box-icon" aria-hidden="true" />
+                    <h2 className="small-description grey">{study.category}</h2>
+                  </div>
+
+                  <h3 className="small-subheadline white">{study.title}</h3>
+                  <p className="description grey">{study.description}</p>
+                </div>
+
+                <div className="casestudies-item-content-imagebox">
+                  <div className="button casestudies-item-content-imagebox-button">
+                    <div className="button-content">
+                      <Link
+                        className="button-link no-underline small-description white"
+                        href={study.href}
+                        aria-label={`Read ${study.title} case study`}
+                      >
+                        Read More
+                      </Link>
+                    </div>
+                    <ArrowUpRight
+                      className="casestudies-item-content-imagebox-button-icon"
+                      aria-hidden="true"
+                    />
+                  </div>
+
+                  <NextImage
+                    src={study.image}
+                    className="casestudies-item-content-image"
+                    alt={study.alt}
+                    width={400}
+                    height={300}
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </article>
+          ))}
+
+          <div className="casestudies-item-padding" />
+        </div>
+      </div>
+
+      <CarouselControls
+        progress={scrollProgress}
+        prevDisabled={prevBtnDisabled}
+        nextDisabled={nextBtnDisabled}
+        onPrev={onPrevButtonClick}
+        onNext={onNextButtonClick}
+      />
+    </div>
+  );
+}
+
+function CarouselControls({
+  progress,
+  prevDisabled,
+  nextDisabled,
+  onPrev,
+  onNext,
+}) {
+  return (
+    <div className="casestudies-carousel-bottom">
+      <div className="casestudies-carousel-bottom-buttons">
+        <PrevButton onClick={onPrev} disabled={prevDisabled} />
+        <NextButton onClick={onNext} disabled={nextDisabled} />
+      </div>
+
+      <div className="embla__progress" aria-hidden="true">
+        <div
+          className="embla__progress__bar"
+          style={{ transform: `translate3d(${progress}%, 0, 0)` }}
+        />
+      </div>
+    </div>
+  );
+}
+
+function IndustriesSection({ subheadlineBoxRef, subtitleRef, descriptionRef }) {
+  return (
+    <div className="works-industries">
+      <div className="works-subtextbox">
+        <div className="subheadline-box opacity-blur" ref={subheadlineBoxRef}>
+          <Zap className="subheadline-box-icon" aria-hidden="true" />
+          <h2 className="small-description grey">Industries we serve</h2>
+        </div>
+
+        <div className="titlebox">
+          <div className="titlebox-medium-gradient" />
+          <h2 className="subheadline white" ref={subtitleRef}>
+            We have extensive experience <br /> across multiple industries
+          </h2>
+        </div>
+
+        <p className="description grey" ref={descriptionRef}>
+          Our product designers have completed projects in different niches.
+          They know how to add business value and provide practical solutions.
+        </p>
+      </div>
+
+      <div className="works-industries-container">
+        <div className="works-industries-divider" />
+
+        {industries.map((industry, index) => (
+          <div className="works-industries-item" key={industry.title}>
+            <div className="works-industries-item-left">
+              <h2 className="small-subheadline white">{industry.title}</h2>
+            </div>
+
+            <div className="works-industries-item-right">
+              <div className="works-industries-item-right-imagebox">
+                <NextImage
+                  src={industry.image}
+                  className="works-industries-item-right-image"
+                  alt={industry.alt}
+                  height={400}
+                  width={400}
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        ))}
+
+        <div className="works-industries-divider" />
+      </div>
+    </div>
+  );
+}
+
 export const WorksPageSection = () => {
-  // ANIMATIONS
   const titleRef = useRef(null);
   const subtitleRef1 = useRef(null);
   const subtitleRef2 = useRef(null);
@@ -31,94 +460,69 @@ export const WorksPageSection = () => {
   const subdescriptionRef2 = useRef(null);
   const lineRef = useRef(null);
   const carouselWrapperRef = useRef(null);
-  const worksItemRef1 = useRef(null);
-
-  const industryImageRef1 = useRef(null);
-  const industryImageRef2 = useRef(null);
-  const industryImageRef3 = useRef(null);
-  const industryImageRef4 = useRef(null);
-
   const subheadlineBoxRef1 = useRef(null);
   const subheadlineBoxRef2 = useRef(null);
-
-  const cursor = useRef(null);
-  const [showCursor, setShowCursor] = useState(false);
+  const cursor = useDragCursor();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Headline text animation
-      const titleSplit = new SplitText(titleRef.current, {
-        type: "chars",
-      });
-
-      gsap.fromTo(
-        titleSplit.chars,
-        {
-          willChange: "opacity, transform",
-          filter: "blur(8px)",
-          opacity: 0,
-          yPercent: 50,
-        },
-        {
-          delay: 0.2,
-          opacity: 1,
-          filter: "blur(0px)",
-          yPercent: 0,
-          stagger: 0.02,
-          duration: 0.75,
-          ease: "power1",
-        },
-      );
-
-      // Description text animation
-      gsap.to(descriptionRef.current, {
-        opacity: 1,
-        filter: "blur(0px)",
-        duration: 1,
-        delay: 0.6,
-      });
-
-      // Line animation
-      gsap.fromTo(
-        lineRef.current,
-        {
-          opacity: 0,
-          filter: "blur(8px)",
-        },
-        {
-          opacity: 1,
-          filter: "blur(0px)",
-          duration: 0.5,
-          delay: 0.5,
-        },
-      );
-
-      // Work carousel overlay animation
-      gsap.to(worksItemRef1.current, {
-        delay: 0.4,
-        opacity: 0,
-        duration: 1,
-        ease: "power1",
-      });
-
-      // Industry images
-      const industryImages = [
-        industryImageRef1.current,
-        industryImageRef2.current,
-        industryImageRef3.current,
-        industryImageRef4.current,
-      ];
-
-      industryImages.forEach((image) => {
-        if (!image) return;
+      if (titleRef.current) {
+        const titleSplit = new SplitText(titleRef.current, { type: "chars" });
 
         gsap.fromTo(
-          image,
+          titleSplit.chars,
+          {
+            willChange: "opacity, transform",
+            filter: "blur(8px)",
+            opacity: 0,
+            yPercent: 50,
+          },
+          {
+            delay: 0.2,
+            opacity: 1,
+            filter: "blur(0px)",
+            yPercent: 0,
+            stagger: 0.02,
+            duration: 0.75,
+            ease: "power1",
+          },
+        );
+      }
+
+      if (descriptionRef.current) {
+        gsap.to(descriptionRef.current, {
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 1,
+          delay: 0.6,
+        });
+      }
+
+      if (lineRef.current) {
+        gsap.fromTo(
+          lineRef.current,
+          { opacity: 0, filter: "blur(8px)" },
+          {
+            opacity: 1,
+            filter: "blur(0px)",
+            duration: 0.5,
+            delay: 0.5,
+          },
+        );
+      }
+
+      const industryImageElements = document.querySelectorAll(
+        ".works-industries-item-right-imagebox",
+      );
+
+      industryImageElements.forEach((element) => {
+        gsap.fromTo(
+          element,
           { width: 0 },
           {
             width: "100%",
             scrollTrigger: {
-              trigger: image,
+              trigger: element,
               start: "top bottom",
               end: "center center",
               scrub: true,
@@ -127,57 +531,40 @@ export const WorksPageSection = () => {
         );
       });
 
-      // Case studies wrapper animation
-      gsap.to(carouselWrapperRef.current, {
-        opacity: 1,
-        filter: "blur(0px)",
-        duration: 1,
-        ease: "power1",
-        scrollTrigger: {
-          trigger: carouselWrapperRef.current,
-          start: "top 95%",
-        },
-      });
-
-      // Subheadline box animations
-      const subheadlineBoxes = [
-        subheadlineBoxRef1.current,
-        subheadlineBoxRef2.current,
-      ];
-
-      subheadlineBoxes.forEach((element) => {
-        if (!element) return;
-
-        gsap.to(element, {
+      if (carouselWrapperRef.current) {
+        gsap.to(carouselWrapperRef.current, {
           opacity: 1,
           filter: "blur(0px)",
-          duration: 0.5,
+          duration: 1,
           ease: "power1",
           scrollTrigger: {
-            trigger: element,
+            trigger: carouselWrapperRef.current,
             start: "top 95%",
           },
         });
-      });
+      }
 
-      // Subtitle text animations
-      const subtitleAnimations = [
-        {
-          element: subtitleRef1.current,
-          type: "words",
-        },
-        {
-          element: subtitleRef2.current,
-          type: "words",
-        },
-      ];
+      [subheadlineBoxRef1.current, subheadlineBoxRef2.current].forEach(
+        (element) => {
+          if (!element) return;
 
-      subtitleAnimations.forEach(({ element }) => {
+          gsap.to(element, {
+            opacity: 1,
+            filter: "blur(0px)",
+            duration: 0.5,
+            ease: "power1",
+            scrollTrigger: {
+              trigger: element,
+              start: "top 95%",
+            },
+          });
+        },
+      );
+
+      [subtitleRef1.current, subtitleRef2.current].forEach((element) => {
         if (!element) return;
 
-        const split = new SplitText(element, {
-          type: "words",
-        });
+        const split = new SplitText(element, { type: "words" });
 
         gsap.fromTo(
           split.words,
@@ -202,178 +589,33 @@ export const WorksPageSection = () => {
         );
       });
 
-      // Description text animations
-      const subdescriptionAnimations = [
-        subdescriptionRef1.current,
-        subdescriptionRef2.current,
-      ];
+      [subdescriptionRef1.current, subdescriptionRef2.current].forEach(
+        (element) => {
+          if (!element) return;
 
-      subdescriptionAnimations.forEach((element) => {
-        if (!element) return;
+          const split = new SplitText(element, { type: "words" });
 
-        const split = new SplitText(element, {
-          type: "words",
-        });
-
-        gsap.fromTo(
-          split.words,
-          {
-            filter: "blur(8px)",
-            opacity: 0,
-          },
-          {
-            opacity: 1,
-            filter: "blur(0px)",
-            stagger: 0.025,
-            ease: "sine",
-            scrollTrigger: {
-              trigger: element,
-              start: "top 95%",
+          gsap.fromTo(
+            split.words,
+            { filter: "blur(8px)", opacity: 0 },
+            {
+              opacity: 1,
+              filter: "blur(0px)",
+              stagger: 0.025,
+              duration: 0.5,
+              ease: "sine",
+              scrollTrigger: {
+                trigger: element,
+                start: "top 95%",
+              },
             },
-          },
-        );
-      });
+          );
+        },
+      );
     });
 
-    return () => {
-      ctx.revert();
-    };
+    return () => ctx.revert();
   }, []);
-
-  // FOLLOWING CURSOR
-  useEffect(() => {
-    let mouseX = 0;
-    let mouseY = 0;
-    let cursorX = 0;
-    let cursorY = 0;
-
-    const speed = 0.05;
-    let animationFrameId;
-
-    const handleMouseMove = (event) => {
-      mouseX = event.clientX;
-      mouseY = event.clientY;
-    };
-
-    const animate = () => {
-      const distX = mouseX - cursorX;
-      const distY = mouseY - cursorY;
-
-      cursorX += distX * speed;
-      cursorY += distY * speed;
-
-      if (cursor.current) {
-        cursor.current.style.left = `${cursorX}px`;
-        cursor.current.style.top = `${cursorY}px`;
-      }
-
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    animationFrameId = requestAnimationFrame(animate);
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!cursor.current) return;
-
-    gsap.to(cursor.current, {
-      autoAlpha: showCursor ? 1 : 0,
-      scale: showCursor ? 1 : 0,
-      duration: 0.3,
-      ease: showCursor ? "power3.out" : "power3.in",
-    });
-  }, [showCursor]);
-
-  const handleMouseEnter = () => {
-    setShowCursor(true);
-  };
-
-  const handleMouseLeave = () => {
-    setShowCursor(false);
-  };
-
-  // EMBLA CAROUSEL
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    dragFree: true,
-  });
-
-  const [emblaRef2, emblaApi2] = useEmblaCarousel({
-    dragFree: true,
-  });
-
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [scrollProgress2, setScrollProgress2] = useState(0);
-
-  const {
-    prevBtnDisabled: prevBtnDisabled1,
-    nextBtnDisabled: nextBtnDisabled1,
-    onPrevButtonClick: onPrevButtonClick1,
-    onNextButtonClick: onNextButtonClick1,
-  } = usePrevNextButtons(emblaApi);
-
-  const {
-    prevBtnDisabled: prevBtnDisabled2,
-    nextBtnDisabled: nextBtnDisabled2,
-    onPrevButtonClick: onPrevButtonClick2,
-    onNextButtonClick: onNextButtonClick2,
-  } = usePrevNextButtons(emblaApi2);
-
-  const onScroll = useCallback((emblaApi, setProgress) => {
-    const progress = Math.max(0, Math.min(1, emblaApi.scrollProgress()));
-
-    setProgress(progress * 100);
-  }, []);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-
-    const handleScroll = () => {
-      onScroll(emblaApi, setScrollProgress);
-    };
-
-    handleScroll();
-
-    emblaApi
-      .on("reInit", handleScroll)
-      .on("scroll", handleScroll)
-      .on("slideFocus", handleScroll);
-
-    return () => {
-      emblaApi
-        .off("reInit", handleScroll)
-        .off("scroll", handleScroll)
-        .off("slideFocus", handleScroll);
-    };
-  }, [emblaApi, onScroll]);
-
-  useEffect(() => {
-    if (!emblaApi2) return;
-
-    const handleScroll = () => {
-      onScroll(emblaApi2, setScrollProgress2);
-    };
-
-    handleScroll();
-
-    emblaApi2
-      .on("reInit", handleScroll)
-      .on("scroll", handleScroll)
-      .on("slideFocus", handleScroll);
-
-    return () => {
-      emblaApi2
-        .off("reInit", handleScroll)
-        .off("scroll", handleScroll)
-        .off("slideFocus", handleScroll);
-    };
-  }, [emblaApi2, onScroll]);
 
   return (
     <ReactLenis root>
@@ -384,7 +626,6 @@ export const WorksPageSection = () => {
               <div className="works-content-textbox">
                 <div className="titlebox">
                   <div className="subpage-titlebox-gradient" />
-
                   <h1 className="headline white" ref={titleRef}>
                     Collection of Our Works
                   </h1>
@@ -402,593 +643,50 @@ export const WorksPageSection = () => {
               <div className="works-content-top-divider" ref={lineRef} />
             </div>
 
-            <div
-              className="works-carousel-wrapper"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <div
-                className="works-carousel-wrapper-overlay"
-                ref={worksItemRef1}
-              />
-
-              <div className="works-carousel" ref={emblaRef2}>
-                <div className="works-carousel-row">
-                  <div className="works-item-padding" />
-
-                  <div className="works-item">
-                    <div className="works-item-content">
-                      <div className="works-item-content-textbox">
-                        <h2 className="subheadline white">StackCraft</h2>
-
-                        <div className="works-item-content-textbox-row">
-                          <div className="works-item-content-textbox-button">
-                            <p className="small-description white">
-                              Web Design & Development
-                            </p>
-                          </div>
-
-                          <div className="works-item-content-textbox-button">
-                            <p className="small-description white">Branding</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <NextImage
-                        src="/mockups/amazdraw.png"
-                        className="works-item-content-image"
-                        width={750}
-                        height={750}
-                        unoptimized
-                        loading="lazy"
-                        alt="amazdraw project"
-                      />
-                    </div>
-
-                    <div className="works-item-border" />
-                  </div>
-
-                  <div className="works-item">
-                    <div className="works-item-content">
-                      <div className="works-item-content-textbox">
-                        <h2 className="subheadline white">Vita Lenta</h2>
-
-                        <div className="works-item-content-textbox-row">
-                          <div className="works-item-content-textbox-button">
-                            <p className="small-description white">
-                              Web Design & Development
-                            </p>
-                          </div>
-
-                          <div className="works-item-content-textbox-button">
-                            <p className="small-description white">Branding</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <NextImage
-                        src="/mockups/isproperties.png"
-                        className="works-item-content-image"
-                        width={750}
-                        height={750}
-                        unoptimized
-                        loading="lazy"
-                        alt=""
-                      />
-                    </div>
-
-                    <div className="works-item-border" />
-                  </div>
-
-                  <div className="works-item">
-                    <div className="works-item-content">
-                      <div className="works-item-content-textbox">
-                        <h2 className="subheadline white">Peak Creations</h2>
-
-                        <div className="works-item-content-textbox-row">
-                          <div className="works-item-content-textbox-button">
-                            <p className="small-description white">
-                              Web Design & Development
-                            </p>
-                          </div>
-
-                          <div className="works-item-content-textbox-button">
-                            <p className="small-description white">Branding</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <NextImage
-                        src="/mockups/odhira.png"
-                        className="works-item-content-image"
-                        width={750}
-                        height={750}
-                        unoptimized
-                        loading="lazy"
-                        alt=""
-                      />
-                    </div>
-
-                    <div className="works-item-border" />
-                  </div>
-
-                  <div className="works-item">
-                    <div className="works-item-content">
-                      <div className="works-item-content-textbox">
-                        <h2 className="subheadline white">Vita Lenta</h2>
-
-                        <div className="works-item-content-textbox-row">
-                          <div className="works-item-content-textbox-button">
-                            <p className="small-description white">
-                              Web Design & Development
-                            </p>
-                          </div>
-
-                          <div className="works-item-content-textbox-button">
-                            <p className="small-description white">Branding</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <NextImage
-                        src="/mockups/tour.png"
-                        className="works-item-content-image"
-                        width={750}
-                        height={750}
-                        unoptimized
-                        loading="lazy"
-                        alt=""
-                      />
-                    </div>
-
-                    <div className="works-item-border" />
-                  </div>
-
-                  <div className="works-item">
-                    <div className="works-item-last-content">
-                      <p className="description white">
-                        Be our next client in this section!
-                      </p>
-
-                      <h2 className="subheadline white">
-                        Let us get you a coffee.
-                      </h2>
-
-                      <div className="contact-button-wrapper">
-                        <button className="contact-button-white">
-                          <span>
-                            <span className="contact-button-container-white">
-                              <span className="contact-button-primary-white" />
-                              <span className="contact-button-complimentary-white" />
-                            </span>
-                          </span>
-
-                          <span className="description black">Book a call</span>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="works-item-border" />
-                  </div>
-
-                  <div className="works-item-padding" />
-                </div>
-              </div>
-
-              <div className="casestudies-carousel-bottom">
-                <div className="casestudies-carousel-bottom-buttons">
-                  <PrevButton
-                    onClick={onPrevButtonClick2}
-                    disabled={prevBtnDisabled2}
-                  />
-
-                  <NextButton
-                    onClick={onNextButtonClick2}
-                    disabled={nextBtnDisabled2}
-                  />
-                </div>
-
-                <div className="embla__progress">
-                  <div
-                    className="embla__progress__bar"
-                    style={{
-                      transform: `translate3d(${scrollProgress2}%,0px,0px)`,
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
+            <WorksCarousel
+              onMouseEnter={cursor.handleMouseEnter}
+              onMouseLeave={cursor.handleMouseLeave}
+            />
           </div>
 
-          <div className="works-industries">
+          <IndustriesSection
+            subheadlineBoxRef={subheadlineBoxRef1}
+            subtitleRef={subtitleRef1}
+            descriptionRef={subdescriptionRef1}
+          />
+
+          <div className="works-casestudies">
             <div className="works-subtextbox">
               <div
                 className="subheadline-box opacity-blur"
-                ref={subheadlineBoxRef1}
+                ref={subheadlineBoxRef2}
               >
-                <Zap className="subheadline-box-icon" />
-
-                <h2 className="small-description grey">Industries we serve</h2>
+                <Zap className="subheadline-box-icon" aria-hidden="true" />
+                <h2 className="small-description grey">Case Studies</h2>
               </div>
 
               <div className="titlebox">
                 <div className="titlebox-medium-gradient" />
-
-                <h2 className="subheadline white" ref={subtitleRef1}>
-                  We have extensive experience <br /> across multiple industries
+                <h2 className="subheadline white" ref={subtitleRef2}>
+                  We have a diverse portfolio of <br /> successful case studies
                 </h2>
               </div>
 
-              <p className="description grey" ref={subdescriptionRef1}>
-                Our product designers have completed projects in different
-                niches. They know how to add business value and provide.
+              <p className="description grey" ref={subdescriptionRef2}>
+                Case studies offer a unique opportunity to explore real-world
+                examples of challenges, solutions, and results.
               </p>
             </div>
 
-            <div className="works-industries-container">
-              <div className="works-industries-divider" />
-
-              <div className="works-industries-item">
-                <div className="works-industries-item-left">
-                  <h2 className="small-subheadline white">
-                    Supply Chain & Logistics
-                  </h2>
-                </div>
-
-                <div className="works-industries-item-right">
-                  <div
-                    className="works-industries-item-right-imagebox"
-                    ref={industryImageRef1}
-                  >
-                    <img
-                      src="/mockups/amazdraw.png"
-                      className="works-industries-item-right-image"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="works-industries-divider" />
-
-              <div className="works-industries-item">
-                <div className="works-industries-item-left">
-                  <h2 className="small-subheadline white">
-                    Luxury Travel & Hospitality
-                  </h2>
-                </div>
-
-                <div className="works-industries-item-right">
-                  <div
-                    className="works-industries-item-right-imagebox"
-                    ref={industryImageRef2}
-                  >
-                    <img
-                      src="/mockups/isproperties.png"
-                      className="works-industries-item-right-image"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="works-industries-divider" />
-
-              <div className="works-industries-item">
-                <div className="works-industries-item-left">
-                  <h2 className="small-subheadline white">
-                    Real Estate & Development
-                  </h2>
-                </div>
-
-                <div className="works-industries-item-right">
-                  <div
-                    className="works-industries-item-right-imagebox"
-                    ref={industryImageRef3}
-                  >
-                    <img
-                      src="/mockups/odhira.png"
-                      className="works-industries-item-right-image"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="works-industries-divider" />
-
-              <div className="works-industries-item">
-                <div className="works-industries-item-left">
-                  <h2 className="small-subheadline white">
-                    Technology & AI
-                  </h2>
-                </div>
-
-                <div className="works-industries-item-right">
-                  <div
-                    className="works-industries-item-right-imagebox"
-                    ref={industryImageRef4}
-                  >
-                    <img
-                      src="/mockups/tour.png"
-                      className="works-industries-item-right-image"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="works-industries-divider" />
-            </div>
-          </div>
-
-          <div className="works-casestudies">
-          <div className="works-subtextbox">
-            <div
-              className="subheadline-box opacity-blur"
-              ref={subheadlineBoxRef2}
-            >
-              <Zap className="subheadline-box-icon" />
-
-              <h2 className="small-description grey">Case Studies</h2>
-            </div>
-
-            <div className="titlebox">
-              <div className="titlebox-medium-gradient" />
-
-              <h2 className="subheadline white" ref={subtitleRef2}>
-                We have a diverse portfolio of <br /> successful case studies
-              </h2>
-            </div>
-
-            <p className="description grey" ref={subdescriptionRef2}>
-              Case studies offer a unique opportunity to explore real-world
-              examples of challenges, solutions, and results.
-            </p>
-          </div>
-
-          <div
-            className="casestudies-carousel-wrapper opacity-blur"
-            ref={carouselWrapperRef}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <div className="casestudies-carousel" ref={emblaRef}>
-              <div className="casestudies-carousel-row">
-                <div className="casestudies-item-padding" />
-
-                <div className="casestudies-item">
-                  <div className="casestudies-item-content">
-                    <div className="casestudies-item-content-textbox">
-                      <div className="subheadline-box">
-                        <Zap className="subheadline-box-icon" />
-
-                        <h2 className="small-description grey">Marketing</h2>
-                      </div>
-
-                      <h3 className="small-subheadline white">
-                        Digital Market Future
-                      </h3>
-
-                      <p className="description grey">
-                        The New Era of the Digital Landscape: Where Do We Think
-                        the Market Is Going?
-                      </p>
-                    </div>
-
-                    <div className="casestudies-item-content-imagebox">
-                      <div className="button casestudies-item-content-imagebox-button">
-                        <div className="button-content">
-                          <span className="small-description white">
-                            Read More
-                          </span>
-
-                          <span className="small-description white">
-                            <Link
-                              className="button-link no-underline"
-                              href="/case-studies/digital-market-future"
-                            >
-                              Read More
-                            </Link>
-                          </span>
-                        </div>
-
-                        <ArrowUpRight className="casestudies-item-content-imagebox-button-icon" />
-                      </div>
-
-                      <NextImage
-                        src="/casestudy/cs1.webp"
-                        className="casestudies-item-content-image"
-                        alt="Digital Market Future case study"
-                        width={400}
-                        height={300}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="casestudies-item">
-                  <div className="casestudies-item-content">
-                    <div className="casestudies-item-content-textbox">
-                      <div className="subheadline-box">
-                        <Zap className="subheadline-box-icon" />
-
-                        <h2 className="small-description grey">Marketing</h2>
-                      </div>
-
-                      <h3 className="small-subheadline white">
-                        Tech Evolution Ahead
-                      </h3>
-
-                      <p className="description grey">
-                        The New Era of the Digital Landscape: Where Do We Think
-                        the Market Is Going?
-                      </p>
-                    </div>
-
-                    <div className="casestudies-item-content-imagebox">
-                      <div className="button casestudies-item-content-imagebox-button">
-                        <div className="button-content">
-                          <span className="small-description white">
-                            Read More
-                          </span>
-
-                          <span className="small-description white">
-                            <Link
-                              className="button-link no-underline"
-                              href="/case-studies/digital-market-future"
-                            >
-                              Read More
-                            </Link>
-                          </span>
-                        </div>
-
-                        <ArrowUpRight className="casestudies-item-content-imagebox-button-icon" />
-                      </div>
-
-                      <NextImage
-                        src="/casestudy/cs4.webp"
-                        className="casestudies-item-content-image"
-                        alt="Digital Market Future case study image"
-                        width={400}
-                        height={300}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="casestudies-item">
-                  <div className="casestudies-item-content">
-                    <div className="casestudies-item-content-textbox">
-                      <div className="subheadline-box">
-                        <Zap className="subheadline-box-icon" />
-
-                        <h2 className="small-description grey">Marketing</h2>
-                      </div>
-
-                      <h3 className="small-subheadline white">
-                        Navigating Trends
-                      </h3>
-
-                      <p className="description grey">
-                        The New Era of the Digital Landscape: Where Do We Think
-                        the Market Is Going?
-                      </p>
-                    </div>
-
-                    <div className="casestudies-item-content-imagebox">
-                      <div className="button casestudies-item-content-imagebox-button">
-                        <div className="button-content">
-                          <span className="small-description white">
-                            Read More
-                          </span>
-
-                          <span className="small-description white">
-                            <Link
-                              className="button-link no-underline"
-                              href="/case-studies/digital-market-future"
-                            >
-                              Read More
-                            </Link>
-                          </span>
-                        </div>
-
-                        <ArrowUpRight className="casestudies-item-content-imagebox-button-icon" />
-                      </div>
-
-                      <NextImage
-                        src="/casestudy/cs3.webp"
-                        className="casestudies-item-content-image"
-                        alt="Innovation in Motion case study image"
-                        width={400}
-                        height={300}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="casestudies-item">
-                  <div className="casestudies-item-content">
-                    <div className="casestudies-item-content-textbox">
-                      <div className="subheadline-box">
-                        <Zap className="subheadline-box-icon" />
-
-                        <h2 className="small-description grey">Marketing</h2>
-                      </div>
-
-                      <h3 className="small-subheadline white">
-                        Innovation in Motion
-                      </h3>
-
-                      <p className="description grey">
-                        The New Era of the Digital Landscape: Where Do We Think
-                        the Market Is Going?
-                      </p>
-                    </div>
-
-                    <div className="casestudies-item-content-imagebox">
-                      <div className="button casestudies-item-content-imagebox-button">
-                        <div className="button-content">
-                          <span className="small-description white">
-                            Read More
-                          </span>
-
-                          <span className="small-description white">
-                            <Link
-                              className="button-link no-underline"
-                              href="/case-studies/digital-market-future"
-                            >
-                              Read More
-                            </Link>
-                          </span>
-                        </div>
-
-                        <ArrowUpRight className="casestudies-item-content-imagebox-button-icon" />
-                      </div>
-
-                      <NextImage
-                        src="/casestudy/cs2.webp"
-                        className="casestudies-item-content-image"
-                        alt="Digital Market Future case study image"
-                        width={400}
-                        height={300}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="casestudies-item-padding" />
-              </div>
-            </div>
-
-            <div className="casestudies-carousel-bottom">
-              <div className="casestudies-carousel-bottom-buttons">
-                <PrevButton
-                  onClick={onPrevButtonClick1}
-                  disabled={prevBtnDisabled1}
-                />
-
-                <NextButton
-                  onClick={onNextButtonClick1}
-                  disabled={nextBtnDisabled1}
-                />
-              </div>
-
-              <div className="embla__progress">
-                <div
-                  className="embla__progress__bar"
-                  style={{
-                    transform: `translate3d(${scrollProgress}%,0px,0px)`,
-                  }}
-                />
-              </div>
-            </div>
+            <CaseStudiesCarousel
+              wrapperRef={carouselWrapperRef}
+              onMouseEnter={cursor.handleMouseEnter}
+              onMouseLeave={cursor.handleMouseLeave}
+            />
           </div>
         </div>
 
-        </div>
-
-        <div className="hover-cursor" ref={cursor}>
+        <div className="hover-cursor" ref={cursor.cursorRef} aria-hidden="true">
           <p className="small-description white">Drag</p>
         </div>
       </section>
