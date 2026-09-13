@@ -24,86 +24,86 @@ const works = [
     name: "Amazdraw",
     categories: ["Web Design & Development", "Branding"],
     image: "/mockups/amazdraw.webp",
-    alt: "StackCraft project mockup",
+    alt: "Amazdraw 2D animation and creative services website",
   },
   {
     name: "Isproperties",
     categories: ["Web Design & Development", "Branding"],
     image: "/mockups/isproperties.webp",
-    alt: "Isproperties project mockup",
+    alt: "Isproperties Gurugram property sales website",
   },
   {
     name: "Odhira",
     categories: ["Web Design & Development", "Branding"],
     image: "/mockups/odhira.webp",
-    alt: "Peak Creations project mockup",
+    alt: "Odhira beauty products online store",
   },
   {
     name: "Tour",
     categories: ["Web Design & Development", "Branding"],
     image: "/mockups/tour.webp",
-    alt: "Tour project mockup",
+    alt: "Tour and travel services website",
   },
 ];
 
 const industries = [
   {
-    title: "Supply Chain & Logistics",
+    title: "2D Animation & Creative Services",
     image: "/mockups/amazdraw.webp",
-    alt: "Supply chain and logistics website interface",
+    alt: "Amazdraw 2D animation and creative services website",
   },
   {
-    title: "Luxury Travel & Hospitality",
+    title: "Real Estate & Property Sales",
     image: "/mockups/isproperties.webp",
-    alt: "Luxury travel and hospitality website interface",
+    alt: "Isproperties Gurugram property sales website",
   },
   {
-    title: "Real Estate & Development",
+    title: "Beauty & E-commerce",
     image: "/mockups/odhira.webp",
-    alt: "Real estate and development website interface",
+    alt: "Odhira beauty products online store",
   },
   {
-    title: "Technology & AI",
+    title: "Travel & Tourism",
     image: "/mockups/tour.webp",
-    alt: "Technology and AI website interface",
+    alt: "Tour and travel services website",
   },
 ];
 
 const caseStudies = [
   {
-    category: "Marketing",
+    category: "Digital Marketing",
     title: "Digital Market Future",
     description:
-      "The new era of the digital landscape: where do we think the market is going?",
+      "A strategic digital marketing case study focused on positioning, online visibility, audience growth, and a stronger digital presence.",
     image: "/casestudy/cs1.webp",
-    alt: "Digital Market Future case study",
+    alt: "Digital Market Future digital marketing case study",
     href: "/case-studies/digital-market-future",
   },
   {
-    category: "Marketing",
+    category: "Digital Strategy",
     title: "Tech Evolution Ahead",
     description:
-      "The new era of the digital landscape: where do we think the market is going?",
+      "A digital strategy case study exploring how technology, content, and marketing can work together to create a stronger growth foundation.",
     image: "/casestudy/cs4.webp",
-    alt: "Tech Evolution Ahead case study",
+    alt: "Tech Evolution Ahead digital strategy case study",
     href: "/case-studies/tech-evolution-ahead",
   },
   {
-    category: "Marketing",
+    category: "Market Research",
     title: "Navigating Trends",
     description:
-      "The new era of the digital landscape: where do we think the market is going?",
+      "A market-focused case study examining digital trends, audience behavior, and opportunities for stronger online positioning.",
     image: "/casestudy/cs3.webp",
-    alt: "Navigating Trends case study",
+    alt: "Navigating Trends market research case study",
     href: "/case-studies/navigating-trends",
   },
   {
-    category: "Marketing",
+    category: "Digital Innovation",
     title: "Innovation in Motion",
     description:
-      "The new era of the digital landscape: where do we think the market is going?",
+      "A digital innovation case study focused on combining creative thinking, technology, and marketing to improve the overall digital experience.",
     image: "/casestudy/cs2.webp",
-    alt: "Innovation in Motion case study",
+    alt: "Innovation in Motion digital innovation case study",
     href: "/case-studies/innovation-in-motion",
   },
 ];
