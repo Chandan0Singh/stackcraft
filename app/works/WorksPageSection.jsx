@@ -71,40 +71,40 @@ const industries = [
 
 const caseStudies = [
   {
-    category: "Digital Marketing",
-    title: "Digital Market Future",
+    category: "Web Design & Development",
+    title: "Amazdraw",
     description:
-      "A strategic digital marketing case study focused on positioning, online visibility, audience growth, and a stronger digital presence.",
-    image: "/casestudy/cs1.webp",
-    alt: "Digital Market Future digital marketing case study",
-    href: "/case-studies/digital-market-future",
+      "A modern digital experience for an animation and creative services brand, designed to present its services, training programs, and creative capabilities clearly.",
+    image: "/mockups/amazdraw.webp",
+    alt: "Amazdraw animation and creative services website",
+    href: "/case-studies/amazdraw",
   },
   {
-    category: "Digital Strategy",
-    title: "Tech Evolution Ahead",
+    category: "Web Design & Development",
+    title: "IS Properties",
     description:
-      "A digital strategy case study exploring how technology, content, and marketing can work together to create a stronger growth foundation.",
-    image: "/casestudy/cs4.webp",
-    alt: "Tech Evolution Ahead digital strategy case study",
-    href: "/case-studies/tech-evolution-ahead",
+      "A property-focused website designed to give IS Properties a stronger digital presence and a clearer experience for showcasing real estate offerings.",
+    image: "/mockups/isproperties.webp",
+    alt: "IS Properties real estate website",
+    href: "/case-studies/is-properties",
   },
   {
-    category: "Market Research",
-    title: "Navigating Trends",
+    category: "Web Design & Development",
+    title: "Odhira Boutique",
     description:
-      "A market-focused case study examining digital trends, audience behavior, and opportunities for stronger online positioning.",
-    image: "/casestudy/cs3.webp",
-    alt: "Navigating Trends market research case study",
-    href: "/case-studies/navigating-trends",
+      "A visually focused e-commerce experience for a boutique brand, built to showcase products and create a polished online shopping journey.",
+    image: "/mockups/odhira.webp",
+    alt: "Odhira Boutique e-commerce website",
+    href: "/case-studies/odhira-boutique",
   },
   {
-    category: "Digital Innovation",
-    title: "Innovation in Motion",
+    category: "Web Design & Development",
+    title: "TourTrek",
     description:
-      "A digital innovation case study focused on combining creative thinking, technology, and marketing to improve the overall digital experience.",
-    image: "/casestudy/cs2.webp",
-    alt: "Innovation in Motion digital innovation case study",
-    href: "/case-studies/innovation-in-motion",
+      "A travel platform designed around Himalayan treks, tour packages, destinations, and trip discovery with a clear booking-focused user experience.",
+    image: "/mockups/tour.webp",
+    alt: "TourTrek travel and tourism website",
+    href: "/case-studies/tourtrek",
   },
 ];
 

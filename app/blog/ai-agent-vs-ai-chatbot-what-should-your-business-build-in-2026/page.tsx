@@ -612,7 +612,7 @@ export default function AIAgentVsChatbotPage() {
                   <strong>User:</strong> “Reset my password.”
                   <br />
                   <br />
-                  <strong>AI:</strong> “I've initiated the reset and sent the
+                  <strong>AI:</strong> “I&apos;ve initiated the reset and sent the
                   required confirmation.”
                 </div>
               </div>

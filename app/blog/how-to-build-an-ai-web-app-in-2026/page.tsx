@@ -407,7 +407,7 @@ export default function AIWebAppGuidePage() {
 
             <p>
               An AI web app is a web-based application where artificial
-              intelligence is part of the product's core functionality rather
+              intelligence is part of the product&apos;s core functionality rather
               than simply an optional feature.
             </p>
 
@@ -889,7 +889,7 @@ export default function AIWebAppGuidePage() {
                 <ShieldCheck size={18} />
               </div>
               <div>
-                <strong>Don't add agents just because they are trendy.</strong>
+                <strong>Don&apos;t add agents just because they are trendy.</strong>
                 <p>
                   If a deterministic API call or simple workflow solves the
                   problem, that may be the better engineering decision.
@@ -962,7 +962,7 @@ export default function AIWebAppGuidePage() {
 
             <p>
               Deployment should not be treated as an afterthought. Production
-              infrastructure needs to support the application's expected
+              infrastructure needs to support the application&apos;s expected
               traffic, security requirements and AI workloads.
             </p>
 
@@ -1087,7 +1087,7 @@ export default function AIWebAppGuidePage() {
             <p className="small-note">
               These are planning ranges, not universal market rates or a fixed
               StackCraft quote. The actual budget should be established after
-              defining the application's scope and technical requirements.
+              defining the application&apos;s scope and technical requirements.
             </p>
 
             <p>
@@ -1305,7 +1305,7 @@ export default function AIWebAppGuidePage() {
               <span>BUILD YOUR AI PRODUCT</span>
               <h2>Have an AI web app idea?</h2>
               <p>
-                Let's turn the idea into a focused MVP and build the
+                Let&apos;s turn the idea into a focused MVP and build the
                 architecture needed to scale it into a real product.
               </p>
             </div>

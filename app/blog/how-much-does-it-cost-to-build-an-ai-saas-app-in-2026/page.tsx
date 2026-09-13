@@ -319,7 +319,7 @@ export default function AISaaSCostPage() {
             <h3>Have an AI SaaS idea?</h3>
 
             <p>
-              Don't spend months building the wrong thing. Start with a
+              Don&apos;t spend months building the wrong thing. Start with a
               focused MVP.
             </p>
 
@@ -334,8 +334,8 @@ export default function AISaaSCostPage() {
           {/* Intro */}
           <div className="article-intro">
             <p>
-              If you're searching for <strong>AI SaaS development cost</strong>,
-              you're probably trying to answer a simple question:
+              If you&apos;re searching for <strong>AI SaaS development cost</strong>,
+              you&apos;re probably trying to answer a simple question:
             </p>
 
             <blockquote>
@@ -396,7 +396,7 @@ export default function AISaaSCostPage() {
               <div className="warning-icon">!</div>
 
               <div>
-                <strong>Don't confuse development cost with operating cost.</strong>
+                <strong>Don&apos;t confuse development cost with operating cost.</strong>
                 <p>
                   Your initial build is only one part of the budget. AI API
                   usage, cloud infrastructure, monitoring, support and future
@@ -521,7 +521,7 @@ export default function AISaaSCostPage() {
             </div>
 
             <p>
-              The goal isn't to make the MVP look cheap. The goal is to avoid
+              The goal isn&apos;t to make the MVP look cheap. The goal is to avoid
               spending $100k building features nobody asked for.
             </p>
           </section>
@@ -536,7 +536,7 @@ export default function AISaaSCostPage() {
             <h2>Production AI SaaS cost: $40,000–$120,000+</h2>
 
             <p>
-              Once you're building a product intended to acquire and retain
+              Once you&apos;re building a product intended to acquire and retain
               paying customers, the requirements change.
             </p>
 
@@ -613,7 +613,7 @@ export default function AISaaSCostPage() {
             <h2>How much do AI APIs cost?</h2>
 
             <p>
-              AI API expenses are different from development costs. You don't
+              AI API expenses are different from development costs. You don&apos;t
               pay them once—you generally pay based on usage.
             </p>
 
@@ -716,7 +716,7 @@ export default function AISaaSCostPage() {
 
             <p>
               So if someone quotes the same price for a basic AI chatbot and a
-              multi-step AI agent platform, they're probably not estimating the
+              multi-step AI agent platform, they&apos;re probably not estimating the
               same product.
             </p>
           </section>
@@ -852,7 +852,7 @@ export default function AISaaSCostPage() {
             <h2>AI SaaS maintenance cost</h2>
 
             <p>
-              Launching the application doesn't end the engineering budget.
+              Launching the application doesn&apos;t end the engineering budget.
               Production SaaS products require ongoing maintenance.
             </p>
 
@@ -905,7 +905,7 @@ export default function AISaaSCostPage() {
             <h2>So, what should you budget?</h2>
 
             <p>
-              If you're validating an idea, don't start by budgeting for a
+              If you&apos;re validating an idea, don&apos;t start by budgeting for a
               $200k platform. Start by identifying the smallest version that
               can prove the core business hypothesis.
             </p>
@@ -918,19 +918,19 @@ export default function AISaaSCostPage() {
             </p>
 
             <p>
-              The important question isn't:
+              The important question isn&apos;t:
             </p>
 
             <blockquote>
-              “What's the cheapest developer who can build this?”
+              “What&apos;s the cheapest developer who can build this?”
             </blockquote>
 
             <p>
-              It's:
+              It&apos;s:
             </p>
 
             <blockquote>
-              “What's the smallest amount I need to spend to validate this
+              “What&apos;s the smallest amount I need to spend to validate this
               product properly?”
             </blockquote>
           </section>
@@ -974,7 +974,7 @@ export default function AISaaSCostPage() {
               <h2>Have an AI SaaS idea?</h2>
 
               <p>
-                Let's turn the idea into a focused, production-ready MVP
+                Let&apos;s turn the idea into a focused, production-ready MVP
                 without wasting months on unnecessary features.
               </p>
 

@@ -10,6 +10,8 @@ import {
   CircleCheck,
   Code2,
   Database,
+  Gauge,
+  Network,
   Globe2,
   Layers3,
   Lock,
@@ -523,7 +525,7 @@ export default function WebAppCostIndiaPage() {
             <p>
               Feature count is only one part of the equation. Architecture,
               integrations, permissions, UX complexity and operational
-              requirements can change a project's cost significantly.
+              requirements can change a project&apos;s cost significantly.
             </p>
 
             <div className="factor-grid">
@@ -980,7 +982,7 @@ export default function WebAppCostIndiaPage() {
 
               <div>
                 <strong>
-                  Don't choose a vendor based only on hourly rates.
+                  Don&apos;t choose a vendor based only on hourly rates.
                 </strong>
 
                 <p>

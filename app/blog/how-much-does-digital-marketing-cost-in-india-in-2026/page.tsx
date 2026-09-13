@@ -20,6 +20,7 @@ import {
   TrendingUp,
   Users,
   WalletCards,
+  Layers3,
   X,
   Zap,
 } from "lucide-react";
@@ -480,7 +481,7 @@ export default function DigitalMarketingCostIndiaPage() {
             <p>
               SEO is usually a long-term channel. It involves improving the
               website, creating useful content, targeting search demand and
-              building the site's authority over time.
+              building the site&apos;s authority over time.
             </p>
 
             <div className="marketing-card">
