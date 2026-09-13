@@ -225,33 +225,6 @@ export default function DigitalMarketingCostIndiaPage() {
         <div className="blog-glow blog-glow-two" />
       </div>
 
-      {/* NAV */}
-      <header className="blog-nav">
-        <Link
-          href="/"
-          className="blog-logo"
-          aria-label="StackCraft Studio home"
-        >
-          <span className="blog-logo-mark">
-            <span />
-            <span />
-            <span />
-          </span>
-
-          <span>StackCraft</span>
-        </Link>
-
-        <nav className="blog-nav-links">
-          <Link href="/services">Services</Link>
-          <Link href="/blog">Blog</Link>
-
-          <Link href="/contact" className="blog-nav-cta">
-            Get a strategy
-            <ArrowRight size={15} />
-          </Link>
-        </nav>
-      </header>
-
       {/* HERO */}
       <section className="blog-hero">
         <div className="blog-container">
@@ -1249,34 +1222,6 @@ export default function DigitalMarketingCostIndiaPage() {
           </section>
         </article>
       </div>
-
-      {/* FOOTER */}
-      <footer className="blog-footer">
-        <div className="blog-container footer-inner">
-          <Link href="/" className="blog-logo">
-            <span className="blog-logo-mark">
-              <span />
-              <span />
-              <span />
-            </span>
-
-            <span>StackCraft</span>
-          </Link>
-
-          <p>
-            Websites, web apps, AI solutions and digital marketing for growing
-            businesses.
-          </p>
-
-          <div className="footer-links">
-            <Link href="/services">Services</Link>
-            <Link href="/blog">Blog</Link>
-            <Link href="/contact">Contact</Link>
-          </div>
-
-          <span className="copyright">© 2026 StackCraft Studio</span>
-        </div>
-      </footer>
     </main>
   );
 }

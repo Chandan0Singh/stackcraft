@@ -228,19 +228,6 @@ export default function AISaaSCostPage() {
         <div className="blog-bg-glow blog-bg-glow-two" />
       </div>
 
-      {/* Navigation */}
-      <header className="blog-nav">
-        <Link href="/" className="blog-logo">
-          <span className="blog-logo-mark">S</span>
-          <span>StackCraft</span>
-        </Link>
-
-        <Link href="/contact" className="blog-nav-cta">
-          Start a project
-          <ArrowUpRight size={15} />
-        </Link>
-      </header>
-
       {/* Hero */}
       <section className="blog-hero">
         <div className="blog-container">
@@ -986,19 +973,6 @@ export default function AISaaSCostPage() {
           </section>
         </article>
       </div>
-
-      {/* Footer */}
-      <footer className="blog-footer">
-        <div className="blog-container footer-inner">
-          <span>© 2026 StackCraft Studio</span>
-
-          <div>
-            <Link href="/">Home</Link>
-            <Link href="/services">Services</Link>
-            <Link href="/contact">Contact</Link>
-          </div>
-        </div>
-      </footer>
     </main>
   );
 }
