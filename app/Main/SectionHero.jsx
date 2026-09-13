@@ -1,15 +1,23 @@
 "use client";
 
-import { Suspense, useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import SplitText from "gsap/src/SplitText";
-import Marquee from "react-fast-marquee";
+const Marquee = dynamic(() => import("react-fast-marquee"), {
+  ssr: false,
+});
 import { ArrowUpRight } from "lucide-react";
 import { Canvas } from "@react-three/fiber";
-import { Environment, Float, OrbitControls } from "@react-three/drei";
+// import { Environment, Float, OrbitControls } from "@react-three/drei";
 import NextImage from "next/image";
 import { Item3 } from "./HeroModel/Coins";
 import Link from "next/link";
+
+const Hero3D = dynamic(() => import("./HeroModel/Hero3D"), {
+  ssr: false,
+  loading: () => <div className="hero-3d-placeholder" />,
+});
 
 gsap.registerPlugin(SplitText);
 
@@ -23,13 +31,13 @@ export const SectionHero = () => {
   const cursor = useRef(null);
 
   const [showCursor, setShowCursor] = useState(false);
+  const [is3DReady, setIs3DReady] = useState(false);
 
   // GSAP ANIMATIONS
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.set(titleRef.current, {
         opacity: 1,
-        // clearProps: "all",
       });
 
       const titleSplit = new SplitText(titleRef.current, {
@@ -89,44 +97,75 @@ export const SectionHero = () => {
     return () => ctx.revert();
   }, []);
 
-  // FOLLOWING CURSOR
   useEffect(() => {
-    let mouseX = 0;
-    let mouseY = 0;
-    let cursorX = 0;
-    let cursorY = 0;
+  if (typeof window === "undefined") return;
 
-    const speed = 0.05;
-    let animationFrameId;
+  const load3D = () => {
+    setIs3DReady(true);
+  };
 
-    const handleMouseMove = (event) => {
-      mouseX = event.clientX;
-      mouseY = event.clientY;
-    };
+  if ("requestIdleCallback" in window) {
+    const idleId = window.requestIdleCallback(load3D, {
+      timeout: 2000,
+    });
 
-    const animate = () => {
-      const distX = mouseX - cursorX;
-      const distY = mouseY - cursorY;
+    return () => window.cancelIdleCallback(idleId);
+  }
 
-      cursorX += distX * speed;
-      cursorY += distY * speed;
+  const timeoutId = window.setTimeout(load3D, 1500);
 
-      if (cursor.current) {
-        cursor.current.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+  return () => window.clearTimeout(timeoutId);
+}, []);
+
+  // FOLLOWING CURSOR
+ useEffect(() => {
+  if (window.matchMedia("(pointer: coarse)").matches) return;
+
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorX = 0;
+  let cursorY = 0;
+  let animationFrameId;
+  let isMoving = false;
+
+  const speed = 0.08;
+
+  const handleMouseMove = (event) => {
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+    isMoving = true;
+  };
+
+  const animate = () => {
+    if (isMoving && cursor.current) {
+      cursorX += (mouseX - cursorX) * speed;
+      cursorY += (mouseY - cursorY) * speed;
+
+      cursor.current.style.transform =
+        `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+
+      if (
+        Math.abs(mouseX - cursorX) < 0.1 &&
+        Math.abs(mouseY - cursorY) < 0.1
+      ) {
+        isMoving = false;
       }
-
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
+    }
 
     animationFrameId = requestAnimationFrame(animate);
+  };
 
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
+  window.addEventListener("mousemove", handleMouseMove, {
+    passive: true,
+  });
+
+  animationFrameId = requestAnimationFrame(animate);
+
+  return () => {
+    window.removeEventListener("mousemove", handleMouseMove);
+    cancelAnimationFrame(animationFrameId);
+  };
+}, []);
 
   // CURSOR VISIBILITY
   useEffect(() => {
@@ -220,36 +259,8 @@ export const SectionHero = () => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <Canvas
-              style={{
-                pointerEvents: "auto",
-                width: "100%",
-                height: "100%",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                zIndex: 1,
-              }}
-              camera={{
-                position: [2, 0, 10],
-                fov: 35,
-              }}
-            >
-              <Suspense fallback={null}>
-                <Float rotationIntensity={0.5} floatIntensity={2} speed={2}>
-                  <Item3 />
-                </Float>
+              {is3DReady && <Hero3D />}
 
-                <Environment preset="sunset" />
-
-                <OrbitControls
-                  maxPolarAngle={Math.PI / 2}
-                  enableZoom={false}
-                  enableRotate
-                  enablePan={false}
-                />
-              </Suspense>
-            </Canvas>
           </div>
         </div>
 

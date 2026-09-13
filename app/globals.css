@@ -1398,6 +1398,8 @@ section {
 
   .hover-cursor {
     display: none;
+     will-change: transform;
+  pointer-events: none;
   }
 
   /* -------------------------------------------------------
