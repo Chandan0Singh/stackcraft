@@ -2,7 +2,6 @@
 
 import { Suspense, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import SplitText from "gsap/src/SplitText";
 import Marquee from "react-fast-marquee";
 import { ArrowUpRight } from "lucide-react";
 import { Canvas } from "@react-three/fiber";
@@ -11,7 +10,7 @@ import NextImage from "next/image";
 import { Item3 } from "./HeroModel/Coins";
 import Link from "next/link";
 
-gsap.registerPlugin(SplitText);
+// gsap.registerPlugin(SplitText);
 
 export const SectionHero = () => {
   // REFS
@@ -29,30 +28,8 @@ export const SectionHero = () => {
     const ctx = gsap.context(() => {
       gsap.set(titleRef.current, {
         opacity: 1,
+         clearProps: "all",
       });
-
-      const titleSplit = new SplitText(titleRef.current, {
-        type: "chars",
-      });
-
-      gsap.fromTo(
-        titleSplit.chars,
-        {
-          willChange: "opacity, transform",
-          filter: "blur(8px)",
-          opacity: 0,
-          yPercent: 50,
-        },
-        {
-          delay: 0.4,
-          opacity: 1,
-          filter: "blur(0px)",
-          yPercent: 0,
-          stagger: 0.02,
-          duration: 0.75,
-          ease: "power1",
-        },
-      );
 
       gsap.to(descriptionRef.current, {
         opacity: 1,
