@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "components/Navigation.tsx", "components/SectionFooter.tsx"  ],
   "exclude": [
     "node_modules"
   ]
