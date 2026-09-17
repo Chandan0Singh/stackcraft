@@ -1,10 +1,18 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type RefObject,
+} from "react";
 import NextImage from "next/image";
 import Link from "next/link";
 import { ReactLenis } from "lenis/react";
-import useEmblaCarousel from "embla-carousel-react";
+import useEmblaCarousel, {
+  type UseEmblaCarouselType,
+} from "embla-carousel-react";
 import { ArrowUpRight, Zap } from "lucide-react";
 import gsap from "gsap";
 import SplitText from "gsap/src/SplitText";
@@ -19,7 +27,62 @@ import "./works.css";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-const works = [
+type EmblaApi = UseEmblaCarouselType[1];
+
+type Work = {
+  name: string;
+  categories: string[];
+  image: string;
+  alt: string;
+};
+
+type Industry = {
+  title: string;
+  image: string;
+  alt: string;
+};
+
+type CaseStudy = {
+  category: string;
+  title: string;
+  description: string;
+  image: string;
+  alt: string;
+  href: string;
+};
+
+type DragCursorReturn = {
+  cursorRef: RefObject<HTMLDivElement | null>;
+  handleMouseEnter: () => void;
+  handleMouseLeave: () => void;
+};
+
+type WorksCarouselProps = {
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+};
+
+type CaseStudiesCarouselProps = {
+  wrapperRef: RefObject<HTMLDivElement | null>;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+};
+
+type CarouselControlsProps = {
+  progress: number;
+  prevDisabled: boolean;
+  nextDisabled: boolean;
+  onPrev: () => void;
+  onNext: () => void;
+};
+
+type IndustriesSectionProps = {
+  subheadlineBoxRef: RefObject<HTMLDivElement | null>;
+  subtitleRef: RefObject<HTMLHeadingElement | null>;
+  descriptionRef: RefObject<HTMLParagraphElement | null>;
+};
+
+const works: Work[] = [
   {
     name: "Amazdraw",
     categories: ["Web Design & Development", "Branding"],
@@ -46,7 +109,7 @@ const works = [
   },
 ];
 
-const industries = [
+const industries: Industry[] = [
   {
     title: "2D Animation & Creative Services",
     image: "/mockups/amazdraw.webp",
@@ -69,7 +132,7 @@ const industries = [
   },
 ];
 
-const caseStudies = [
+const caseStudies: CaseStudy[] = [
   {
     category: "Web Design & Development",
     title: "Amazdraw",
@@ -108,26 +171,32 @@ const caseStudies = [
   },
 ];
 
-function useDragCursor() {
-  const cursorRef = useRef(null);
-  const [visible, setVisible] = useState(false);
+function useDragCursor(): DragCursorReturn {
+  const cursorRef = useRef<HTMLDivElement | null>(null);
+  const [visible, setVisible] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!window.matchMedia("(pointer: fine)").matches) return undefined;
+    if (
+      typeof window === "undefined" ||
+      !window.matchMedia("(pointer: fine)").matches
+    ) {
+      return;
+    }
 
     let mouseX = 0;
     let mouseY = 0;
     let cursorX = 0;
     let cursorY = 0;
-    let animationFrameId;
+    let animationFrameId: number;
+
     const speed = 0.05;
 
-    const handleMouseMove = (event) => {
+    const handleMouseMove = (event: MouseEvent): void => {
       mouseX = event.clientX;
       mouseY = event.clientY;
     };
 
-    const animate = () => {
+    const animate = (): void => {
       cursorX += (mouseX - cursorX) * speed;
       cursorY += (mouseY - cursorY) * speed;
 
@@ -138,7 +207,10 @@ function useDragCursor() {
       animationFrameId = requestAnimationFrame(animate);
     };
 
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("mousemove", handleMouseMove, {
+      passive: true,
+    });
+
     animationFrameId = requestAnimationFrame(animate);
 
     return () => {
@@ -165,9 +237,17 @@ function useDragCursor() {
   };
 }
 
-function WorksCarousel({ onMouseEnter, onMouseLeave }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ dragFree: true });
-  const [scrollProgress, setScrollProgress] = useState(0);
+function WorksCarousel({
+  onMouseEnter,
+  onMouseLeave,
+}: WorksCarouselProps) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    dragFree: true,
+  });
+
+  const [scrollProgress, setScrollProgress] =
+    useState<number>(0);
+
   const {
     prevBtnDisabled,
     nextBtnDisabled,
@@ -175,14 +255,20 @@ function WorksCarousel({ onMouseEnter, onMouseLeave }) {
     onNextButtonClick,
   } = usePrevNextButtons(emblaApi);
 
-  const updateProgress = useCallback((api) => {
-    setScrollProgress(
-      api ? Math.max(0, Math.min(1, api.scrollProgress())) * 100 : 0,
-    );
-  }, []);
+  const updateProgress = useCallback(
+    (api: NonNullable<EmblaApi>): void => {
+      setScrollProgress(
+        Math.max(
+          0,
+          Math.min(1, api.scrollProgress()),
+        ) * 100,
+      );
+    },
+    [],
+  );
 
   useEffect(() => {
-    if (!emblaApi) return undefined;
+    if (!emblaApi) return;
 
     updateProgress(emblaApi);
 
@@ -205,22 +291,33 @@ function WorksCarousel({ onMouseEnter, onMouseLeave }) {
     >
       <div className="works-carousel-wrapper-overlay" />
 
-      <div className="works-carousel" ref={emblaRef}>
+      <div
+        className="works-carousel"
+        ref={emblaRef}
+      >
         <div className="works-carousel-row">
           <div className="works-item-padding" />
 
           {works.map((work) => (
-            <div className="works-item" key={`${work.name}-${work.image}`}>
+            <div
+              className="works-item"
+              key={`${work.name}-${work.image}`}
+            >
               <div className="works-item-content">
                 <div className="works-item-content-textbox">
-                  <h2 className="subheadline white">{work.name}</h2>
+                  <h2 className="subheadline white">
+                    {work.name}
+                  </h2>
+
                   <div className="works-item-content-textbox-row">
                     {work.categories.map((category) => (
                       <div
                         className="works-item-content-textbox-button"
                         key={category}
                       >
-                        <p className="small-description white">{category}</p>
+                        <p className="small-description white">
+                          {category}
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -235,6 +332,7 @@ function WorksCarousel({ onMouseEnter, onMouseLeave }) {
                   alt={work.alt}
                 />
               </div>
+
               <div className="works-item-border" />
             </div>
           ))}
@@ -244,19 +342,30 @@ function WorksCarousel({ onMouseEnter, onMouseLeave }) {
               <p className="description white">
                 Be our next client in this section!
               </p>
-              <h2 className="subheadline white">Let us get you a coffee.</h2>
+
+              <h2 className="subheadline white">
+                Let us get you a coffee.
+              </h2>
+
               <div className="contact-button-wrapper">
-                <button type="button" className="contact-button-white">
+                <button
+                  type="button"
+                  className="contact-button-white"
+                >
                   <span>
                     <span className="contact-button-container-white">
                       <span className="contact-button-primary-white" />
                       <span className="contact-button-complimentary-white" />
                     </span>
                   </span>
-                  <span className="description black">Book a call</span>
+
+                  <span className="description black">
+                    Book a call
+                  </span>
                 </button>
               </div>
             </div>
+
             <div className="works-item-border" />
           </div>
 
@@ -275,9 +384,18 @@ function WorksCarousel({ onMouseEnter, onMouseLeave }) {
   );
 }
 
-function CaseStudiesCarousel({ wrapperRef, onMouseEnter, onMouseLeave }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ dragFree: true });
-  const [scrollProgress, setScrollProgress] = useState(0);
+function CaseStudiesCarousel({
+  wrapperRef,
+  onMouseEnter,
+  onMouseLeave,
+}: CaseStudiesCarouselProps) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    dragFree: true,
+  });
+
+  const [scrollProgress, setScrollProgress] =
+    useState<number>(0);
+
   const {
     prevBtnDisabled,
     nextBtnDisabled,
@@ -285,16 +403,23 @@ function CaseStudiesCarousel({ wrapperRef, onMouseEnter, onMouseLeave }) {
     onNextButtonClick,
   } = usePrevNextButtons(emblaApi);
 
-  const updateProgress = useCallback((api) => {
-    setScrollProgress(
-      api ? Math.max(0, Math.min(1, api.scrollProgress())) * 100 : 0,
-    );
-  }, []);
+  const updateProgress = useCallback(
+    (api: NonNullable<EmblaApi>): void => {
+      setScrollProgress(
+        Math.max(
+          0,
+          Math.min(1, api.scrollProgress()),
+        ) * 100,
+      );
+    },
+    [],
+  );
 
   useEffect(() => {
-    if (!emblaApi) return undefined;
+    if (!emblaApi) return;
 
     updateProgress(emblaApi);
+
     emblaApi.on("reInit", updateProgress);
     emblaApi.on("scroll", updateProgress);
     emblaApi.on("slideFocus", updateProgress);
@@ -313,21 +438,38 @@ function CaseStudiesCarousel({ wrapperRef, onMouseEnter, onMouseLeave }) {
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <div className="casestudies-carousel" ref={emblaRef}>
+      <div
+        className="casestudies-carousel"
+        ref={emblaRef}
+      >
         <div className="casestudies-carousel-row">
           <div className="casestudies-item-padding" />
 
           {caseStudies.map((study) => (
-            <article className="casestudies-item" key={study.title}>
+            <article
+              className="casestudies-item"
+              key={study.title}
+            >
               <div className="casestudies-item-content">
                 <div className="casestudies-item-content-textbox">
                   <div className="subheadline-box">
-                    <Zap className="subheadline-box-icon" aria-hidden="true" />
-                    <h2 className="small-description grey">{study.category}</h2>
+                    <Zap
+                      className="subheadline-box-icon"
+                      aria-hidden="true"
+                    />
+
+                    <h2 className="small-description grey">
+                      {study.category}
+                    </h2>
                   </div>
 
-                  <h3 className="small-subheadline white">{study.title}</h3>
-                  <p className="description grey">{study.description}</p>
+                  <h3 className="small-subheadline white">
+                    {study.title}
+                  </h3>
+
+                  <p className="description grey">
+                    {study.description}
+                  </p>
                 </div>
 
                 <div className="casestudies-item-content-imagebox">
@@ -341,6 +483,7 @@ function CaseStudiesCarousel({ wrapperRef, onMouseEnter, onMouseLeave }) {
                         Read More
                       </Link>
                     </div>
+
                     <ArrowUpRight
                       className="casestudies-item-content-imagebox-button-icon"
                       aria-hidden="true"
@@ -381,41 +524,73 @@ function CarouselControls({
   nextDisabled,
   onPrev,
   onNext,
-}) {
+}: CarouselControlsProps) {
   return (
     <div className="casestudies-carousel-bottom">
       <div className="casestudies-carousel-bottom-buttons">
-        <PrevButton onClick={onPrev} disabled={prevDisabled} />
-        <NextButton onClick={onNext} disabled={nextDisabled} />
+        <PrevButton
+          onClick={onPrev}
+          disabled={prevDisabled}
+        />
+
+        <NextButton
+          onClick={onNext}
+          disabled={nextDisabled}
+        />
       </div>
 
-      <div className="embla__progress" aria-hidden="true">
+      <div
+        className="embla__progress"
+        aria-hidden="true"
+      >
         <div
           className="embla__progress__bar"
-          style={{ transform: `translate3d(${progress}%, 0, 0)` }}
+          style={{
+            transform: `translate3d(${progress}%, 0, 0)`,
+          }}
         />
       </div>
     </div>
   );
 }
 
-function IndustriesSection({ subheadlineBoxRef, subtitleRef, descriptionRef }) {
+function IndustriesSection({
+  subheadlineBoxRef,
+  subtitleRef,
+  descriptionRef,
+}: IndustriesSectionProps) {
   return (
     <div className="works-industries">
       <div className="works-subtextbox">
-        <div className="subheadline-box opacity-blur" ref={subheadlineBoxRef}>
-          <Zap className="subheadline-box-icon" aria-hidden="true" />
-          <h2 className="small-description grey">Industries we serve</h2>
+        <div
+          className="subheadline-box opacity-blur"
+          ref={subheadlineBoxRef}
+        >
+          <Zap
+            className="subheadline-box-icon"
+            aria-hidden="true"
+          />
+
+          <h2 className="small-description grey">
+            Industries we serve
+          </h2>
         </div>
 
         <div className="titlebox">
           <div className="titlebox-medium-gradient" />
-          <h2 className="subheadline white" ref={subtitleRef}>
+
+          <h2
+            className="subheadline white"
+            ref={subtitleRef}
+          >
             We have extensive experience <br /> across multiple industries
           </h2>
         </div>
 
-        <p className="description grey" ref={descriptionRef}>
+        <p
+          className="description grey"
+          ref={descriptionRef}
+        >
           Our product designers have completed projects in different niches.
           They know how to add business value and provide practical solutions.
         </p>
@@ -424,10 +599,15 @@ function IndustriesSection({ subheadlineBoxRef, subtitleRef, descriptionRef }) {
       <div className="works-industries-container">
         <div className="works-industries-divider" />
 
-        {industries.map((industry, index) => (
-          <div className="works-industries-item" key={industry.title}>
+        {industries.map((industry) => (
+          <div
+            className="works-industries-item"
+            key={industry.title}
+          >
             <div className="works-industries-item-left">
-              <h2 className="small-subheadline white">{industry.title}</h2>
+              <h2 className="small-subheadline white">
+                {industry.title}
+              </h2>
             </div>
 
             <div className="works-industries-item-right">
@@ -452,22 +632,43 @@ function IndustriesSection({ subheadlineBoxRef, subtitleRef, descriptionRef }) {
 }
 
 export const WorksPageSection = () => {
-  const titleRef = useRef(null);
-  const subtitleRef1 = useRef(null);
-  const subtitleRef2 = useRef(null);
-  const descriptionRef = useRef(null);
-  const subdescriptionRef1 = useRef(null);
-  const subdescriptionRef2 = useRef(null);
-  const lineRef = useRef(null);
-  const carouselWrapperRef = useRef(null);
-  const subheadlineBoxRef1 = useRef(null);
-  const subheadlineBoxRef2 = useRef(null);
+  // REFS
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const subtitleRef1 =
+    useRef<HTMLHeadingElement | null>(null);
+  const subtitleRef2 =
+    useRef<HTMLHeadingElement | null>(null);
+
+  const descriptionRef =
+    useRef<HTMLParagraphElement | null>(null);
+
+  const subdescriptionRef1 =
+    useRef<HTMLParagraphElement | null>(null);
+  const subdescriptionRef2 =
+    useRef<HTMLParagraphElement | null>(null);
+
+  const lineRef = useRef<HTMLDivElement | null>(null);
+
+  const carouselWrapperRef =
+    useRef<HTMLDivElement | null>(null);
+
+  const subheadlineBoxRef1 =
+    useRef<HTMLDivElement | null>(null);
+  const subheadlineBoxRef2 =
+    useRef<HTMLDivElement | null>(null);
+
   const cursor = useDragCursor();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Main title animation
       if (titleRef.current) {
-        const titleSplit = new SplitText(titleRef.current, { type: "chars" });
+        const titleSplit = new SplitText(
+          titleRef.current,
+          {
+            type: "chars",
+          },
+        );
 
         gsap.fromTo(
           titleSplit.chars,
@@ -489,6 +690,7 @@ export const WorksPageSection = () => {
         );
       }
 
+      // Description animation
       if (descriptionRef.current) {
         gsap.to(descriptionRef.current, {
           opacity: 1,
@@ -498,10 +700,14 @@ export const WorksPageSection = () => {
         });
       }
 
+      // Divider animation
       if (lineRef.current) {
         gsap.fromTo(
           lineRef.current,
-          { opacity: 0, filter: "blur(8px)" },
+          {
+            opacity: 0,
+            filter: "blur(8px)",
+          },
           {
             opacity: 1,
             filter: "blur(0px)",
@@ -511,14 +717,18 @@ export const WorksPageSection = () => {
         );
       }
 
-      const industryImageElements = document.querySelectorAll(
-        ".works-industries-item-right-imagebox",
-      );
+      // Industries image animations
+      const industryImageElements =
+        gsap.utils.toArray<HTMLElement>(
+          ".works-industries-item-right-imagebox",
+        );
 
       industryImageElements.forEach((element) => {
         gsap.fromTo(
           element,
-          { width: 0 },
+          {
+            width: 0,
+          },
           {
             width: "100%",
             scrollTrigger: {
@@ -531,6 +741,7 @@ export const WorksPageSection = () => {
         );
       });
 
+      // Case studies carousel animation
       if (carouselWrapperRef.current) {
         gsap.to(carouselWrapperRef.current, {
           opacity: 1,
@@ -544,27 +755,35 @@ export const WorksPageSection = () => {
         });
       }
 
-      [subheadlineBoxRef1.current, subheadlineBoxRef2.current].forEach(
-        (element) => {
-          if (!element) return;
-
-          gsap.to(element, {
-            opacity: 1,
-            filter: "blur(0px)",
-            duration: 0.5,
-            ease: "power1",
-            scrollTrigger: {
-              trigger: element,
-              start: "top 95%",
-            },
-          });
-        },
-      );
-
-      [subtitleRef1.current, subtitleRef2.current].forEach((element) => {
+      // Subheadline box animations
+      [
+        subheadlineBoxRef1.current,
+        subheadlineBoxRef2.current,
+      ].forEach((element) => {
         if (!element) return;
 
-        const split = new SplitText(element, { type: "words" });
+        gsap.to(element, {
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 0.5,
+          ease: "power1",
+          scrollTrigger: {
+            trigger: element,
+            start: "top 95%",
+          },
+        });
+      });
+
+      // Subtitle animations
+      [
+        subtitleRef1.current,
+        subtitleRef2.current,
+      ].forEach((element) => {
+        if (!element) return;
+
+        const split = new SplitText(element, {
+          type: "words",
+        });
 
         gsap.fromTo(
           split.words,
@@ -589,29 +808,36 @@ export const WorksPageSection = () => {
         );
       });
 
-      [subdescriptionRef1.current, subdescriptionRef2.current].forEach(
-        (element) => {
-          if (!element) return;
+      // Description word animations
+      [
+        subdescriptionRef1.current,
+        subdescriptionRef2.current,
+      ].forEach((element) => {
+        if (!element) return;
 
-          const split = new SplitText(element, { type: "words" });
+        const split = new SplitText(element, {
+          type: "words",
+        });
 
-          gsap.fromTo(
-            split.words,
-            { filter: "blur(8px)", opacity: 0 },
-            {
-              opacity: 1,
-              filter: "blur(0px)",
-              stagger: 0.025,
-              duration: 0.5,
-              ease: "sine",
-              scrollTrigger: {
-                trigger: element,
-                start: "top 95%",
-              },
+        gsap.fromTo(
+          split.words,
+          {
+            filter: "blur(8px)",
+            opacity: 0,
+          },
+          {
+            opacity: 1,
+            filter: "blur(0px)",
+            stagger: 0.025,
+            duration: 0.5,
+            ease: "sine",
+            scrollTrigger: {
+              trigger: element,
+              start: "top 95%",
             },
-          );
-        },
-      );
+          },
+        );
+      });
     });
 
     return () => ctx.revert();
@@ -626,7 +852,11 @@ export const WorksPageSection = () => {
               <div className="works-content-textbox">
                 <div className="titlebox">
                   <div className="subpage-titlebox-gradient" />
-                  <h1 className="headline white" ref={titleRef}>
+
+                  <h1
+                    className="headline white"
+                    ref={titleRef}
+                  >
                     Collection of Our Works
                   </h1>
                 </div>
@@ -635,12 +865,15 @@ export const WorksPageSection = () => {
                   className="description grey opacity-blur"
                   ref={descriptionRef}
                 >
-                  Case studies offer a unique opportunity to explore real-world
-                  examples of challenges, solutions, and results.
+                  Case studies offer a unique opportunity to explore
+                  real-world examples of challenges, solutions, and results.
                 </p>
               </div>
 
-              <div className="works-content-top-divider" ref={lineRef} />
+              <div
+                className="works-content-top-divider"
+                ref={lineRef}
+              />
             </div>
 
             <WorksCarousel
@@ -661,18 +894,31 @@ export const WorksPageSection = () => {
                 className="subheadline-box opacity-blur"
                 ref={subheadlineBoxRef2}
               >
-                <Zap className="subheadline-box-icon" aria-hidden="true" />
-                <h2 className="small-description grey">Case Studies</h2>
+                <Zap
+                  className="subheadline-box-icon"
+                  aria-hidden="true"
+                />
+
+                <h2 className="small-description grey">
+                  Case Studies
+                </h2>
               </div>
 
               <div className="titlebox">
                 <div className="titlebox-medium-gradient" />
-                <h2 className="subheadline white" ref={subtitleRef2}>
+
+                <h2
+                  className="subheadline white"
+                  ref={subtitleRef2}
+                >
                   We have a diverse portfolio of <br /> successful case studies
                 </h2>
               </div>
 
-              <p className="description grey" ref={subdescriptionRef2}>
+              <p
+                className="description grey"
+                ref={subdescriptionRef2}
+              >
                 Case studies offer a unique opportunity to explore real-world
                 examples of challenges, solutions, and results.
               </p>
@@ -686,8 +932,14 @@ export const WorksPageSection = () => {
           </div>
         </div>
 
-        <div className="hover-cursor" ref={cursor.cursorRef} aria-hidden="true">
-          <p className="small-description white">Drag</p>
+        <div
+          className="hover-cursor"
+          ref={cursor.cursorRef}
+          aria-hidden="true"
+        >
+          <p className="small-description white">
+            Drag
+          </p>
         </div>
       </section>
     </ReactLenis>

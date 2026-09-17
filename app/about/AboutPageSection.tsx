@@ -9,19 +9,26 @@ import { SplitText, ScrollTrigger } from "gsap/all";
 
 gsap.registerPlugin(SplitText, ScrollTrigger, TextPlugin);
 
+type TeamMember = {
+  name: string;
+  title: string;
+};
+
 export const AboutPageSection = () => {
-  const titleRef = useRef(null);
-  const titleRef2 = useRef(null);
-  const descriptionRef = useRef(null);
-  const lineRef = useRef(null);
-  const itemRefs = useRef([]);
+  // REFS
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const titleRef2 = useRef<HTMLParagraphElement | null>(null);
+  const descriptionRef = useRef<HTMLParagraphElement | null>(null);
+  const lineRef = useRef<HTMLDivElement | null>(null);
 
-  const item1Ref = useRef(null);
-  const item2Ref = useRef(null);
-  const item3Ref = useRef(null);
-  const item4Ref = useRef(null);
+  const itemRefs = useRef<Array<HTMLDivElement | null>>([]);
 
-  const teamMembers = [
+  const item1Ref = useRef<HTMLDivElement | null>(null);
+  const item2Ref = useRef<HTMLDivElement | null>(null);
+  const item3Ref = useRef<HTMLDivElement | null>(null);
+  const item4Ref = useRef<HTMLDivElement | null>(null);
+
+  const teamMembers: TeamMember[] = [
     {
       name: "Chandan Singh",
       title: "Founder & CEO",
@@ -52,28 +59,30 @@ export const AboutPageSection = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Title animation
-      const titleSplit = new SplitText(titleRef.current, {
-        type: "chars",
-      });
+      if (titleRef.current) {
+        const titleSplit = new SplitText(titleRef.current, {
+          type: "chars",
+        });
 
-      gsap.fromTo(
-        titleSplit.chars,
-        {
-          willChange: "opacity, transform",
-          filter: "blur(8px)",
-          opacity: 0,
-          yPercent: 50,
-        },
-        {
-          delay: 0.2,
-          opacity: 1,
-          filter: "blur(0px)",
-          yPercent: 0,
-          stagger: 0.02,
-          duration: 0.75,
-          ease: "power1",
-        },
-      );
+        gsap.fromTo(
+          titleSplit.chars,
+          {
+            willChange: "opacity, transform",
+            filter: "blur(8px)",
+            opacity: 0,
+            yPercent: 50,
+          },
+          {
+            delay: 0.2,
+            opacity: 1,
+            filter: "blur(0px)",
+            yPercent: 0,
+            stagger: 0.02,
+            duration: 0.75,
+            ease: "power1",
+          },
+        );
+      }
 
       // Description animation
       gsap.to(descriptionRef.current, {
@@ -99,30 +108,32 @@ export const AboutPageSection = () => {
       );
 
       // Why-us title animation
-      const titleSplit2 = new SplitText(titleRef2.current, {
-        type: "words",
-      });
+      if (titleRef2.current) {
+        const titleSplit2 = new SplitText(titleRef2.current, {
+          type: "words",
+        });
 
-      gsap.fromTo(
-        titleSplit2.words,
-        {
-          willChange: "opacity",
-          filter: "blur(8px)",
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-          filter: "blur(0px)",
-          stagger: 0.025,
-          ease: "sine",
-          scrollTrigger: {
-            trigger: titleRef2.current,
-            start: "top 95%",
-            end: "bottom center",
-            scrub: true,
+        gsap.fromTo(
+          titleSplit2.words,
+          {
+            willChange: "opacity",
+            filter: "blur(8px)",
+            opacity: 0,
           },
-        },
-      );
+          {
+            opacity: 1,
+            filter: "blur(0px)",
+            stagger: 0.025,
+            ease: "sine",
+            scrollTrigger: {
+              trigger: titleRef2.current,
+              start: "top 95%",
+              end: "bottom center",
+              scrub: true,
+            },
+          },
+        );
+      }
 
       // Team member animations
       itemRefs.current.forEach((item, index) => {
@@ -159,7 +170,12 @@ export const AboutPageSection = () => {
   // STICKY SECTION
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const refs = [item1Ref, item2Ref, item3Ref, item4Ref];
+      const refs = [
+        item1Ref,
+        item2Ref,
+        item3Ref,
+        item4Ref,
+      ];
 
       refs.forEach((ref, position) => {
         const element = ref.current;
@@ -225,12 +241,18 @@ export const AboutPageSection = () => {
               <div className="titlebox">
                 <div className="titlebox-gradient" />
 
-                <h1 className="headline white" ref={titleRef}>
+                <h1
+                  className="headline white"
+                  ref={titleRef}
+                >
                   Digital Product Studio for Web, E-Commerce & AI Solutions
                 </h1>
               </div>
 
-              <p className="description grey opacity-blur" ref={descriptionRef}>
+              <p
+                className="description grey opacity-blur"
+                ref={descriptionRef}
+              >
                 StackCraft Studio is a digital product studio that helps
                 businesses build high-performance websites, web applications,
                 e-commerce platforms, and AI-powered digital products. We
@@ -239,12 +261,21 @@ export const AboutPageSection = () => {
               </p>
             </div>
 
-            <div className="about-divider" ref={lineRef} />
+            <div
+              className="about-divider"
+              ref={lineRef}
+            />
           </div>
 
-          <section className="about-team" aria-labelledby="our-team-title">
+          <section
+            className="about-team"
+            aria-labelledby="our-team-title"
+          >
             <div className="about-team-container">
-              <h2 id="our-team-title" className="sr-only">
+              <h2
+                id="our-team-title"
+                className="sr-only"
+              >
                 Our Team
               </h2>
 
@@ -256,9 +287,13 @@ export const AboutPageSection = () => {
                     itemRefs.current[index] = element;
                   }}
                 >
-                  <p className="description white">{member.name}</p>
+                  <p className="description white">
+                    {member.name}
+                  </p>
 
-                  <p className="description white">{member.title}</p>
+                  <p className="description white">
+                    {member.title}
+                  </p>
                 </div>
               ))}
             </div>
@@ -286,7 +321,10 @@ export const AboutPageSection = () => {
           <div className="about-divider" />
 
           <div className="about-sticky-container">
-            <div className="about-sticky-item" ref={item1Ref}>
+            <div
+              className="about-sticky-item"
+              ref={item1Ref}
+            >
               <div className="about-sticky-item-left">
                 <div className="about-sticky-item-left-textbox">
                   <h2 className="headline white">
@@ -300,7 +338,9 @@ export const AboutPageSection = () => {
                   </p>
                 </div>
 
-                <span className="headline white">(01)</span>
+                <span className="headline white">
+                  (01)
+                </span>
               </div>
 
               <div className="about-sticky-item-right">
@@ -316,10 +356,15 @@ export const AboutPageSection = () => {
               </div>
             </div>
 
-            <div className="about-sticky-item" ref={item2Ref}>
+            <div
+              className="about-sticky-item"
+              ref={item2Ref}
+            >
               <div className="about-sticky-item-left">
                 <div className="about-sticky-item-left-textbox">
-                  <h2 className="headline white">E-Commerce</h2>
+                  <h2 className="headline white">
+                    E-Commerce
+                  </h2>
 
                   <p className="description about-sticky-item-left-textbox-description grey">
                     We create conversion-focused e-commerce experiences with
@@ -328,7 +373,10 @@ export const AboutPageSection = () => {
                   </p>
                 </div>
 
-                <span className="headline white" aria-label="Service 2">
+                <span
+                  className="headline white"
+                  aria-label="Service 2"
+                >
                   (02)
                 </span>
               </div>
@@ -346,7 +394,10 @@ export const AboutPageSection = () => {
               </div>
             </div>
 
-            <div className="about-sticky-item" ref={item3Ref}>
+            <div
+              className="about-sticky-item"
+              ref={item3Ref}
+            >
               <div className="about-sticky-item-left">
                 <div className="about-sticky-item-left-textbox">
                   <h2 className="headline white">
@@ -360,7 +411,10 @@ export const AboutPageSection = () => {
                   </p>
                 </div>
 
-                <span className="headline white" aria-label="Service 3">
+                <span
+                  className="headline white"
+                  aria-label="Service 3"
+                >
                   (03)
                 </span>
               </div>
@@ -378,7 +432,10 @@ export const AboutPageSection = () => {
               </div>
             </div>
 
-            <div className="about-sticky-item" ref={item4Ref}>
+            <div
+              className="about-sticky-item"
+              ref={item4Ref}
+            >
               <div className="about-sticky-item-left">
                 <div className="about-sticky-item-left-textbox">
                   <h2 className="headline white">
@@ -391,7 +448,10 @@ export const AboutPageSection = () => {
                   </p>
                 </div>
 
-                <span className="headline white" aria-label="Service 4">
+                <span
+                  className="headline white"
+                  aria-label="Service 4"
+                >
                   (04)
                 </span>
               </div>

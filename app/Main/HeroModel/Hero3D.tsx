@@ -7,9 +7,10 @@ import {
   Float,
   OrbitControls,
 } from "@react-three/drei";
+
 import { Item3 } from "./Coins";
 
-export default function Hero3D() {
+const Hero3D = () => {
   return (
     <Canvas
       dpr={[1, 1.5]}
@@ -50,4 +51,6 @@ export default function Hero3D() {
       </Suspense>
     </Canvas>
   );
-}
+};
+
+export default Hero3D;

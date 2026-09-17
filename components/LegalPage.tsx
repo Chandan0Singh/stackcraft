@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { ReactLenis } from "lenis/react";
 import gsap from "gsap";
 import SplitText from "gsap/src/SplitText";
@@ -8,12 +8,17 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-const LegalPage = ({ title, children }) => {
-  const pageRef = useRef(null);
-  const titleRef = useRef(null);
-  const eyebrowRef = useRef(null);
-  const updatedRef = useRef(null);
-  const contentRef = useRef(null);
+type LegalPageProps = {
+  title: string;
+  children: ReactNode;
+};
+
+const LegalPage = ({ title, children }: LegalPageProps) => {
+  const pageRef = useRef<HTMLElement | null>(null);
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const eyebrowRef = useRef<HTMLParagraphElement | null>(null);
+  const updatedRef = useRef<HTMLParagraphElement | null>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -37,6 +42,8 @@ const LegalPage = ({ title, children }) => {
           ease: "power2.out",
         },
       );
+
+      if (!titleRef.current) return;
 
       const titleSplit = new SplitText(titleRef.current, {
         type: "chars",
@@ -82,15 +89,22 @@ const LegalPage = ({ title, children }) => {
       // LEGAL CONTENT
       // --------------------------------------------------
 
-      const sections = gsap.utils.toArray(
+      if (!contentRef.current) return;
+
+      const sections = gsap.utils.toArray<HTMLElement>(
         ".legal-section",
         contentRef.current,
       );
 
       sections.forEach((section) => {
-        const heading = section.querySelector("h2");
-        const subheadings = section.querySelectorAll("h3");
-        const paragraphs = section.querySelectorAll("p");
+        const heading =
+          section.querySelector<HTMLHeadingElement>("h2");
+
+        const subheadings =
+          section.querySelectorAll<HTMLHeadingElement>("h3");
+
+        const paragraphs =
+          section.querySelectorAll<HTMLParagraphElement>("p");
 
         // Section entrance
         gsap.fromTo(
@@ -228,3 +242,4 @@ const LegalPage = ({ title, children }) => {
 };
 
 export default LegalPage;
+

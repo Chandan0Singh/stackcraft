@@ -2,13 +2,12 @@
 
 import { MessageCircle, Phone } from "lucide-react";
 
-export default function FloatingContact() {
+const FloatingContact = () => {
   const whatsappNumber = "918860968260";
   const phoneNumber = "+918860968260";
 
   return (
     <div className="floating-contact">
-
       {/* WhatsApp */}
       <a
         href={`https://wa.me/${whatsappNumber}?text=Hi`}
@@ -36,7 +35,9 @@ export default function FloatingContact() {
           Call Us
         </span>
       </a>
-
     </div>
   );
-}
+};
+
+export default FloatingContact;
+

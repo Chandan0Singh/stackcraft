@@ -1,9 +1,11 @@
+import type { Metadata } from "next";
+
 import "./works.css";
 import { WorksPageSection } from "./WorksPageSection";
 
 const siteUrl = "https://www.stackcraftstudio.com";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Web Design & Development Portfolio | StackCraft Studio",
   description:
     "Explore StackCraft Studio’s portfolio of websites, web applications, e-commerce platforms, and digital products built for modern businesses.",
@@ -29,10 +31,7 @@ export const metadata = {
 };
 
 const Works = () => {
-
-  return (
-    <WorksPageSection />
-  );
+  return <WorksPageSection />;
 };
 
 export default Works;

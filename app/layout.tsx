@@ -1,12 +1,19 @@
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
+
 import "./globals.css";
+
 import FloatingContact from "../components/floatingicons";
 import { Navigation } from "../components/Navigation";
 import { SectionFooter } from "../components/SectionFooter";
 
-export const metadata = {
-  title: "StackCraft | Cutting-Edge Website Design & Custom Digital Solutions",
+export const metadata: Metadata = {
+  title:
+    "StackCraft | Cutting-Edge Website Design & Custom Digital Solutions",
+
   description:
     "Harnessing Cutting-Edge Visualization Technology to Transform Vision into Tailored Digital Reality.",
+
   keywords: [
     "website design",
     "UX/UI design",
@@ -31,22 +38,37 @@ export const metadata = {
     "advanced video production",
     "digital media strategy",
   ],
+
   openGraph: {
     title:
       "StackCraft | Cutting-Edge Website Design & Custom Digital Solutions",
+
     description:
       "Harnessing Cutting-Edge Visualization Technology to Transform Vision into Tailored Digital Reality.",
+
     images: ["/logos/stackcraft.png"],
   },
 };
 
-export default function RootLayout({ children }) {
+type RootLayoutProps = {
+  children: ReactNode;
+};
+
+export default function RootLayout({
+  children,
+}: RootLayoutProps) {
   return (
     <html lang="en">
       <body>
         <Navigation />
-        {children} <SectionFooter /> <FloatingContact />
+
+        {children}
+
+        <SectionFooter />
+
+        <FloatingContact />
       </body>
     </html>
   );
 }
+

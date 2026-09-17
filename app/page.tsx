@@ -1,6 +1,7 @@
+import type { Metadata } from "next";
 import Main from "./Main/Main";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Web Design & Development Agency | StackCraft Studio",
   description:
     "StackCraft Studio designs and develops modern websites, web applications, e-commerce platforms, and AI-powered digital products for growing businesses.",
@@ -9,9 +10,6 @@ export const metadata = {
   },
 };
 
-
 export default function Home() {
-  return (
-    <Main />
-  );
+  return <Main />;
 }
