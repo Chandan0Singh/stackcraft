@@ -2760,7 +2760,7 @@ section {
   section {
     width: 100%;
     height: auto;
-    min-height: 200vw;
+    /* min-height: 200vw; */
 
     padding-left: 5vw;
     padding-right: 5vw;
