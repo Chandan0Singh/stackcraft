@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import SplitText from "gsap/src/SplitText";
@@ -7,55 +9,65 @@ import { Cone, Globe, User, Zap } from "lucide-react";
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
 export const SectionKPI = () => {
-    const subheadlineBoxRef = useRef(null);
-    const titleRef = useRef(null);
-    const bentoBoxRef1 = useRef(null);
-    const bentoBoxRef2 = useRef(null);
-    const bentoBoxRef3 = useRef(null);
+    const subheadlineBoxRef = useRef<HTMLDivElement | null>(null);
+    const titleRef = useRef<HTMLHeadingElement | null>(null);
+
+    const bentoBoxRef1 = useRef<HTMLDivElement | null>(null);
+    const bentoBoxRef2 = useRef<HTMLDivElement | null>(null);
+    const bentoBoxRef3 = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
             // Subheadline box animation
-            gsap.to(subheadlineBoxRef.current, {
-                opacity: 1,
-                filter: "blur(0px)",
-                duration: 0.5,
-                ease: "power1",
-                scrollTrigger: {
-                    trigger: subheadlineBoxRef.current,
-                    start: "top 95%",
-                },
-            });
-
-            // Headline text animation
-            const titleSplit = new SplitText(titleRef.current, {
-                type: "words",
-            });
-
-            gsap.fromTo(
-                titleSplit.words,
-                {
-                    willChange: "opacity, transform",
-                    filter: "blur(8px)",
-                    opacity: 0,
-                    yPercent: 100,
-                },
-                {
+            if (subheadlineBoxRef.current) {
+                gsap.to(subheadlineBoxRef.current, {
                     opacity: 1,
                     filter: "blur(0px)",
-                    yPercent: 0,
-                    stagger: 0.085,
-                    duration: 1,
-                    ease: "power2",
+                    duration: 0.5,
+                    ease: "power1",
                     scrollTrigger: {
-                        trigger: titleRef.current,
+                        trigger: subheadlineBoxRef.current,
                         start: "top 95%",
                     },
-                }
-            );
+                });
+            }
+
+            // Headline text animation
+            if (titleRef.current) {
+                const titleSplit = new SplitText(titleRef.current, {
+                    type: "words",
+                });
+
+                gsap.fromTo(
+                    titleSplit.words,
+                    {
+                        willChange: "opacity, transform",
+                        filter: "blur(8px)",
+                        opacity: 0,
+                        yPercent: 100,
+                    },
+                    {
+                        opacity: 1,
+                        filter: "blur(0px)",
+                        yPercent: 0,
+                        stagger: 0.085,
+                        duration: 1,
+                        ease: "power2",
+                        scrollTrigger: {
+                            trigger: titleRef.current,
+                            start: "top 95%",
+                        },
+                    }
+                );
+            }
 
             // Bento grid box animations
-            const animateBox = (element, delay = 0) => {
+            const animateBox = (
+                element: HTMLDivElement | null,
+                delay: number = 0
+            ) => {
+                if (!element) return;
+
                 gsap.fromTo(
                     element,
                     {
@@ -97,6 +109,7 @@ export const SectionKPI = () => {
                         ref={subheadlineBoxRef}
                     >
                         <Zap className="subheadline-box-icon" />
+
                         <p className="small-description grey">
                             Key Performance Indicators
                         </p>
@@ -104,6 +117,7 @@ export const SectionKPI = () => {
 
                     <div className="titlebox">
                         <div className="titlebox-gradient" />
+
                         <h2 className="subheadline white" ref={titleRef}>
                             Building Digital <br /> Products That Matter
                         </h2>
@@ -111,13 +125,17 @@ export const SectionKPI = () => {
                 </div>
 
                 <div className="kpi-content-row">
-                    <div className="kpi-content-item" ref={bentoBoxRef1}>
+                    <div
+                        className="kpi-content-item"
+                        ref={bentoBoxRef1}
+                    >
                         <div className="kpi-item-textbox">
                             <div className="kpi-item-textbox-top">
                                 <div className="kpi-item-textbox-number">
                                     <p className="headline kpi-item-textbox-number-text white">
                                         250
                                     </p>
+
                                     <div className="kpi-item-textbox-number-gradient" />
                                 </div>
 
@@ -139,13 +157,17 @@ export const SectionKPI = () => {
                         <div className="kpi-item-grid" />
                     </div>
 
-                    <div className="kpi-content-item" ref={bentoBoxRef2}>
+                    <div
+                        className="kpi-content-item"
+                        ref={bentoBoxRef2}
+                    >
                         <div className="kpi-item-textbox">
                             <div className="kpi-item-textbox-top">
                                 <div className="kpi-item-textbox-number">
                                     <p className="headline kpi-item-textbox-number-text white">
                                         $100
                                     </p>
+
                                     <div className="kpi-item-textbox-number-gradient" />
                                 </div>
 
@@ -167,13 +189,17 @@ export const SectionKPI = () => {
                         <div className="kpi-item-grid" />
                     </div>
 
-                    <div className="kpi-content-item" ref={bentoBoxRef3}>
+                    <div
+                        className="kpi-content-item"
+                        ref={bentoBoxRef3}
+                    >
                         <div className="kpi-item-textbox">
                             <div className="kpi-item-textbox-top">
                                 <div className="kpi-item-textbox-number">
                                     <p className="headline kpi-item-textbox-number-text white">
                                         500
                                     </p>
+
                                     <div className="kpi-item-textbox-number-gradient" />
                                 </div>
 

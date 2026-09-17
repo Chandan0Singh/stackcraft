@@ -1,4 +1,5 @@
-/* eslint-disable react/jsx-key */
+"use client";
+
 import { useEffect, useRef } from "react";
 import NextImage from "next/image";
 import gsap from "gsap";
@@ -7,22 +8,33 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-export const SectionFlower = () => {
-  const imageRef1 = useRef(null);
-  const imageRef2 = useRef(null);
+interface ImageSequenceConfig {
+  urls: string[];
+  canvas: string;
+  fps?: number;
+  paused?: boolean;
+  clear?: boolean;
+  scrollTrigger?: gsap.plugins.ScrollTriggerInstanceVars;
+  onUpdate?: (frame: number, image: HTMLImageElement) => void;
+}
 
-  const textRef1 = useRef(null);
-  const textRef2 = useRef(null);
-  const textRef3 = useRef(null);
-  const textRef4 = useRef(null);
-  const textRef5 = useRef(null);
-  const textRef6 = useRef(null);
-  const textRef7 = useRef(null);
-  const textRef8 = useRef(null);
+export const SectionFlower = () => {
+  const imageRef1 = useRef<HTMLDivElement | null>(null);
+  const imageRef2 = useRef<HTMLDivElement | null>(null);
+
+  const textRef1 = useRef<HTMLHeadingElement | null>(null);
+  const textRef2 = useRef<HTMLHeadingElement | null>(null);
+  const textRef3 = useRef<HTMLHeadingElement | null>(null);
+  const textRef4 = useRef<HTMLHeadingElement | null>(null);
+  const textRef5 = useRef<HTMLHeadingElement | null>(null);
+  const textRef6 = useRef<HTMLHeadingElement | null>(null);
+  const textRef7 = useRef<HTMLHeadingElement | null>(null);
+  const textRef8 = useRef<HTMLHeadingElement | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       const frameCount = 300;
+
       const urls = Array.from(
         { length: frameCount },
         (_, i) => `/imageSequence/image${i + 1}.webp`,
@@ -39,35 +51,43 @@ export const SectionFlower = () => {
         },
       });
 
-      function imageSequence(config) {
+      function imageSequence(config: ImageSequenceConfig) {
         const playhead = { frame: 0 };
-        const canvas = gsap.utils.toArray(config.canvas)[0];
+
+        const canvas = document.querySelector<HTMLCanvasElement>(
+          config.canvas,
+        );
 
         if (!canvas) return;
 
         const context = canvas.getContext("2d");
+
+        if (!context) return;
+
         let currentFrame = -1;
-        let images;
+        let images: HTMLImageElement[] = [];
 
-        const updateImage = function () {
+        const updateImage = () => {
           const frame = Math.round(playhead.frame);
+          const image = images[frame];
 
-          if (frame !== currentFrame && images[frame]) {
+          if (frame !== currentFrame && image) {
             if (config.clear) {
               context.clearRect(0, 0, canvas.width, canvas.height);
             }
 
-            context.drawImage(images[frame], 0, 0);
+            context.drawImage(image, 0, 0);
             currentFrame = frame;
 
             if (config.onUpdate) {
-              config.onUpdate.call(this, frame, images[frame]);
+              config.onUpdate(frame, image);
             }
           }
         };
 
         images = config.urls.map((url, index) => {
           const image = new Image();
+
           image.src = url;
 
           if (index === 0) {
@@ -82,39 +102,49 @@ export const SectionFlower = () => {
           ease: "none",
           onUpdate: updateImage,
           duration: images.length / (config.fps || 30),
-          paused: !!config.paused,
+          paused: Boolean(config.paused),
           scrollTrigger: config.scrollTrigger,
         });
       }
 
       // Image reveal animations
-      gsap.fromTo(
-        imageRef1.current,
-        { width: 0, opacity: 0 },
-        {
-          width: "5vw",
-          opacity: 1,
-          duration: 1,
-          scrollTrigger: {
-            trigger: imageRef1.current,
-            start: "top 95%",
+      if (imageRef1.current) {
+        gsap.fromTo(
+          imageRef1.current,
+          {
+            width: 0,
+            opacity: 0,
           },
-        },
-      );
+          {
+            width: "5vw",
+            opacity: 1,
+            duration: 1,
+            scrollTrigger: {
+              trigger: imageRef1.current,
+              start: "top 95%",
+            },
+          },
+        );
+      }
 
-      gsap.fromTo(
-        imageRef2.current,
-        { width: 0, opacity: 0 },
-        {
-          width: "5vw",
-          opacity: 1,
-          duration: 1,
-          scrollTrigger: {
-            trigger: imageRef2.current,
-            start: "top 95%",
+      if (imageRef2.current) {
+        gsap.fromTo(
+          imageRef2.current,
+          {
+            width: 0,
+            opacity: 0,
           },
-        },
-      );
+          {
+            width: "5vw",
+            opacity: 1,
+            duration: 1,
+            scrollTrigger: {
+              trigger: imageRef2.current,
+              start: "top 95%",
+            },
+          },
+        );
+      }
 
       // Text animations
       const textAnimations = [
@@ -129,13 +159,17 @@ export const SectionFlower = () => {
       ];
 
       textAnimations.forEach(({ ref, delay }) => {
+        if (!ref.current) return;
+
         const splitText = new SplitText(ref.current, {
           type: "chars",
         });
 
         gsap.fromTo(
           splitText.chars,
-          { opacity: 0.25 },
+          {
+            opacity: 0.25,
+          },
           {
             delay,
             opacity: 1,

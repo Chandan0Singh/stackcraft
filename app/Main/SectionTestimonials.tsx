@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -11,18 +10,26 @@ import {
   NextButton,
   usePrevNextButtons,
 } from "./Carousel/EmblaCarouselArrowButtons";
-import useEmblaCarousel from "embla-carousel-react";
+import useEmblaCarousel, {
+  type UseEmblaCarouselType,
+} from "embla-carousel-react";
 import { Send } from "lucide-react";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
+type EmblaApi = UseEmblaCarouselType[1];
+
 export const SectionTestimonials = () => {
-  const subheadlineBoxRef = useRef(null);
-  const titleRef = useRef(null);
-  const emblaWrapperRef = useRef(null);
+  const subheadlineBoxRef =
+    useRef<HTMLDivElement | null>(null);
+
+  const titleRef =
+    useRef<HTMLHeadingElement | null>(null);
+
+  const emblaWrapperRef =
+    useRef<HTMLDivElement | null>(null);
 
   // GSAP ANIMATIONS
-
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Subheadline box animation
@@ -38,47 +45,52 @@ export const SectionTestimonials = () => {
       });
 
       // Headline text animation
-      const titleSplit = new SplitText(titleRef.current, {
-        type: "words",
-      });
+      if (titleRef.current) {
+        const titleSplit = new SplitText(
+          titleRef.current,
+          {
+            type: "words",
+          },
+        );
 
-      gsap.fromTo(
-        titleSplit.words,
-        {
-          willChange: "opacity, transform",
-          filter: "blur(8px)",
-          opacity: 0,
-          yPercent: 50,
-        },
-        {
+        gsap.fromTo(
+          titleSplit.words,
+          {
+            willChange: "opacity, transform",
+            filter: "blur(8px)",
+            opacity: 0,
+            yPercent: 50,
+          },
+          {
+            opacity: 1,
+            filter: "blur(0px)",
+            yPercent: 0,
+            stagger: 0.05,
+            duration: 0.75,
+            ease: "power2",
+            scrollTrigger: {
+              trigger: titleRef.current,
+              start: "top 95%",
+            },
+          },
+        );
+
+        // Embla wrapper animation
+        gsap.to(emblaWrapperRef.current, {
           opacity: 1,
           filter: "blur(0px)",
-          yPercent: 0,
-          stagger: 0.05,
-          duration: 0.75,
-          ease: "power2",
+          duration: 0.5,
+          ease: "power1",
           scrollTrigger: {
-            trigger: titleRef.current,
+            trigger: emblaWrapperRef.current,
             start: "top 95%",
           },
-        },
-      );
+        });
 
-      // Embla wrapper animation
-      gsap.to(emblaWrapperRef.current, {
-        opacity: 1,
-        filter: "blur(0px)",
-        duration: 0.5,
-        ease: "power1",
-        scrollTrigger: {
-          trigger: emblaWrapperRef.current,
-          start: "top 95%",
-        },
-      });
-
-      return () => {
-        titleSplit.revert();
-      };
+        return () => {
+          titleSplit.revert();
+        };
+      }
     });
 
     return () => {
@@ -87,12 +99,13 @@ export const SectionTestimonials = () => {
   }, []);
 
   // EMBLA CAROUSEL
+  const [emblaRef, emblaApi] =
+    useEmblaCarousel({
+      dragFree: true,
+    });
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    dragFree: true,
-  });
-
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [scrollProgress, setScrollProgress] =
+    useState<number>(0);
 
   const {
     prevBtnDisabled,
@@ -101,11 +114,17 @@ export const SectionTestimonials = () => {
     onNextButtonClick,
   } = usePrevNextButtons(emblaApi);
 
-  const onScroll = useCallback((api) => {
-    const progress = Math.max(0, Math.min(1, api.scrollProgress()));
+  const onScroll = useCallback(
+    (api: NonNullable<EmblaApi>): void => {
+      const progress = Math.max(
+        0,
+        Math.min(1, api.scrollProgress()),
+      );
 
-    setScrollProgress(progress * 100);
-  }, []);
+      setScrollProgress(progress * 100);
+    },
+    [],
+  );
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -129,16 +148,24 @@ export const SectionTestimonials = () => {
     <section className="testimonials">
       <div className="testimonials-content">
         <div className="textbox testimonials-content-textbox">
-          <div className="subheadline-box opacity-blur" ref={subheadlineBoxRef}>
+          <div
+            className="subheadline-box opacity-blur"
+            ref={subheadlineBoxRef}
+          >
             <Send className="subheadline-box-icon" />
 
-            <p className="small-description grey">Client Feedback</p>
+            <p className="small-description grey">
+              Client Feedback
+            </p>
           </div>
 
           <div className="titlebox">
             <div className="titlebox-big-gradient" />
 
-            <h2 className="subheadline white" ref={titleRef}>
+            <h2
+              className="subheadline white"
+              ref={titleRef}
+            >
               Built With Trust.
               <br />
               Backed By Our Clients.
@@ -146,11 +173,18 @@ export const SectionTestimonials = () => {
           </div>
         </div>
 
-        <div className="opacity-blur" ref={emblaWrapperRef}>
-          <div className="testimonials-carousel" ref={emblaRef}>
+        <div
+          className="opacity-blur"
+          ref={emblaWrapperRef}
+        >
+          <div
+            className="testimonials-carousel"
+            ref={emblaRef}
+          >
             <div className="testimonials-carousel-row">
               <div className="testimonials-item-padding" />
 
+              {/* TESTIMONIAL 1 */}
               <div className="testimonials-item">
                 <div className="testimonials-item-content">
                   <div className="testimonials-item-profile">
@@ -163,22 +197,29 @@ export const SectionTestimonials = () => {
                   </div>
 
                   <div className="testimonials-item-center">
-                    <p className="big-description white">Sourav Khatana</p>
+                    <p className="big-description white">
+                      Sourav Khatana
+                    </p>
 
-                    <p className="description grey">Owner, IS Properties</p>
+                    <p className="description grey">
+                      Owner, IS Properties
+                    </p>
                   </div>
 
                   <p className="description white">
-                    StackCraft transformed our online presence with a modern,
-                    responsive website that showcases IS Properties and makes
-                    exploring properties for sale, rent, and lease across
-                    Gurugram simple and seamless.
+                    StackCraft transformed our online
+                    presence with a modern, responsive
+                    website that showcases IS Properties
+                    and makes exploring properties for
+                    sale, rent, and lease across Gurugram
+                    simple and seamless.
                   </p>
                 </div>
 
                 <div className="testimonials-item-grid" />
               </div>
 
+              {/* TESTIMONIAL 2 */}
               <div className="testimonials-item">
                 <div className="testimonials-item-content">
                   <div className="testimonials-item-profile">
@@ -191,22 +232,29 @@ export const SectionTestimonials = () => {
                   </div>
 
                   <div className="testimonials-item-center">
-                    <p className="big-description white">Jay Negi</p>
+                    <p className="big-description white">
+                      Jay Negi
+                    </p>
 
-                    <p className="description grey">Owner, Tour Site</p>
+                    <p className="description grey">
+                      Owner, Tour Site
+                    </p>
                   </div>
 
                   <p className="description white">
-                    StackCraft brought the Odhira brand online with an elegant,
-                    modern e-commerce website. His expertise, attention to
-                    detail, and professionalism made the entire development
-                    process smooth.
+                    StackCraft brought the Odhira brand
+                    online with an elegant, modern
+                    e-commerce website. His expertise,
+                    attention to detail, and
+                    professionalism made the entire
+                    development process smooth.
                   </p>
                 </div>
 
                 <div className="testimonials-item-grid" />
               </div>
 
+              {/* TESTIMONIAL 3 */}
               <div className="testimonials-item">
                 <div className="testimonials-item-content">
                   <div className="testimonials-item-profile">
@@ -219,22 +267,29 @@ export const SectionTestimonials = () => {
                   </div>
 
                   <div className="testimonials-item-center">
-                    <p className="big-description white">Tushar Kandiyal</p>
+                    <p className="big-description white">
+                      Tushar Kandiyal
+                    </p>
 
-                    <p className="description grey">Founder, Odhira</p>
+                    <p className="description grey">
+                      Founder, Odhira
+                    </p>
                   </div>
 
                   <p className="description white">
-                    StackCraft brought the Odhira brand online with an elegant,
-                    modern e-commerce website. His expertise, attention to
-                    detail, and professionalism made the entire development
-                    process smooth.
+                    StackCraft brought the Odhira brand
+                    online with an elegant, modern
+                    e-commerce website. His expertise,
+                    attention to detail, and
+                    professionalism made the entire
+                    development process smooth.
                   </p>
                 </div>
 
                 <div className="testimonials-item-grid" />
               </div>
 
+              {/* CTA */}
               <div className="testimonials-item testimonials-item-last">
                 <div className="testimonials-item-content testimonials-item-content-last">
                   <div className="testimonials-item-last-top">
@@ -244,19 +299,25 @@ export const SectionTestimonials = () => {
                   </div>
 
                   <p className="small-subheadline white">
-                    Let&apos;s build your next digital product.
+                    Let&apos;s build your next digital
+                    product.
                   </p>
 
                   <div className="contact-button-wrapper">
-                    <button className="contact-button-white">
+                    <button
+                      type="button"
+                      className="contact-button-white"
+                    >
                       <span>
                         <span className="contact-button-container-white">
-                          <span className="contact-button-primary-white"></span>
-                          <span className="contact-button-complimentary-white"></span>
+                          <span className="contact-button-primary-white" />
+                          <span className="contact-button-complimentary-white" />
                         </span>
                       </span>
 
-                      <span className="description black">Book a call</span>
+                      <span className="description black">
+                        Book a call
+                      </span>
                     </button>
                   </div>
                 </div>

@@ -4,15 +4,13 @@ import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import SplitText from "gsap/src/SplitText";
+import { ArrowUpRight } from "lucide-react";
+import NextImage from "next/image";
+import Link from "next/link";
+
 const Marquee = dynamic(() => import("react-fast-marquee"), {
   ssr: false,
 });
-import { ArrowUpRight } from "lucide-react";
-import { Canvas } from "@react-three/fiber";
-// import { Environment, Float, OrbitControls } from "@react-three/drei";
-import NextImage from "next/image";
-import { Item3 } from "./HeroModel/Coins";
-import Link from "next/link";
 
 const Hero3D = dynamic(() => import("./HeroModel/Hero3D"), {
   ssr: false,
@@ -23,19 +21,21 @@ gsap.registerPlugin(SplitText);
 
 export const SectionHero = () => {
   // REFS
-  const titleRef = useRef(null);
-  const descriptionRef = useRef(null);
-  const buttonRef1 = useRef(null);
-  const buttonRef2 = useRef(null);
-  const logosWrapperRef = useRef(null);
-  const cursor = useRef(null);
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const descriptionRef = useRef<HTMLParagraphElement | null>(null);
+  const buttonRef1 = useRef<HTMLButtonElement | null>(null);
+  const buttonRef2 = useRef<HTMLButtonElement | null>(null);
+  const logosWrapperRef = useRef<HTMLDivElement | null>(null);
+  const cursor = useRef<HTMLDivElement | null>(null);
 
-  const [showCursor, setShowCursor] = useState(false);
-  const [is3DReady, setIs3DReady] = useState(false);
+  const [showCursor, setShowCursor] = useState<boolean>(false);
+  const [is3DReady, setIs3DReady] = useState<boolean>(false);
 
   // GSAP ANIMATIONS
   useEffect(() => {
     const ctx = gsap.context(() => {
+      if (!titleRef.current) return;
+
       gsap.set(titleRef.current, {
         opacity: 1,
       });
@@ -97,75 +97,85 @@ export const SectionHero = () => {
     return () => ctx.revert();
   }, []);
 
+  // LAZY LOAD 3D
   useEffect(() => {
-  if (typeof window === "undefined") return;
+    const load3D = (): void => {
+      setIs3DReady(true);
+    };
 
-  const load3D = () => {
-    setIs3DReady(true);
-  };
+    if (
+      typeof window !== "undefined" &&
+      "requestIdleCallback" in window
+    ) {
+      const idleId = window.requestIdleCallback(load3D, {
+        timeout: 2000,
+      });
 
-  if ("requestIdleCallback" in window) {
-    const idleId = window.requestIdleCallback(load3D, {
-      timeout: 2000,
-    });
-
-    return () => window.cancelIdleCallback(idleId);
-  }
-
-  const timeoutId = window.setTimeout(load3D, 1500);
-
-  return () => window.clearTimeout(timeoutId);
-}, []);
-
-  // FOLLOWING CURSOR
- useEffect(() => {
-  if (window.matchMedia("(pointer: coarse)").matches) return;
-
-  let mouseX = 0;
-  let mouseY = 0;
-  let cursorX = 0;
-  let cursorY = 0;
-  let animationFrameId;
-  let isMoving = false;
-
-  const speed = 0.08;
-
-  const handleMouseMove = (event) => {
-    mouseX = event.clientX;
-    mouseY = event.clientY;
-    isMoving = true;
-  };
-
-  const animate = () => {
-    if (isMoving && cursor.current) {
-      cursorX += (mouseX - cursorX) * speed;
-      cursorY += (mouseY - cursorY) * speed;
-
-      cursor.current.style.transform =
-        `translate3d(${cursorX}px, ${cursorY}px, 0)`;
-
-      if (
-        Math.abs(mouseX - cursorX) < 0.1 &&
-        Math.abs(mouseY - cursorY) < 0.1
-      ) {
-        isMoving = false;
-      }
+      return () => {
+        window.cancelIdleCallback(idleId);
+      };
     }
 
+    const timeoutId = setTimeout(load3D, 1500);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, []);
+
+  // FOLLOWING CURSOR
+  useEffect(() => {
+    if (
+      typeof window === "undefined" ||
+      window.matchMedia("(pointer: coarse)").matches
+    ) {
+      return;
+    }
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
+    let animationFrameId: number;
+    let isMoving = false;
+
+    const speed = 0.08;
+
+    const handleMouseMove = (event: MouseEvent): void => {
+      mouseX = event.clientX;
+      mouseY = event.clientY;
+      isMoving = true;
+    };
+
+    const animate = (): void => {
+      if (isMoving && cursor.current) {
+        cursorX += (mouseX - cursorX) * speed;
+        cursorY += (mouseY - cursorY) * speed;
+
+        cursor.current.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+
+        if (
+          Math.abs(mouseX - cursorX) < 0.1 &&
+          Math.abs(mouseY - cursorY) < 0.1
+        ) {
+          isMoving = false;
+        }
+      }
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, {
+      passive: true,
+    });
+
     animationFrameId = requestAnimationFrame(animate);
-  };
 
-  window.addEventListener("mousemove", handleMouseMove, {
-    passive: true,
-  });
-
-  animationFrameId = requestAnimationFrame(animate);
-
-  return () => {
-    window.removeEventListener("mousemove", handleMouseMove);
-    cancelAnimationFrame(animationFrameId);
-  };
-}, []);
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
 
   // CURSOR VISIBILITY
   useEffect(() => {
@@ -179,13 +189,34 @@ export const SectionHero = () => {
     });
   }, [showCursor]);
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (): void => {
     setShowCursor(true);
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = (): void => {
     setShowCursor(false);
   };
+
+  const logos: string[] = [
+    "/logos/adobe.webp",
+    "/logos/webflow.svg",
+    "/logos/stripe.svg",
+    "/logos/adobe.webp",
+    "/logos/webflow.svg",
+    "/logos/stripe.svg",
+    "/logos/adobe.webp",
+    "/logos/webflow.svg",
+    "/logos/stripe.svg",
+    "/logos/adobe.webp",
+    "/logos/webflow.svg",
+    "/logos/stripe.svg",
+    "/logos/adobe.webp",
+    "/logos/webflow.svg",
+    "/logos/stripe.svg",
+    "/logos/adobe.webp",
+    "/logos/webflow.svg",
+    "/logos/stripe.svg",
+  ];
 
   return (
     <section className="hero">
@@ -199,7 +230,10 @@ export const SectionHero = () => {
               <div className="hero-titlebox">
                 <div className="hero-titlebox-gradient" />
 
-                <h1 className="headline hero-headline white" ref={titleRef}>
+                <h1
+                  className="headline hero-headline white"
+                  ref={titleRef}
+                >
                   We Build <br /> Digital Experiences That Grow Businesses
                 </h1>
               </div>
@@ -215,6 +249,7 @@ export const SectionHero = () => {
 
             <div className="hero-buttons-row">
               <button
+                type="button"
                 className="button button-transparent-border opacity-blur"
                 ref={buttonRef1}
               >
@@ -222,7 +257,10 @@ export const SectionHero = () => {
                   <span className="small-description">View Work</span>
 
                   <span className="small-description">
-                    <Link className="button-link no-underline" href="/works">
+                    <Link
+                      className="button-link no-underline"
+                      href="/works"
+                    >
                       View Work
                     </Link>
                   </span>
@@ -234,6 +272,7 @@ export const SectionHero = () => {
               </button>
 
               <button
+                type="button"
                 className="button button-transparent-border opacity-blur"
                 ref={buttonRef2}
               >
@@ -241,7 +280,10 @@ export const SectionHero = () => {
                   <span className="small-description">Get In Touch</span>
 
                   <span className="small-description">
-                    <Link className="button-link no-underline" href="/contact">
+                    <Link
+                      className="button-link no-underline"
+                      href="/contact"
+                    >
                       Get In Touch
                     </Link>
                   </span>
@@ -259,39 +301,25 @@ export const SectionHero = () => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-              {is3DReady && <Hero3D />}
-
+            {is3DReady && <Hero3D />}
           </div>
         </div>
 
-        <div className="hero-content-bottom opacity-blur" ref={logosWrapperRef}>
+        <div
+          className="hero-content-bottom opacity-blur"
+          ref={logosWrapperRef}
+        >
           <Marquee
             className="hero-content-bottom-row"
             gradient
             gradientColor="#010101"
             gradientWidth={250}
           >
-            {[
-              "/logos/adobe.webp",
-              "/logos/webflow.svg",
-              "/logos/stripe.svg",
-              "/logos/adobe.webp",
-              "/logos/webflow.svg",
-              "/logos/stripe.svg",
-              "/logos/adobe.webp",
-              "/logos/webflow.svg",
-              "/logos/stripe.svg",
-              "/logos/adobe.webp",
-              "/logos/webflow.svg",
-              "/logos/stripe.svg",
-              "/logos/adobe.webp",
-              "/logos/webflow.svg",
-              "/logos/stripe.svg",
-              "/logos/adobe.webp",
-              "/logos/webflow.svg",
-              "/logos/stripe.svg",
-            ].map((src, i) => (
-              <div className="hero-content-bottom-item" key={i}>
+            {logos.map((src, i) => (
+              <div
+                className="hero-content-bottom-item"
+                key={`${src}-${i}`}
+              >
                 <NextImage
                   width={100}
                   height={100}

@@ -1,5 +1,5 @@
+"use client";
 
-/* eslint-disable react/jsx-key */
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import CustomEase from "gsap/CustomEase";
@@ -12,15 +12,15 @@ gsap.registerPlugin(SplitText, ScrollTrigger, CustomEase);
 const customEase = CustomEase.create("customEase", ".4,0,.1,1");
 
 export const SectionServices = () => {
-  const subheadlineBoxRef = useRef(null);
-  const titleRef = useRef(null);
-  const descriptionRef = useRef(null);
-  const buttonRef = useRef(null);
-  const overlayRef = useRef(null);
-  const overlayWidgetRef = useRef(null);
-  const overlayWidgetButtonRef = useRef(null);
+  const subheadlineBoxRef = useRef<HTMLDivElement | null>(null);
+  const titleRef = useRef<HTMLParagraphElement | null>(null);
+  const descriptionRef = useRef<HTMLParagraphElement | null>(null);
+  const buttonRef = useRef<HTMLDivElement | null>(null);
+  const overlayRef = useRef<HTMLDivElement | null>(null);
+  const overlayWidgetRef = useRef<HTMLDivElement | null>(null);
+  const overlayWidgetButtonRef = useRef<HTMLDivElement | null>(null);
 
-  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+  const [isOverlayVisible, setIsOverlayVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -37,56 +37,60 @@ export const SectionServices = () => {
       });
 
       // Headline text animation
-      const titleSplit = new SplitText(titleRef.current, {
-        type: "words",
-      });
+      if (titleRef.current) {
+        const titleSplit = new SplitText(titleRef.current, {
+          type: "words",
+        });
 
-      gsap.fromTo(
-        titleSplit.words,
-        {
-          "will-change": "opacity, transform",
-          filter: "blur(8px)",
-          opacity: 0,
-          yPercent: 100,
-        },
-        {
-          opacity: 1,
-          filter: "blur(0px)",
-          yPercent: 0,
-          stagger: 0.085,
-          duration: 1,
-          ease: "power2",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 95%",
+        gsap.fromTo(
+          titleSplit.words,
+          {
+            willChange: "opacity, transform",
+            filter: "blur(8px)",
+            opacity: 0,
+            yPercent: 100,
           },
-        },
-      );
+          {
+            opacity: 1,
+            filter: "blur(0px)",
+            yPercent: 0,
+            stagger: 0.085,
+            duration: 1,
+            ease: "power2",
+            scrollTrigger: {
+              trigger: titleRef.current,
+              start: "top 95%",
+            },
+          },
+        );
+      }
 
       // Description text animation
-      const descriptionSplit = new SplitText(descriptionRef.current, {
-        type: "words",
-      });
+      if (descriptionRef.current) {
+        const descriptionSplit = new SplitText(descriptionRef.current, {
+          type: "words",
+        });
 
-      gsap.fromTo(
-        descriptionSplit.words,
-        {
-          filter: "blur(8px)",
-          opacity: 0,
-          skewX: 0,
-        },
-        {
-          opacity: 1,
-          filter: "blur(0px)",
-          skewX: 0,
-          stagger: 0.025,
-          ease: "sine",
-          scrollTrigger: {
-            trigger: descriptionRef.current,
-            start: "top 95%",
+        gsap.fromTo(
+          descriptionSplit.words,
+          {
+            filter: "blur(8px)",
+            opacity: 0,
+            skewX: 0,
           },
-        },
-      );
+          {
+            opacity: 1,
+            filter: "blur(0px)",
+            skewX: 0,
+            stagger: 0.025,
+            ease: "sine",
+            scrollTrigger: {
+              trigger: descriptionRef.current,
+              start: "top 95%",
+            },
+          },
+        );
+      }
 
       // Button animation
       gsap.to(buttonRef.current, {
@@ -121,15 +125,9 @@ export const SectionServices = () => {
       script.async = true;
       document.body.appendChild(script);
     }
-
-    return () => {
-      // Do not remove the shared external script here.
-      // Removing it can cause unnecessary reloads when the component
-      // mounts again during client-side navigation.
-    };
   }, []);
 
-  const toggleOverlay = () => {
+  const toggleOverlay = (): void => {
     if (!isOverlayVisible) {
       gsap.to(overlayRef.current, {
         display: "flex",
@@ -203,7 +201,11 @@ export const SectionServices = () => {
         className="calendly-overlay"
         ref={overlayRef}
         style={{ display: "none", opacity: 0 }}
-        onClick={toggleOverlay}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) {
+            toggleOverlay();
+          }
+        }}
       >
         <div
           className="calendly-overlay-widget"
@@ -234,6 +236,7 @@ export const SectionServices = () => {
             ref={subheadlineBoxRef}
           >
             <Zap className="subheadline-box-icon" />
+
             <p className="small-description grey">
               Our Services
             </p>
@@ -288,7 +291,7 @@ export const SectionServices = () => {
           <video
             src="/videos/serviceshighquality.mp4"
             className="services-content-video"
-            autoPlay="autoplay"
+            autoPlay
             muted
             playsInline
             data-wf-ignore="true"

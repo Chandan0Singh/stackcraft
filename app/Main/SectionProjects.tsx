@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -6,22 +5,25 @@ import gsap from "gsap";
 import SplitText from "gsap/src/SplitText";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { Star } from "lucide-react";
-import useEmblaCarousel from "embla-carousel-react";
+import useEmblaCarousel, {
+  type UseEmblaCarouselType,
+} from "embla-carousel-react";
 import { DotButton, useDotButton } from "./Carousel/EmblaCarouselDotButton";
 import Fade from "embla-carousel-fade";
 import NextImage from "next/image";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-export const SectionProjects = () => {
-  const subheadlineBoxRef = useRef(null);
-  const titleRef = useRef(null);
-  const descriptionRef = useRef(null);
-  const contentRef = useRef(null);
-  const imageContainerRef = useRef(null);
-  const cursor = useRef(null);
+type EmblaApi = UseEmblaCarouselType[1];
 
-  const [showCursor, setShowCursor] = useState(false);
+export const SectionProjects = () => {
+  const subheadlineBoxRef = useRef<HTMLDivElement | null>(null);
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const descriptionRef = useRef<HTMLParagraphElement | null>(null);
+  const imageContainerRef = useRef<HTMLDivElement | null>(null);
+  const cursorRef = useRef<HTMLDivElement | null>(null);
+
+  const [showCursor, setShowCursor] = useState<boolean>(false);
 
   // GSAP ANIMATIONS
   useEffect(() => {
@@ -39,54 +41,58 @@ export const SectionProjects = () => {
       });
 
       // Headline text animation
-      const titleSplit = new SplitText(titleRef.current, {
-        type: "words",
-      });
+      if (titleRef.current) {
+        const titleSplit = new SplitText(titleRef.current, {
+          type: "words",
+        });
 
-      gsap.fromTo(
-        titleSplit.words,
-        {
-          "will-change": "opacity, transform",
-          filter: "blur(8px)",
-          opacity: 0,
-          yPercent: 50,
-        },
-        {
-          opacity: 1,
-          filter: "blur(0px)",
-          yPercent: 0,
-          stagger: 0.05,
-          duration: 0.75,
-          ease: "power2",
-          scrollTrigger: {
-            trigger: titleRef.current,
-            start: "top 95%",
+        gsap.fromTo(
+          titleSplit.words,
+          {
+            willChange: "opacity, transform",
+            filter: "blur(8px)",
+            opacity: 0,
+            yPercent: 50,
           },
-        },
-      );
+          {
+            opacity: 1,
+            filter: "blur(0px)",
+            yPercent: 0,
+            stagger: 0.05,
+            duration: 0.75,
+            ease: "power2",
+            scrollTrigger: {
+              trigger: titleRef.current,
+              start: "top 95%",
+            },
+          },
+        );
+      }
 
       // Description text animation
-      const descriptionSplit = new SplitText(descriptionRef.current, {
-        type: "words",
-      });
+      if (descriptionRef.current) {
+        const descriptionSplit = new SplitText(descriptionRef.current, {
+          type: "words",
+        });
 
-      gsap.fromTo(
-        descriptionSplit.words,
-        {
-          filter: "blur(8px)",
-          opacity: 0,
-        },
-        {
-          opacity: 1,
-          filter: "blur(0px)",
-          stagger: 0.025,
-          ease: "sine",
-          scrollTrigger: {
-            trigger: descriptionRef.current,
-            start: "top 95%",
+        gsap.fromTo(
+          descriptionSplit.words,
+          {
+            filter: "blur(8px)",
+            opacity: 0,
           },
-        },
-      );
+          {
+            opacity: 1,
+            filter: "blur(0px)",
+            stagger: 0.025,
+            ease: "sine",
+            scrollTrigger: {
+              trigger: descriptionRef.current,
+              start: "top 95%",
+            },
+          },
+        );
+      }
 
       // Image parallax effect
       gsap.fromTo(
@@ -112,7 +118,10 @@ export const SectionProjects = () => {
   }, []);
 
   // EMBLA CAROUSEL
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Fade()]);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { loop: true },
+    [Fade()],
+  );
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
     useDotButton(emblaApi);
@@ -127,23 +136,23 @@ export const SectionProjects = () => {
     let cursorY = 0;
 
     const speed = 0.05;
-    let animationFrameId = null;
+    let animationFrameId: number | null = null;
 
-    const handleMouseMove = (event) => {
+    const handleMouseMove = (event: MouseEvent): void => {
       mouseX = event.clientX;
       mouseY = event.clientY;
     };
 
-    const animate = () => {
+    const animate = (): void => {
       const distX = mouseX - cursorX;
       const distY = mouseY - cursorY;
 
       cursorX += distX * speed;
       cursorY += distY * speed;
 
-      if (cursor.current) {
-        cursor.current.style.left = `${cursorX}px`;
-        cursor.current.style.top = `${cursorY}px`;
+      if (cursorRef.current) {
+        cursorRef.current.style.left = `${cursorX}px`;
+        cursorRef.current.style.top = `${cursorY}px`;
       }
 
       animationFrameId = requestAnimationFrame(animate);
@@ -163,9 +172,9 @@ export const SectionProjects = () => {
   }, []);
 
   useEffect(() => {
-    if (!cursor.current) return;
+    if (!cursorRef.current) return;
 
-    gsap.to(cursor.current, {
+    gsap.to(cursorRef.current, {
       autoAlpha: showCursor ? 1 : 0,
       scale: showCursor ? 1 : 0,
       duration: 0.3,
@@ -173,34 +182,45 @@ export const SectionProjects = () => {
     });
   }, [showCursor]);
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (): void => {
     setShowCursor(true);
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = (): void => {
     setShowCursor(false);
   };
 
   return (
     <section className="projects projects-desktop">
       <div className="textbox">
-        <div className="subheadline-box opacity-blur" ref={subheadlineBoxRef}>
+        <div
+          className="subheadline-box opacity-blur"
+          ref={subheadlineBoxRef}
+        >
           <Star className="subheadline-box-icon" />
 
-          <p className="small-description grey">Featured Works</p>
+          <p className="small-description grey">
+            Featured Works
+          </p>
         </div>
 
         <div className="titlebox">
           <div className="titlebox-big-gradient" />
 
-          <h2 className="subheadline white" ref={titleRef}>
+          <h2
+            className="subheadline white"
+            ref={titleRef}
+          >
             Digital Products Built
             <br className="hide-on-mobile" />
             To Make An Impact
           </h2>
         </div>
 
-        <p className="description grey" ref={descriptionRef}>
+        <p
+          className="description grey"
+          ref={descriptionRef}
+        >
           From business websites to scalable web applications,
           <br className="hide-on-desktop" />
           we turn ideas into products people love to use.
@@ -209,7 +229,6 @@ export const SectionProjects = () => {
 
       <div
         className="projects-content"
-        ref={contentRef}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={onNextButtonClick}
@@ -217,8 +236,14 @@ export const SectionProjects = () => {
         <div className="projects-gradient-top" />
         <div className="projects-gradient-bottom" />
 
-        <div className="project-content-wrapper" ref={imageContainerRef}>
-          <div className="projects-carousel" ref={emblaRef}>
+        <div
+          className="project-content-wrapper"
+          ref={imageContainerRef}
+        >
+          <div
+            className="projects-carousel"
+            ref={emblaRef}
+          >
             <div className="projects-carousel-row">
               <div className="projects-carousel-item">
                 <NextImage
@@ -288,37 +313,48 @@ export const SectionProjects = () => {
             <DotButton
               key={index}
               onClick={() => onDotButtonClick(index)}
-              className={"embla__dot".concat(
-                index === selectedIndex ? " embla__dot--selected" : "",
-              )}
+              className={
+                "embla__dot".concat(
+                  index === selectedIndex
+                    ? " embla__dot--selected"
+                    : "",
+                )
+              }
             />
           ))}
         </div>
       </div>
 
-      <div className="hover-cursor" ref={cursor}>
-        <p className="small-description white">See More</p>
+      <div
+        className="hover-cursor"
+        ref={cursorRef}
+      >
+        <p className="small-description white">
+          See More
+        </p>
       </div>
     </section>
   );
 };
 
 /*
- * Kept local to avoid changing the existing carousel behavior.
- * Replace this with the existing usePrevNextButtons hook
- * from EmblaCarouselArrowButtons once that hook is imported.
+ * Local safe version of the Embla next-button hook.
+ * Keeps the existing carousel behavior without
+ * requiring the ArrowButtons hook.
  */
-const usePrevNextButtonsSafe = (emblaApi) => {
-  const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
+const usePrevNextButtonsSafe = (emblaApi: EmblaApi) => {
+  const [nextBtnDisabled, setNextBtnDisabled] =
+    useState<boolean>(true);
 
   useEffect(() => {
     if (!emblaApi) return;
 
-    const update = () => {
+    const update = (): void => {
       setNextBtnDisabled(!emblaApi.canScrollNext());
     };
 
     update();
+
     emblaApi.on("select", update);
     emblaApi.on("reInit", update);
 
@@ -330,6 +366,8 @@ const usePrevNextButtonsSafe = (emblaApi) => {
 
   return {
     nextBtnDisabled,
-    onNextButtonClick: () => emblaApi?.scrollNext(),
+    onNextButtonClick: (): void => {
+      emblaApi?.scrollNext();
+    },
   };
 };

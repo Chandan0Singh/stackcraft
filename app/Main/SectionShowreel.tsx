@@ -1,19 +1,19 @@
-/* eslint-disable react/jsx-key */
+"use client";
+
 import { useEffect, useRef } from "react";
 import NextImage from "next/image";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { Play } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const SectionShowreel = () => {
-  const videoRef = useRef(null);
-  const playButtonRef = useRef(null);
-  const showreelItemRef1 = useRef(null);
-  const showreelItemRef2 = useRef(null);
-  const showreelItemRef3 = useRef(null);
-  const showreelItemRef4 = useRef(null);
+  const videoRef = useRef<HTMLDivElement | null>(null);
+  const playButtonRef = useRef<HTMLDivElement | null>(null);
+  const showreelItemRef1 = useRef<HTMLDivElement | null>(null);
+  const showreelItemRef2 = useRef<HTMLDivElement | null>(null);
+  const showreelItemRef3 = useRef<HTMLDivElement | null>(null);
+  const showreelItemRef4 = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -31,7 +31,12 @@ export const SectionShowreel = () => {
         },
       });
 
-      const animateItem = (element, delay) => {
+      const animateItem = (
+        element: HTMLDivElement | null,
+        delay: number,
+      ): void => {
+        if (!element) return;
+
         gsap.to(element, {
           delay,
           opacity: 1,
@@ -56,14 +61,14 @@ export const SectionShowreel = () => {
     let buttonX = 0;
     let buttonY = 0;
     const speed = 0.05;
-    let animationFrameId;
+    let animationFrameId: number;
 
-    const handleMouseMove = (event) => {
+    const handleMouseMove = (event: MouseEvent): void => {
       mouseX = (event.clientX / window.innerWidth) * 100 - 50;
       mouseY = (event.clientY / window.innerHeight) * 100 - 50;
     };
 
-    const animate = () => {
+    const animate = (): void => {
       const distX = mouseX - buttonX;
       const distY = mouseY - buttonY;
 
@@ -91,6 +96,7 @@ export const SectionShowreel = () => {
     <section className="showreel">
       <div className="showreel-content">
         <div className="showreel-content-container">
+          {/* Play button — kept commented as in the original */}
           {/* <div
             className="showreel-video-playbutton"
             ref={playButtonRef}
@@ -109,7 +115,7 @@ export const SectionShowreel = () => {
             <video
               src="/videos/ese.mp4"
               className="showreel-content-video"
-              autoPlay="autoplay"
+              autoPlay
               muted
               playsInline
               aria-label="StackCraft Studio digital design and development showreel"
