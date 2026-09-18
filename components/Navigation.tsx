@@ -118,6 +118,27 @@ export const Navigation = () => {
     setMobileDropdown(null);
   };
 
+  useEffect(() => {
+  if (!menuOpen) return;
+
+  const handleClickOutside = (event: MouseEvent) => {
+    const target = event.target as HTMLElement;
+
+    if (
+      !target.closest(".navigation-mobile") &&
+      !target.closest(".navigation-mobile-toggle")
+    ) {
+      closeMobileMenu();
+    }
+  };
+
+  document.addEventListener("click", handleClickOutside);
+
+  return () => {
+    document.removeEventListener("click", handleClickOutside);
+  };
+}, [menuOpen]);
+
   return (
     <header className="navigation-wrapper">
       <nav

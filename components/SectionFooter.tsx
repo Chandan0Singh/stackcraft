@@ -6,7 +6,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import SplitText from "gsap/src/SplitText";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { Instagram, Linkedin, Twitter } from "lucide-react";
+import { Instagram, Linkedin } from "lucide-react";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -205,7 +205,7 @@ return ( <footer className="footer"> <div className="footer-content">
 
     <div className="footer-socials" ref={bottomRef2}>
       <a
-        href="https://www.instagram.com/YOUR_USERNAME"
+        href="https://www.instagram.com/stackcraftstudio_"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="StackCraft Studio on Instagram"
@@ -218,20 +218,27 @@ return ( <footer className="footer"> <div className="footer-content">
       </a>
 
       <a
-        href="https://x.com/YOUR_USERNAME"
+        href="https://x.com/StackCraft_vc13"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="StackCraft Studio on X"
       >
-        <Twitter
-          strokeWidth={1.25}
-          className="footer-socials-icon"
-          aria-hidden="true"
-        />
+        <svg
+  className="footer-socials-icon"
+  viewBox="0 0 24 24"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+>
+  <path
+    d="M18.244 2H21.5L14.385 10.13L22.75 22H16.2L11.07 14.93L4.88 22H1.62L9.23 13.31L1.21 2H7.92L12.56 8.49L18.244 2ZM17.1 19.92H18.9L6.95 3.97H5.02L17.1 19.92Z"
+    fill="currentColor"
+  />
+</svg>
       </a>
 
       <a
-        href="https://www.linkedin.com/company/YOUR_COMPANY"
+        href="https://www.linkedin.com/in/stack-craft-studio-983855380/"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="StackCraft Studio on LinkedIn"

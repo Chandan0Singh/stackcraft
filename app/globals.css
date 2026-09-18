@@ -3214,12 +3214,12 @@ section {
   }
 
   .big-description {
-    font-size: 3.5vw;
+    font-size: 4vw;
   }
 
   .description,
   .small-description {
-    font-size: 3.25vw;
+    font-size: 4vw;
   }
 
   .navigation-inside-right-mobile {
@@ -3463,6 +3463,9 @@ section {
 /* =========================================================
    LEGAL PAGES
    ========================================================= */
+/* =========================================================
+   LEGAL PAGES
+   ========================================================= */
 
 .legal-page {
   width: 100%;
@@ -3475,8 +3478,16 @@ section {
 
   background-color: #07070a;
 
+  /*
+   * Keep the same horizontal spacing as the rest
+   * of the site.
+   */
   padding: 18vh 10vw 10vh;
 }
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
 
 .legal-background-gradient {
   position: absolute;
@@ -3514,16 +3525,30 @@ section {
   opacity: 0.5;
 }
 
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
 .legal-container {
   position: relative;
 
   z-index: 1;
 
+  /*
+   * This is the important change.
+   *
+   * The outer container follows the page grid instead
+   * of creating its own 760px-centered coordinate system.
+   */
   width: 100%;
-  max-width: 760px;
+  max-width: 1200px;
 
   margin: 0 auto;
 }
+
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 .legal-header {
   display: flex;
@@ -3569,13 +3594,28 @@ section {
   margin: 0;
 }
 
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
 .legal-content {
   display: flex;
 
   flex-direction: column;
 
+  /*
+   * Keep the legal copy readable while the outer
+   * container stays aligned with the site grid.
+   */
+  width: 100%;
+  max-width: 760px;
+
   gap: 2vh;
 }
+
+/* =========================================================
+   LEGAL SECTION
+   ========================================================= */
 
 .legal-section {
   padding: 2.5vh 0;
@@ -3619,6 +3659,24 @@ section {
   margin: 0 0 1vh;
 }
 
+.legal-section p:last-child {
+  margin-bottom: 0;
+}
+
+.legal-section a {
+  color: inherit;
+
+  text-decoration: underline;
+
+  text-underline-offset: 3px;
+
+  transition: opacity 0.3s ease;
+}
+
+.legal-section a:hover {
+  opacity: 0.7;
+}
+
 /* =========================================================
    LEGAL MOBILE
    ========================================================= */
@@ -3627,6 +3685,10 @@ section {
   .legal-page {
     padding: 24vw 5vw 15vw;
   }
+
+  /* =======================================================
+     BACKGROUND
+     ======================================================= */
 
   .legal-gradient-one {
     width: 60vw;
@@ -3642,6 +3704,21 @@ section {
 
     left: -20vw;
   }
+
+  /* =======================================================
+     CONTAINER
+     ======================================================= */
+
+  .legal-container {
+    width: 100%;
+    max-width: none;
+
+    margin: 0;
+  }
+
+  /* =======================================================
+     HEADER
+     ======================================================= */
 
   .legal-header {
     gap: 2.5vw;
@@ -3661,7 +3738,15 @@ section {
     font-size: 3.25vw;
   }
 
+  /* =======================================================
+     CONTENT
+     ======================================================= */
+
   .legal-content {
+    width: 100%;
+
+    max-width: none;
+
     gap: 4vw;
   }
 
@@ -3671,6 +3756,8 @@ section {
 
   .legal-section h2 {
     font-size: 4.5vw;
+
+    margin-bottom: 2vw;
   }
 
   .legal-section h3 {
@@ -3679,7 +3766,9 @@ section {
 
   .legal-section p {
     font-size: 3.25vw;
+
     line-height: 150%;
+
+    margin-bottom: 2vw;
   }
 }
-

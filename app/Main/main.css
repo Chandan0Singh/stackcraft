@@ -1754,26 +1754,29 @@ MOBILE
   .showreel-content-row {
     width: 100%;
     height: fit-content;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5vw;
+    /* display: flex; */
+    /* justify-content: space-between; */
     position: relative;
     gap: 2.5vw;
   }
 
   .showreel-content-row-item {
-    width: 20.625vw;
-    height: 20.625vw;
+    width: 28.625vw;
+    height: 28.625vw;
     border-radius: 10px;
   }
 
   .showreel-content-row-item-grid {
-    width: 20.625vw;
-    height: 20.625vw;
+    width: 28.625vw;
+    height: 28.625vw;
   }
 
   .showreel-content-row-item-image {
     width: auto;
-    height: 7.5vw;
+    height: 53%;
   }
 
   /* SERVICES */
@@ -1806,13 +1809,14 @@ MOBILE
   }
 
   .services-content-video {
-    width: 100vw !important;
-    /* margin-left: -25%; */
+    width: 125vw !important;
+    margin-left: -20%;
     height: auto;
     object-fit: contain;
     object-position: center;
     position: relative;
     z-index: 0;
+    max-width: 130vw;
   }
 
   /* PROJECTS */
@@ -2253,18 +2257,20 @@ SMALL MOBILE
   }
 
   .showreel-content-row {
-    gap: 2vw;
+    display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5vw;
   }
 
   .showreel-content-row-item {
-    width: 20vw;
-    height: 20vw;
+    width: 45vw;
+    height: 45vw;
     border-radius: 8px;
   }
 
   .showreel-content-row-item-grid {
-    width: 20vw;
-    height: 20vw;
+    width: 45vw;
+    height: 45vw;
   }
 
   /* SERVICES */
@@ -2378,13 +2384,13 @@ VERY SMALL PHONES
   }
 
   .showreel-content-row-item {
-    width: 20.5vw;
-    height: 20.5vw;
+    width: 40vw;
+    height: 40vw;
   }
 
   .showreel-content-row-item-grid {
-    width: 20.5vw;
-    height: 20.5vw;
+    width: 40vw;
+    height: 40vw;
   }
 
   .techstack-item-card {
@@ -2426,7 +2432,7 @@ VERY SMALL PHONES
   }
 
   .showreel-content-row {
-    gap: 1vw;
+    gap: 6vw;
   }
 
   .techstack-item-big,
