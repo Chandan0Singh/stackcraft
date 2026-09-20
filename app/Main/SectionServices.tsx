@@ -11,20 +11,30 @@ gsap.registerPlugin(SplitText, ScrollTrigger, CustomEase);
 
 const customEase = CustomEase.create("customEase", ".4,0,.1,1");
 
+const CALENDLY_SCRIPT =
+  "https://assets.calendly.com/assets/external/widget.js";
+
+const CALENDLY_URL =
+  "https://calendly.com/StackCraft Studio/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=9b92a2";
+
 export const SectionServices = () => {
   const subheadlineBoxRef = useRef<HTMLDivElement | null>(null);
   const titleRef = useRef<HTMLParagraphElement | null>(null);
   const descriptionRef = useRef<HTMLParagraphElement | null>(null);
   const buttonRef = useRef<HTMLDivElement | null>(null);
+
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const overlayWidgetRef = useRef<HTMLDivElement | null>(null);
   const overlayWidgetButtonRef = useRef<HTMLDivElement | null>(null);
 
-  const [isOverlayVisible, setIsOverlayVisible] = useState<boolean>(false);
+  const [isOverlayVisible, setIsOverlayVisible] =
+    useState<boolean>(false);
+
+  const [isCalendlyLoaded, setIsCalendlyLoaded] =
+    useState<boolean>(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Subheadline box animation
       gsap.to(subheadlineBoxRef.current, {
         opacity: 1,
         filter: "blur(0px)",
@@ -36,7 +46,6 @@ export const SectionServices = () => {
         },
       });
 
-      // Headline text animation
       if (titleRef.current) {
         const titleSplit = new SplitText(titleRef.current, {
           type: "words",
@@ -65,23 +74,23 @@ export const SectionServices = () => {
         );
       }
 
-      // Description text animation
       if (descriptionRef.current) {
-        const descriptionSplit = new SplitText(descriptionRef.current, {
-          type: "words",
-        });
+        const descriptionSplit = new SplitText(
+          descriptionRef.current,
+          {
+            type: "words",
+          },
+        );
 
         gsap.fromTo(
           descriptionSplit.words,
           {
             filter: "blur(8px)",
             opacity: 0,
-            skewX: 0,
           },
           {
             opacity: 1,
             filter: "blur(0px)",
-            skewX: 0,
             stagger: 0.025,
             ease: "sine",
             scrollTrigger: {
@@ -92,7 +101,6 @@ export const SectionServices = () => {
         );
       }
 
-      // Button animation
       gsap.to(buttonRef.current, {
         opacity: 1,
         filter: "blur(0px)",
@@ -110,30 +118,55 @@ export const SectionServices = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const scriptSrc =
-      "https://assets.calendly.com/assets/external/widget.js";
+  // ---------------------------------------
+  // Load Calendly only when needed
+  // ---------------------------------------
+  const loadCalendly = () => {
+    return new Promise<void>((resolve) => {
+      // Already loaded
+      if (
+        document.querySelector(
+          `script[src="${CALENDLY_SCRIPT}"]`,
+        )
+      ) {
+        setIsCalendlyLoaded(true);
+        resolve();
+        return;
+      }
 
-    // Avoid adding duplicate Calendly scripts.
-    const existingScript = document.querySelector(
-      `script[src="${scriptSrc}"]`,
-    );
-
-    if (!existingScript) {
       const script = document.createElement("script");
-      script.src = scriptSrc;
-      script.async = true;
-      document.body.appendChild(script);
-    }
-  }, []);
 
-  const toggleOverlay = (): void => {
+      script.src = CALENDLY_SCRIPT;
+      script.async = true;
+
+      script.onload = () => {
+        setIsCalendlyLoaded(true);
+        resolve();
+      };
+
+      document.body.appendChild(script);
+    });
+  };
+
+  const toggleOverlay = async (): Promise<void> => {
     if (!isOverlayVisible) {
-      gsap.to(overlayRef.current, {
+      setIsOverlayVisible(true);
+
+      // Open overlay immediately
+      gsap.set(overlayRef.current, {
         display: "flex",
-        opacity: 1,
-        duration: 0.3,
       });
+
+      gsap.fromTo(
+        overlayRef.current,
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          duration: 0.3,
+        },
+      );
 
       gsap.fromTo(
         overlayWidgetRef.current,
@@ -164,6 +197,9 @@ export const SectionServices = () => {
           ease: customEase,
         },
       );
+
+      // Load Calendly ONLY after user clicks
+      await loadCalendly();
     } else {
       gsap.to(overlayWidgetRef.current, {
         yPercent: 10,
@@ -190,17 +226,24 @@ export const SectionServices = () => {
           }
         },
       });
-    }
 
-    setIsOverlayVisible((visible) => !visible);
+      setIsOverlayVisible(false);
+    }
   };
 
   return (
     <section className="services">
+      {/* ---------------------------------------
+          Calendly Overlay
+      --------------------------------------- */}
+
       <div
         className="calendly-overlay"
         ref={overlayRef}
-        style={{ display: "none", opacity: 0 }}
+        style={{
+          display: "none",
+          opacity: 0,
+        }}
         onClick={(event) => {
           if (event.target === event.currentTarget) {
             toggleOverlay();
@@ -212,12 +255,20 @@ export const SectionServices = () => {
           ref={overlayWidgetRef}
         >
           <div className="calendly-overlay-widget-border" />
+
           <div className="calendly-overlay-widget-scrollbar-hider" />
 
-          <div
-            className="calendly-inline-widget"
-            data-url="https://calendly.com/StackCraft Studio/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=9b92a2"
-          />
+          {/* Calendly is NOT rendered until user clicks */}
+          {isCalendlyLoaded && (
+            <div
+              className="calendly-inline-widget"
+              data-url={CALENDLY_URL}
+              style={{
+                minWidth: "320px",
+                height: "700px",
+              }}
+            />
+          )}
         </div>
 
         <div
@@ -228,6 +279,10 @@ export const SectionServices = () => {
           <X className="calendly-overlay-widget-button-icon" />
         </div>
       </div>
+
+      {/* ---------------------------------------
+          Services Content
+      --------------------------------------- */}
 
       <div className="services-content">
         <div className="textbox">
@@ -267,7 +322,10 @@ export const SectionServices = () => {
             ref={buttonRef}
             onClick={toggleOverlay}
           >
-            <button type="button" className="contact-button-white">
+            <button
+              type="button"
+              className="contact-button-white"
+            >
               <span>
                 <span className="contact-button-container-white">
                   <span className="contact-button-primary-white" />
@@ -295,7 +353,7 @@ export const SectionServices = () => {
             muted
             playsInline
             data-wf-ignore="true"
-            preload="auto"
+            preload="metadata"
             loop
           />
         </div>
