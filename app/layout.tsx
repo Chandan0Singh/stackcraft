@@ -8,8 +8,9 @@ import { Navigation } from "../components/Navigation";
 import { SectionFooter } from "../components/SectionFooter";
 
 export const metadata: Metadata = {
-  title:
-    "StackCraft | Cutting-Edge Website Design & Custom Digital Solutions",
+  metadataBase: new URL("https://www.stackcraftstudio.com"),
+
+  title: "StackCraft | Cutting-Edge Website Design & Custom Digital Solutions",
 
   description:
     "Harnessing Cutting-Edge Visualization Technology to Transform Vision into Tailored Digital Reality.",
@@ -54,9 +55,7 @@ type RootLayoutProps = {
   children: ReactNode;
 };
 
-export default function RootLayout({
-  children,
-}: RootLayoutProps) {
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body>
@@ -71,4 +70,3 @@ export default function RootLayout({
     </html>
   );
 }
-

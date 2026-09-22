@@ -1,58 +1,214 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { ReactLenis } from "lenis/react";
 
 import { SectionHero } from "./SectionHero";
-import { SectionShowreel } from "./SectionShowreel";
-import { SectionTestimonials } from "./SectionTestimonials";
-import { SectionTechstack } from "./SectionTechstack";
-import { SectionFlower } from "./SectionFlower";
-import { SectionServices } from "./SectionServices";
-import { SectionProjects } from "./SectionProjects";
-import { SectionProjectsMobile } from "./SectionProjectsMobile";
-import { SectionKPI } from "./SectionKPI";
+import { LazySection } from "./LazySection";
 
 import "./main.css";
 
+/* =========================================================
+   DYNAMIC SECTIONS
+   ========================================================= */
+
+const SectionShowreel = dynamic(
+  () =>
+    import("./SectionShowreel").then(
+      (mod) => mod.SectionShowreel
+    ),
+  {
+    loading: () => null,
+  }
+);
+
+const SectionServices = dynamic(
+  () =>
+    import("./SectionServices").then(
+      (mod) => mod.SectionServices
+    ),
+  {
+    loading: () => null,
+  }
+);
+
+const SectionProjects = dynamic(
+  () =>
+    import("./SectionProjects").then(
+      (mod) => mod.SectionProjects
+    ),
+  {
+    loading: () => null,
+  }
+);
+
+const SectionProjectsMobile = dynamic(
+  () =>
+    import("./SectionProjectsMobile").then(
+      (mod) => mod.SectionProjectsMobile
+    ),
+  {
+    loading: () => null,
+  }
+);
+
+const SectionTechstack = dynamic(
+  () =>
+    import("./SectionTechstack").then(
+      (mod) => mod.SectionTechstack
+    ),
+  {
+    loading: () => null,
+  }
+);
+
+const SectionTestimonials = dynamic(
+  () =>
+    import("./SectionTestimonials").then(
+      (mod) => mod.SectionTestimonials
+    ),
+  {
+    loading: () => null,
+  }
+);
+
+const SectionKPI = dynamic(
+  () =>
+    import("./SectionKPI").then(
+      (mod) => mod.SectionKPI
+    ),
+  {
+    loading: () => null,
+  }
+);
+
+// const SectionFlower = dynamic(
+//   () =>
+//     import("./SectionFlower").then(
+//       (mod) => mod.SectionFlower
+//     ),
+//   {
+//     ssr: false,
+//     loading: () => null,
+//   }
+// );
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
 const Main = () => {
-    return (
-        <ReactLenis root>
-            <SectionHero />
+  return (
+    <ReactLenis root>
 
-            <div className="normal-padding" />
+      {/* =================================================
+          HERO — LOAD IMMEDIATELY
+          ================================================= */}
 
-            <SectionShowreel />
+      <SectionHero />
 
-            <div className="border-padding">
-                <div className="section-border" />
-            </div>
 
-            <SectionServices />
+      {/* =================================================
+          SHOWREEL
+          Starts loading when user gets ~700px away
+          ================================================= */}
 
-            <div className="normal-padding" />
+      <LazySection rootMargin="700px">
+        <SectionShowreel />
+      </LazySection>
 
-            <SectionProjects />
-            <SectionProjectsMobile />
 
-            <div className="normal-padding" />
+      {/* =================================================
+          BORDER
+          ================================================= */}
 
-            <SectionTechstack />
+      <div className="border-padding">
+        <div className="section-border" />
+      </div>
 
-            <div className="normal-padding" />
 
-            <SectionTestimonials />
+      {/* =================================================
+          SERVICES
+          ================================================= */}
 
-            <div className="normal-padding" />
+      <LazySection rootMargin="700px">
+        <SectionServices />
+      </LazySection>
 
-            <SectionKPI />
 
-            <div className="normal-padding" />
+      <div className="normal-padding" />
 
-            <SectionFlower />
 
-            <div className="normal-padding" />
-        </ReactLenis>
-    );
+      {/* =================================================
+          PROJECTS
+          ================================================= */}
+
+      <LazySection rootMargin="700px">
+        <SectionProjects />
+      </LazySection>
+
+
+      {/* =================================================
+          PROJECTS MOBILE
+          ================================================= */}
+
+      <LazySection rootMargin="700px">
+        <SectionProjectsMobile />
+      </LazySection>
+
+
+      <div className="normal-padding" />
+
+
+      {/* =================================================
+          TECH STACK
+          ================================================= */}
+
+      <LazySection rootMargin="700px">
+        <SectionTechstack />
+      </LazySection>
+
+
+      <div className="normal-padding" />
+
+
+      {/* =================================================
+          TESTIMONIALS
+          ================================================= */}
+
+      <LazySection rootMargin="700px">
+        <SectionTestimonials />
+      </LazySection>
+
+
+      <div className="normal-padding" />
+
+
+      {/* =================================================
+          KPI
+          ================================================= */}
+
+      <LazySection rootMargin="700px">
+        <SectionKPI />
+      </LazySection>
+
+
+      <div className="normal-padding" />
+
+
+      {/* =================================================
+          FLOWER / THREE.JS
+          ================================================= */}
+
+      {/* <LazySection rootMargin="1000px">
+        <SectionFlower />
+      </LazySection> */}
+
+
+      <div className="normal-padding" />
+
+    </ReactLenis>
+  );
 };
 
 export default Main;

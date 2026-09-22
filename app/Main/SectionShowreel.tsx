@@ -95,17 +95,7 @@ export const SectionShowreel = () => {
   return (
     <section className="showreel">
       <div className="showreel-content">
-        <div className="showreel-content-container">
-          {/* Play button — kept commented as in the original */}
-          {/* <div
-            className="showreel-video-playbutton"
-            ref={playButtonRef}
-          >
-            <Play
-              fill="#010101"
-              className="showreel-video-playbutton-icon"
-            />
-          </div> */}
+        {/* <div className="showreel-content-container">
 
           <div ref={videoRef} className="showreel-content-videobox">
             <div className="background">
@@ -123,7 +113,7 @@ export const SectionShowreel = () => {
               loop
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="showreel-content-row">
           <div

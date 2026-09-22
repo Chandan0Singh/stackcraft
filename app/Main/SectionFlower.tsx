@@ -54,9 +54,7 @@ export const SectionFlower = () => {
       function imageSequence(config: ImageSequenceConfig) {
         const playhead = { frame: 0 };
 
-        const canvas = document.querySelector<HTMLCanvasElement>(
-          config.canvas,
-        );
+        const canvas = document.querySelector<HTMLCanvasElement>(config.canvas);
 
         if (!canvas) return;
 
@@ -85,17 +83,55 @@ export const SectionFlower = () => {
           }
         };
 
-        images = config.urls.map((url, index) => {
-          const image = new Image();
+        // images = config.urls.map((url, index) => {
+        //   const image = new Image();
 
-          image.src = url;
+        //   image.src = url;
+
+        //   if (index === 0) {
+        //     image.onload = updateImage;
+        //   }
+
+        //   return image;
+        // });
+
+        images = config.urls.map(() => new Image());
+
+        const loadFrame = (index: number) => {
+          if (index < 0 || index >= config.urls.length) return;
+          if (images[index].src) return;
+
+          images[index].src = config.urls[index];
 
           if (index === 0) {
-            image.onload = updateImage;
+            images[index].onload = updateImage;
           }
+        };
 
-          return image;
-        });
+        // Load the first frame immediately
+        loadFrame(0);
+
+        // Then progressively load the remaining frames
+        const loadRemainingFrames = () => {
+          let index = 1;
+
+          const loadNext = () => {
+            if (index >= config.urls.length) return;
+
+            loadFrame(index);
+            index++;
+
+            requestAnimationFrame(loadNext);
+          };
+
+          requestAnimationFrame(loadNext);
+        };
+
+        if ("requestIdleCallback" in window) {
+          requestIdleCallback(loadRemainingFrames);
+        } else {
+          setTimeout(loadRemainingFrames, 100);
+        }
 
         gsap.to(playhead, {
           frame: images.length - 1,
