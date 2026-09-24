@@ -245,7 +245,7 @@ export const AboutPageSection = () => {
                   className="headline white"
                   ref={titleRef}
                 >
-                  Digital Product Studio for Web, E-Commerce & AI Solutions
+                  Digital Solutions Built Around Your Business
                 </h1>
               </div>
 
@@ -253,11 +253,7 @@ export const AboutPageSection = () => {
                 className="description grey opacity-blur"
                 ref={descriptionRef}
               >
-                StackCraft Studio is a digital product studio that helps
-                businesses build high-performance websites, web applications,
-                e-commerce platforms, and AI-powered digital products. We
-                combine strategy, design, development, and modern technology to
-                create digital experiences built for long-term growth.
+                StackCraft Studio helps businesses build, improve, and grow through web development, AI solutions, digital marketing, and technology-driven strategies. Whether you need one solution or a combination of services, we work around your specific business requirements.
               </p>
             </div>
 
@@ -310,11 +306,7 @@ export const AboutPageSection = () => {
               className="subheadline about-whyus-subheadline white"
               ref={titleRef2}
             >
-              We combine design, development, and modern technology to build
-              digital products that solve real business problems. From the
-              initial idea to launch and ongoing optimization, we work closely
-              with our clients to create fast, scalable, secure, and
-              user-focused digital experiences.
+              We don't believe every business needs the same solution. We understand your requirements first, then provide the right combination of technology, AI, marketing, and strategy — whether that's a single service or a complete digital solution.
             </p>
           </div>
 
@@ -328,13 +320,12 @@ export const AboutPageSection = () => {
               <div className="about-sticky-item-left">
                 <div className="about-sticky-item-left-textbox">
                   <h2 className="headline white">
-                    Web <br /> Development
+               
+                    Web & App <br /> Development
                   </h2>
 
                   <p className="description about-sticky-item-left-textbox-description grey">
-                    We build fast, responsive, and scalable websites and web
-                    applications using modern technologies like React, Next.js,
-                    Node.js, and MongoDB.
+                    Websites, e-commerce platforms, web applications, SaaS products, dashboards and custom digital solutions.
                   </p>
                 </div>
 
@@ -363,13 +354,11 @@ export const AboutPageSection = () => {
               <div className="about-sticky-item-left">
                 <div className="about-sticky-item-left-textbox">
                   <h2 className="headline white">
-                    E-Commerce
+                    AI Solutions
                   </h2>
 
                   <p className="description about-sticky-item-left-textbox-description grey">
-                    We create conversion-focused e-commerce experiences with
-                    modern storefronts, secure integrations, and scalable
-                    backend systems.
+                    AI integrations, AI-powered applications, chatbots, automation, AI agents and business-specific AI tools.
                   </p>
                 </div>
 
@@ -401,13 +390,11 @@ export const AboutPageSection = () => {
               <div className="about-sticky-item-left">
                 <div className="about-sticky-item-left-textbox">
                   <h2 className="headline white">
-                    AI <br /> Solutions
+                    Digital Marketing
                   </h2>
 
                   <p className="description about-sticky-item-left-textbox-description grey">
-                    We integrate AI and generative AI capabilities into digital
-                    products to automate workflows, improve user experiences,
-                    and unlock new possibilities.
+                    SEO, social media, performance marketing, content strategy, lead generation and conversion optimization.
                   </p>
                 </div>
 
@@ -439,12 +426,11 @@ export const AboutPageSection = () => {
               <div className="about-sticky-item-left">
                 <div className="about-sticky-item-left-textbox">
                   <h2 className="headline white">
-                    Maintenance <br /> & Support
+                    Strategy <br /> & Research
                   </h2>
 
                   <p className="description about-sticky-item-left-textbox-description grey">
-                    We keep your digital products secure, updated, optimized,
-                    and ready to grow with your business.
+                    Market research, competitor analysis, customer research, digital strategy, positioning and continuous optimization.
                   </p>
                 </div>
 
