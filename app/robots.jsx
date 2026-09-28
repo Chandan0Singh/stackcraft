@@ -5,6 +5,7 @@ export default function robots() {
       allow: "/",
       disallow: "/private/",
     },
-    sitemap: "https://StackCraft.com/sitemap.xml",
+    sitemap: "https://www.stackcraftstudio.com/sitemap.xml",
+    
   };
 }
