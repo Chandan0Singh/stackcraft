@@ -306,7 +306,7 @@ export const AboutPageSection = () => {
               className="subheadline about-whyus-subheadline white"
               ref={titleRef2}
             >
-              We don't believe every business needs the same solution. We understand your requirements first, then provide the right combination of technology, AI, marketing, and strategy — whether that's a single service or a complete digital solution.
+              We don&apos;t believe every business needs the same solution. We understand your requirements first, then provide the right combination of technology, AI, marketing, and strategy — whether that&apos;s a single service or a complete digital solution.
             </p>
           </div>
 
