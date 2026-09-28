@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 import "./globals.css";
 
@@ -66,6 +67,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <SectionFooter />
 
         <FloatingContact />
+
+         <GoogleAnalytics
+          gaId={process.env.NEXT_PUBLIC_GA_ID!}
+        />
       </body>
     </html>
   );
