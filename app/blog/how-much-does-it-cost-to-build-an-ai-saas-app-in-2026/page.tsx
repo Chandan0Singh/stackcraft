@@ -52,8 +52,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "How Much Does It Cost to Build an AI SaaS App in 2026?",
-    description:
-      "AI SaaS development cost breakdown for 2026.",
+    description: "AI SaaS development cost breakdown for 2026.",
   },
 };
 
@@ -171,8 +170,7 @@ export default function AISaaSCostPage() {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: "How Much Does It Cost to Build an AI SaaS App in 2026?",
-    description:
-      "A practical guide to AI SaaS development costs in 2026.",
+    description: "A practical guide to AI SaaS development costs in 2026.",
     author: {
       "@type": "Organization",
       name: "StackCraft Studio",
@@ -229,7 +227,7 @@ export default function AISaaSCostPage() {
       </div>
 
       {/* Hero */}
-      <section className="blog-hero">
+      <section className="blog-hero" style={{ height: "fit-content" }} >
         <div className="blog-container">
           <Link href="/blog" className="back-link">
             <ArrowLeft size={15} />
@@ -242,8 +240,7 @@ export default function AISaaSCostPage() {
           </div>
 
           <h1>
-            How Much Does It Cost to Build an{" "}
-            <span>AI SaaS App</span> in 2026?
+            How Much Does It Cost to Build an <span>AI SaaS App</span> in 2026?
           </h1>
 
           <p className="hero-description">
@@ -286,8 +283,14 @@ export default function AISaaSCostPage() {
       </section>
 
       {/* Main */}
-      <div className="blog-layout blog-container">
-        <aside className="blog-sidebar">
+      <div
+        className="blog-layout blog-container"
+        style={{ position: "relative", height: "780px" }}
+      >
+        <aside
+          className="blog-sidebar"
+          style={{ position: "sticky", top: "100px", height: "fit-content" }}
+        >
           <div className="toc-card">
             <div className="toc-title">On this page</div>
 
@@ -317,12 +320,19 @@ export default function AISaaSCostPage() {
           </div>
         </aside>
 
-        <article className="article-content">
+        <article
+          className="article-content"
+          style={{
+            overflowY: "auto",
+            scrollbarWidth: "none",
+          }}
+        >
           {/* Intro */}
           <div className="article-intro">
             <p>
-              If you&apos;re searching for <strong>AI SaaS development cost</strong>,
-              you&apos;re probably trying to answer a simple question:
+              If you&apos;re searching for{" "}
+              <strong>AI SaaS development cost</strong>, you&apos;re probably
+              trying to answer a simple question:
             </p>
 
             <blockquote>
@@ -336,9 +346,8 @@ export default function AISaaSCostPage() {
             </p>
 
             <p>
-              So instead of throwing one random number at you, this guide
-              breaks down the major cost components of building an AI SaaS app
-              in 2026.
+              So instead of throwing one random number at you, this guide breaks
+              down the major cost components of building an AI SaaS app in 2026.
             </p>
           </div>
 
@@ -383,7 +392,9 @@ export default function AISaaSCostPage() {
               <div className="warning-icon">!</div>
 
               <div>
-                <strong>Don&apos;t confuse development cost with operating cost.</strong>
+                <strong>
+                  Don&apos;t confuse development cost with operating cost.
+                </strong>
                 <p>
                   Your initial build is only one part of the budget. AI API
                   usage, cloud infrastructure, monitoring, support and future
@@ -403,11 +414,11 @@ export default function AISaaSCostPage() {
             <h2>What actually affects the cost?</h2>
 
             <p>
-              The biggest mistake founders make is estimating an AI product
-              from its visible interface. A clean dashboard might look simple,
-              while the system behind it can contain authentication,
-              permissions, billing, databases, queues, AI orchestration,
-              observability and third-party integrations.
+              The biggest mistake founders make is estimating an AI product from
+              its visible interface. A clean dashboard might look simple, while
+              the system behind it can contain authentication, permissions,
+              billing, databases, queues, AI orchestration, observability and
+              third-party integrations.
             </p>
 
             <div className="driver-grid">
@@ -433,8 +444,8 @@ export default function AISaaSCostPage() {
                 <Database />
                 <h3>Data architecture</h3>
                 <p>
-                  User data, vector databases, file processing and analytics
-                  can significantly increase backend complexity.
+                  User data, vector databases, file processing and analytics can
+                  significantly increase backend complexity.
                 </p>
               </div>
 
@@ -508,8 +519,8 @@ export default function AISaaSCostPage() {
             </div>
 
             <p>
-              The goal isn&apos;t to make the MVP look cheap. The goal is to avoid
-              spending $100k building features nobody asked for.
+              The goal isn&apos;t to make the MVP look cheap. The goal is to
+              avoid spending $100k building features nobody asked for.
             </p>
           </section>
 
@@ -600,8 +611,8 @@ export default function AISaaSCostPage() {
             <h2>How much do AI APIs cost?</h2>
 
             <p>
-              AI API expenses are different from development costs. You don&apos;t
-              pay them once—you generally pay based on usage.
+              AI API expenses are different from development costs. You
+              don&apos;t pay them once—you generally pay based on usage.
             </p>
 
             <div className="api-grid">
@@ -609,8 +620,8 @@ export default function AISaaSCostPage() {
                 <span>01</span>
                 <h3>Model selection</h3>
                 <p>
-                  Different models have different pricing, capabilities,
-                  latency and output quality.
+                  Different models have different pricing, capabilities, latency
+                  and output quality.
                 </p>
               </div>
 
@@ -703,8 +714,8 @@ export default function AISaaSCostPage() {
 
             <p>
               So if someone quotes the same price for a basic AI chatbot and a
-              multi-step AI agent platform, they&apos;re probably not estimating the
-              same product.
+              multi-step AI agent platform, they&apos;re probably not estimating
+              the same product.
             </p>
           </section>
 
@@ -785,8 +796,8 @@ export default function AISaaSCostPage() {
                   <h3>Discovery & architecture</h3>
                   <span>1–3 weeks</span>
                   <p>
-                    Product requirements, technical architecture, user flows
-                    and scope definition.
+                    Product requirements, technical architecture, user flows and
+                    scope definition.
                   </p>
                 </div>
               </div>
@@ -797,8 +808,8 @@ export default function AISaaSCostPage() {
                   <h3>Design & core development</h3>
                   <span>4–8 weeks</span>
                   <p>
-                    UI/UX, frontend, backend, authentication and primary
-                    product workflows.
+                    UI/UX, frontend, backend, authentication and primary product
+                    workflows.
                   </p>
                 </div>
               </div>
@@ -876,9 +887,9 @@ export default function AISaaSCostPage() {
             </div>
 
             <p>
-              A reasonable planning approach is to reserve a percentage of
-              your initial development budget for ongoing improvements rather
-              than assuming the first release will remain unchanged.
+              A reasonable planning approach is to reserve a percentage of your
+              initial development budget for ongoing improvements rather than
+              assuming the first release will remain unchanged.
             </p>
           </section>
 
@@ -892,29 +903,25 @@ export default function AISaaSCostPage() {
             <h2>So, what should you budget?</h2>
 
             <p>
-              If you&apos;re validating an idea, don&apos;t start by budgeting for a
-              $200k platform. Start by identifying the smallest version that
-              can prove the core business hypothesis.
+              If you&apos;re validating an idea, don&apos;t start by budgeting
+              for a $200k platform. Start by identifying the smallest version
+              that can prove the core business hypothesis.
             </p>
 
             <p>
               For many founders, that means a focused AI SaaS MVP in the
               <strong> $15k–$40k+ </strong>
-              range. Once the product has traction, the architecture can
-              evolve toward a larger production system.
+              range. Once the product has traction, the architecture can evolve
+              toward a larger production system.
             </p>
 
-            <p>
-              The important question isn&apos;t:
-            </p>
+            <p>The important question isn&apos;t:</p>
 
             <blockquote>
               “What&apos;s the cheapest developer who can build this?”
             </blockquote>
 
-            <p>
-              It&apos;s:
-            </p>
+            <p>It&apos;s:</p>
 
             <blockquote>
               “What&apos;s the smallest amount I need to spend to validate this

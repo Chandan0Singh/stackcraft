@@ -178,7 +178,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* PROJECTS */}
-      <section className="projectsSection">
+      <section className="projectsSection" style={{ height: "fit-content" }}>
         <div className="container">
           <div className="sectionHeader">
             <div>
@@ -264,7 +264,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* SERVICES */}
-      <section className="servicesSection">
+      <section className="servicesSection" style={{ height: "fit-content" }}>
         <div className="container">
           <div className="servicesHeader">
             <p className="sectionKicker">What We Do</p>
@@ -302,7 +302,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* PROCESS */}
-      <section className="processSection">
+      <section className="processSection" style={{ height: "fit-content" }}>
         <div className="container">
           <div className="processGrid">
             <div className="processIntro">

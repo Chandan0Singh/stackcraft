@@ -216,7 +216,7 @@ export default function TourTrekCaseStudy() {
       </div>
 
       {/* Hero */}
-      <section className="caseStudyHero">
+      <section className="caseStudyHero" style={{ height: "fit-content" }}>
         <div className="container">
           <div className="heroGrid">
             <div className="heroContent">
@@ -292,7 +292,7 @@ export default function TourTrekCaseStudy() {
       </section>
 
       {/* Highlights */}
-      <section className="highlightsSection">
+      <section className="highlightsSection" style={{ height: "fit-content" }}>
         <div className="container">
           <div className="highlightsGrid">
             {highlights.map((item) => (
@@ -308,9 +308,9 @@ export default function TourTrekCaseStudy() {
       {/* Main Content */}
       <section className="caseStudyBody" id="overview">
         <div className="container">
-          <div className="contentGrid">
+          <div className="contentGrid"  style={{ height: "700px", padding: "5rem 0" }}>
             {/* Sidebar */}
-            <aside className="caseStudySidebar">
+            <aside className="caseStudySidebar" style={{ height: "fit-content" }}>
               <div className="sidebarInner">
                 <p className="sidebarTitle">On this page</p>
 
@@ -329,7 +329,10 @@ export default function TourTrekCaseStudy() {
             </aside>
 
             {/* Main */}
-            <div className="caseStudyContent">
+            <div className="caseStudyContent" style={{
+            overflowY: "auto",
+            scrollbarWidth: "none",
+          }}>
               {/* 01 */}
               <section className="caseSection">
                 <div className="sectionNumber">01</div>
@@ -717,7 +720,7 @@ export default function TourTrekCaseStudy() {
       </section>
 
       {/* FAQ */}
-      <section className="faqSection">
+      <section className="faqSection" style={{ height: "fit-content" }}>
         <div className="container">
           <div className="faqHeader">
             <p className="sectionKicker">FAQ</p>
@@ -743,7 +746,7 @@ export default function TourTrekCaseStudy() {
       </section>
 
       {/* Next Project */}
-      <section className="nextProjectSection">
+      <section className="nextProjectSection" style={{ height: "fit-content" }}>
         <div className="container">
           <Link
             href="/case-studies/amazdraw"
@@ -760,7 +763,7 @@ export default function TourTrekCaseStudy() {
       </section>
 
       {/* CTA */}
-      <section className="caseStudyCta">
+      <section className="caseStudyCta" style={{ height: "fit-content" }}>
         <div className="container">
           <div className="ctaBox">
             <div>

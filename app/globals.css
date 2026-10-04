@@ -3217,6 +3217,10 @@ section {
     font-size: 4vw;
   }
 
+  .fit-height{
+      height: fit-content;
+    }
+
   .description,
   .small-description {
     font-size: 4vw;

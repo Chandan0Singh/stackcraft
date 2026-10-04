@@ -240,7 +240,7 @@ export default function AIWebAppGuidePage() {
       </div>
 
       {/* HERO */}
-      <section className="blog-hero">
+      <section className="blog-hero" style={{ height: "fit-content" }}>
         <div className="blog-container">
           <div className="blog-breadcrumb">
             <Link href="/">Home</Link>
@@ -307,8 +307,8 @@ export default function AIWebAppGuidePage() {
       </section>
 
       {/* MAIN */}
-      <div className="blog-layout blog-container" id="guide">
-        <aside className="blog-sidebar">
+      <div className="blog-layout blog-container" id="guide"   style={{ position: "relative", height: "1000px" }}>
+        <aside className="blog-sidebar" style={{ position: "sticky", top: "100px", height: "fit-content" }}>
           <div className="toc-card">
             <div className="toc-title">In this guide</div>
 
@@ -338,7 +338,10 @@ export default function AIWebAppGuidePage() {
           </div>
         </aside>
 
-        <article className="blog-article">
+        <article className="blog-article"  style={{
+            overflowY: "auto",
+            scrollbarWidth: "none",
+          }}>
           {/* INTRO */}
           <section className="article-section intro-section">
             <p className="lead">

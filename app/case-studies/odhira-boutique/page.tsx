@@ -213,7 +213,7 @@ export default function OdhiraBoutiqueCaseStudy() {
       </div>
 
       {/* Hero */}
-      <section className="caseStudyHero">
+      <section className="caseStudyHero" style={{ height: "fit-content" }}>
         <div className="container">
           <div className="heroGrid">
             <div className="heroContent">
@@ -288,7 +288,7 @@ export default function OdhiraBoutiqueCaseStudy() {
       </section>
 
       {/* Highlights */}
-      <section className="highlightsSection">
+      <section className="highlightsSection" style={{ height: "fit-content" }}>
         <div className="container">
           <div className="highlightsGrid">
             {highlights.map((item) => (
@@ -302,11 +302,11 @@ export default function OdhiraBoutiqueCaseStudy() {
       </section>
 
       {/* Main Content */}
-      <section className="caseStudyBody" id="overview">
+      <section className="caseStudyBody" id="overview" style={{ height: "fit-content" }}>
         <div className="container">
-          <div className="contentGrid">
+          <div className="contentGrid" style={{ height: "300px" }}>
             {/* Sidebar */}
-            <aside className="caseStudySidebar">
+            <aside className="caseStudySidebar" style={{ height: "fit-content" }}>
               <div className="sidebarInner">
                 <p className="sidebarTitle">On this page</p>
 
@@ -325,7 +325,10 @@ export default function OdhiraBoutiqueCaseStudy() {
             </aside>
 
             {/* Main */}
-            <div className="caseStudyContent">
+            <div className="caseStudyContent" style={{
+            overflowY: "auto",
+            scrollbarWidth: "none",
+          }}>
               {/* 01 */}
               <section className="caseSection">
                 <div className="sectionNumber">01</div>
@@ -652,7 +655,7 @@ export default function OdhiraBoutiqueCaseStudy() {
               </section>
 
               {/* 09 */}
-              <section className="caseSection liveSection" id="live">
+              <section className="caseSection liveSection" id="live" style={{ height: "fit-content" }}>
                 <div className="sectionNumber">09</div>
 
                 <div className="sectionContent">
@@ -682,7 +685,7 @@ export default function OdhiraBoutiqueCaseStudy() {
       </section>
 
       {/* FAQ */}
-      <section className="faqSection">
+      <section className="faqSection" style={{ height: "fit-content" }}>
         <div className="container">
           <div className="faqHeader">
             <p className="sectionKicker">FAQ</p>
@@ -707,7 +710,7 @@ export default function OdhiraBoutiqueCaseStudy() {
       </section>
 
       {/* Next Project */}
-      <section className="nextProjectSection">
+      <section className="nextProjectSection" style={{ height: "fit-content" }}>
         <div className="container">
           <Link href="/case-studies/tourtrek" className="nextProject">
             <div>
@@ -721,7 +724,7 @@ export default function OdhiraBoutiqueCaseStudy() {
       </section>
 
       {/* Footer CTA */}
-      <section className="caseStudyCta">
+      <section className="caseStudyCta" style={{ height: "fit-content" }}>
         <div className="container">
           <div className="ctaBox">
             <div>

@@ -218,7 +218,7 @@ export default function AmazdrawCaseStudyPage() {
       </div>
 
       {/* HERO */}
-      <section className="case-study-hero">
+      <section className="case-study-hero" style={{ height: "fit-content" }}>
         <div className="case-study-container">
           <div className="breadcrumb">
             <Link href="/">Home</Link>
@@ -327,8 +327,8 @@ export default function AmazdrawCaseStudyPage() {
       </section>
 
       {/* CONTENT */}
-      <div className="case-study-container content-layout">
-        <aside className="case-study-sidebar">
+      <div className="case-study-container content-layout" style={{ height: "700px", padding: "5rem 0" }}>
+        <aside className="case-study-sidebar" style={{ height: "fit-content" }}>
           <div className="toc">
             <span>CASE STUDY</span>
 
@@ -361,7 +361,10 @@ export default function AmazdrawCaseStudyPage() {
           </div>
         </aside>
 
-        <article className="case-study-article">
+        <article className="case-study-article" style={{
+            overflowY: "auto",
+            scrollbarWidth: "none",
+          }}>
           {/* 01 */}
           <section id="overview" className="case-section">
             <SectionHeading

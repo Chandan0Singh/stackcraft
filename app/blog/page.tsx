@@ -44,12 +44,14 @@ const featuredPost = {
   date: "2026",
   readTime: "10 min read",
   href: "/blog/how-much-does-it-cost-to-build-an-ai-saas-app-in-2026",
-  image: "/images/blog/how-much-does-it-cost-to-build-an-ai-saas-app-in-2026.webp",
+  image:
+    "/images/blog/how-much-does-it-cost-to-build-an-ai-saas-app-in-2026.webp",
 };
 
 const posts = [
   {
-    title: "How to Build an AI Web App in 2026: Complete Guide From Idea to Launch",
+    title:
+      "How to Build an AI Web App in 2026: Complete Guide From Idea to Launch",
     description:
       "Learn how to take an AI web app from idea and validation through UX, development, AI integration, deployment, and scaling.",
     category: "AI Development",
@@ -64,8 +66,8 @@ const posts = [
     category: "AI Strategy",
     readTime: "8 min read",
     href: "/blog/ai-agent-vs-ai-chatbot-what-should-your-business-build-in-2026",
-    image: "/images/blog/ai-agent-vs-ai-chatbot-what-should-your-business-build-in-2026.webp",
-
+    image:
+      "/images/blog/ai-agent-vs-ai-chatbot-what-should-your-business-build-in-2026.webp",
   },
   {
     title: "How Much Does It Cost to Build a Web App in India in 2026?",
@@ -96,10 +98,7 @@ const categories = [
 ];
 
 export default function BlogPage() {
-  const blogSchemas = [
-    featuredPost,
-    ...posts,
-  ].map((post) => ({
+  const blogSchemas = [featuredPost, ...posts].map((post) => ({
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
@@ -131,7 +130,7 @@ export default function BlogPage() {
       ))}
 
       {/* HERO */}
-      <section className="blogHero">
+      <section className="blogHero" style={{ height: "fit-content" }}>
         <div className="heroOrb heroOrbOne" />
         <div className="heroOrb heroOrbTwo" />
 
@@ -155,8 +154,8 @@ export default function BlogPage() {
 
             <p>
               Practical guides, technology insights, cost breakdowns, and
-              digital strategy for businesses building their next website,
-              web app, AI product, or online growth system.
+              digital strategy for businesses building their next website, web
+              app, AI product, or online growth system.
             </p>
           </div>
 
@@ -187,10 +186,7 @@ export default function BlogPage() {
           <div className="sectionLabel">Featured Article</div>
 
           <article className="featuredCard">
-            <Link
-              href={featuredPost.href}
-              className="featuredVisual"
-            >
+            <Link href={featuredPost.href} className="featuredVisual">
               <Image
                 src={featuredPost.image}
                 alt={featuredPost.title}
@@ -234,7 +230,12 @@ export default function BlogPage() {
       </section>
 
       {/* ARTICLES */}
-      <section className="articlesSection">
+      <section
+        className="articlesSection fit-height"
+        style={{
+          height: "fit-content",
+        }}
+      >
         <div className="container">
           <div className="articlesHeader">
             <div>
@@ -249,12 +250,12 @@ export default function BlogPage() {
 
             <p>
               No fluff, no recycled generic advice. These articles are built
-              around the questions businesses actually ask before investing
-              in digital products and marketing.
+              around the questions businesses actually ask before investing in
+              digital products and marketing.
             </p>
           </div>
 
-          <div className="articlesGrid">
+          <div className="articlesGrid" style={{ height: "fit-content" }}>
             {posts.map((post, index) => (
               <article className="articleCard" key={post.title}>
                 <Link href={post.href} className="articleImage">
@@ -287,10 +288,7 @@ export default function BlogPage() {
 
                   <p>{post.description}</p>
 
-                  <Link
-                    href={post.href}
-                    className="readMore"
-                  >
+                  <Link href={post.href} className="readMore">
                     Read article
                     <ArrowUpRight size={16} />
                   </Link>
@@ -346,8 +344,8 @@ export default function BlogPage() {
               <span>04</span>
               <h3>Business & Strategy</h3>
               <p>
-                Digital product decisions, technology budgets, growth
-                strategy, and choosing the right approach for a business.
+                Digital product decisions, technology budgets, growth strategy,
+                and choosing the right approach for a business.
               </p>
             </div>
           </div>
@@ -371,8 +369,7 @@ export default function BlogPage() {
 
               <p>
                 Got an idea for a website, web app, AI product, or digital
-                growth strategy? Let&apos;s turn the idea into something
-                real.
+                growth strategy? Let&apos;s turn the idea into something real.
               </p>
             </div>
 
