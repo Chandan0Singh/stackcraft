@@ -43,8 +43,8 @@ const featuredPost = {
   category: "AI & SaaS",
   date: "2026",
   readTime: "10 min read",
-  href: "/blog/ai-saas-app-development-cost-2026",
-  image: "/blog/ai-saas-cost.webp",
+  href: "/blog/how-much-does-it-cost-to-build-an-ai-saas-app-in-2026",
+  image: "/images/blog/how-much-does-it-cost-to-build-an-ai-saas-app-in-2026.webp",
 };
 
 const posts = [
@@ -54,8 +54,8 @@ const posts = [
       "Learn how to take an AI web app from idea and validation through UX, development, AI integration, deployment, and scaling.",
     category: "AI Development",
     readTime: "12 min read",
-    href: "/blog/how-to-build-ai-web-app-2026",
-    image: "/blog/ai-web-app.webp",
+    href: "/blog/how-to-build-an-ai-web-app-in-2026",
+    image: "/images/blog/How-to-Build-an-AI-Web-App-in-2026.webp",
   },
   {
     title: "AI Agent vs AI Chatbot: What Should Your Business Build in 2026?",
@@ -63,8 +63,9 @@ const posts = [
       "Understand the difference between AI agents and AI chatbots, where each works best, and which option makes sense for your business.",
     category: "AI Strategy",
     readTime: "8 min read",
-    href: "/blog/ai-agent-vs-ai-chatbot-2026",
-    image: "/blog/ai-agent-chatbot.webp",
+    href: "/blog/ai-agent-vs-ai-chatbot-what-should-your-business-build-in-2026",
+    image: "/images/blog/ai-agent-vs-ai-chatbot-what-should-your-business-build-in-2026.webp",
+
   },
   {
     title: "How Much Does It Cost to Build a Web App in India in 2026?",
@@ -72,8 +73,8 @@ const posts = [
       "Understand web application development costs in India, including MVPs, custom web apps, SaaS platforms, integrations, and maintenance.",
     category: "Web Development",
     readTime: "10 min read",
-    href: "/blog/web-app-development-cost-india-2026",
-    image: "/blog/web-app-cost.webp",
+    href: "/blog/how-much-does-it-cost-to-build-a-web-app-in-india-in-2026",
+    image: "/images/blog/How-Much-Does-It-Cost-to-Build-a-Web-App.webp",
   },
   {
     title: "How Much Does Digital Marketing Cost in India in 2026?",
@@ -81,8 +82,8 @@ const posts = [
       "A practical guide to SEO, social media marketing, Google Ads, PPC management, full-service digital marketing, and monthly agency costs.",
     category: "Digital Marketing",
     readTime: "11 min read",
-    href: "/blog/digital-marketing-cost-india-2026",
-    image: "/blog/digital-marketing-cost.webp",
+    href: "/blog/how-much-does-digital-marketing-cost-in-india-in-2026",
+    image: "/images/blog/How-Much-Does-It-Cost-to-Build-a-Web-App.webp",
   },
 ];
 
